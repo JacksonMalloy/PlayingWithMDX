@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import Header from '../../components/header'
 export const myVariable = 'Yay!'
 
 export const StyledDiv = styled.div`
@@ -16,6 +16,7 @@ the background color!**
   <h3>This is JSX</h3>
 </div>
 
+<Header />
 <StyledDiv>Hi</StyledDiv>
 
 <blockquote>
@@ -25,6 +26,23 @@ the background color!**
 > A blockquote with _some_ emphasis.
 
 # Below is a JSX block
+
+```javascript
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+```
 
 <div style={{ padding: '10px 30px', backgroundColor: 'tomato' }}>
   <h2>Try making this heading have the color green</h2>

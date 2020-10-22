@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle`
     ${normalize}
 
     @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
 
 
     *, *::before, *::after {
@@ -23,9 +24,22 @@ export const GlobalStyles = createGlobalStyle`
         font-weight: 900;
     }
 
-    p, span, div, small {
+    p, small {
         font-family: 'Source Sans Pro';
         font-weight: 400;
+    }
+
+    pre {
+        font-family: 'Ubuntu Mono';
+        overflow-x: scroll;
+        /* Hide scrollbar for IE, Edge and Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */  
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    pre::-webkit-scrollbar {
+        display: none;
     }
 
     html,
