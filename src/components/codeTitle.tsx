@@ -2,22 +2,26 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledTitleContainer = styled.header`
-  background-color: rgb(214, 222, 235);
-  padding: 1rem;
+  background-color: rgb(1, 22, 39);
+  padding: 0.3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Source Sans Pro';
 `
 
 const StyledText = styled.h2`
-  margin: 0px;
-  color: black;
+  font-size: 1rem;
+  color: rgb(214, 222, 235);
+  padding: 0 0.5rem;
+  font-family: 'Source Sans Pro';
 `
 
 const StyledLanguageTag = styled.div`
-  padding: 5px;
-  color: black;
+  color: rgb(214, 222, 235);
+  padding: 0 0.5rem;
   border-radius: 4px;
+  font-family: 'Source Sans Pro';
 `
 
 type CodeTitleProps = {

@@ -4,6 +4,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/nightOwl'
 import Title from './codeTitle'
 import styled from 'styled-components'
+import Button from './button'
 
 type getParamsTypes = (className: string) => any
 
@@ -61,10 +62,10 @@ const SyntaxHiglight = (props: { className: string; metastring: string; children
             <Title className="code-title" text={title}>
               {language}
             </Title>
-            <pre className={className} style={{ ...style, ...ifTitle, padding: '1rem' }}>
+            <pre className={className} style={{ ...style, ...ifTitle, padding: '3rem 1rem 1rem 1rem' }}>
               <Button
                 onClick={() => {
-                  copyToClipboard(props.codeString)
+                  copyToClipboard(props.children)
                   setIsCopied(true)
                   setTimeout(() => setIsCopied(false), 3000)
                 }}
@@ -102,7 +103,7 @@ const StyledLine = styled.div`
   &.highlight-line {
     background-color: #010101;
     display: block;
-    margin-right: -5em;
+    margin-right: -300px;
     margin-left: -1em;
     padding-right: 1em;
     padding-left: 0.75em;
