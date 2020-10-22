@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import rangeParser from 'parse-numeric-range'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/nightOwl'
@@ -29,7 +29,21 @@ const calculateLinesToHighlight = (meta: string) => {
   }
 }
 
-const SyntaxHiglight = (props: { className: string; metastring: string; children: string }) => {
+const copyToClipboard = (str: string) => {
+  const el = document.createElement('textarea')
+  el.value = str
+  el.setAttribute('readonly', '')
+  el.style.position = 'absolute'
+  el.style.left = '-9999px'
+  document.body.appendChild(el)
+  el.select()
+  document.execCommand('copy')
+  document.body.removeChild(el)
+}
+
+const SyntaxHiglight = (props: { className: string; metastring: string; children: string; codeString: string }) => {
+  const [isCopied, setIsCopied] = useState(false)
+
   const className = props.className || ''
   const [language, { title = `` }] = getParams(className)
   const ifTitle = (title || language) && { marginTop: `0px` }
@@ -48,6 +62,16 @@ const SyntaxHiglight = (props: { className: string; metastring: string; children
               {language}
             </Title>
             <pre className={className} style={{ ...style, ...ifTitle, padding: '1rem' }}>
+              <Button
+                onClick={() => {
+                  copyToClipboard(props.codeString)
+                  setIsCopied(true)
+                  setTimeout(() => setIsCopied(false), 3000)
+                }}
+              >
+                {isCopied ? '🎉 Copied!' : 'Copy'}
+              </Button>
+
               {tokens.map((line, i) => {
                 const lineProps = getLineProps({ line, key: i })
                 console.log({ line })
