@@ -1,32 +1,87 @@
 import React from 'react'
+import rangeParser from 'parse-numeric-range'
 import Highlight, { defaultProps } from 'prism-react-renderer'
-import nightOwlLight from 'prism-react-renderer/themes/nightOwlLight'
+import theme from 'prism-react-renderer/themes/nightOwl'
 import Title from './codeTitle'
+import styled from 'styled-components'
 
-const Code = ({ children, className }) => {
-  const language = className.replace(/language-/, '')
-  const ifTitle = (title || language) && { marginTop: `0px` }
+type getParamsTypes = (className: string) => any
 
-  return (
-    <Highlight {...defaultProps} code={children.trim()} language={language} theme={nightOwlLight}>
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <>
-          <Title className="code-title" text={title}>
-            {language}
-          </Title>
-          <pre className={className} style={{ ...style, padding: '20px', ...ifTitle }}>
-            {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </pre>
-        </>
-      )}
-    </Highlight>
+const getParams: getParamsTypes = (className = ``) => {
+  const [lang = ``, params = ``]: any = className.split(`:`)
+  return [lang.split(`language-`).pop().split(`{`).shift()].concat(
+    params.split(`&`).reduce((merged: any, param: any) => {
+      const [key, value] = param.split(`=`)
+      merged[key] = value
+      return merged
+    }, {})
   )
 }
 
+const calculateLinesToHighlight = (meta: string) => {
+  const RE: any = /{([\d,-]+)}/
+  if (RE.test(meta)) {
+    const strlineNumbers = RE.exec(meta)[1]
+    const lineNumbers = rangeParser(strlineNumbers)
+    return (i: number) => lineNumbers.includes(i + 1)
+  } else {
+    return () => false
+  }
+}
+
+const SyntaxHiglight = (props: { className: string; metastring: string; children: string }) => {
+  const className = props.className || ''
+  const [language, { title = `` }] = getParams(className)
+  const ifTitle = (title || language) && { marginTop: `0px` }
+  const metastring = props.metastring || ''
+
+  return (
+    <Highlight {...defaultProps} theme={theme} code={props.children.trim()} language={language}>
+      {({ className, style, tokens, getLineProps, getTokenProps }) => {
+        console.log({ className, style, tokens })
+
+        const shouldHighlightLine = calculateLinesToHighlight(metastring)
+
+        return (
+          <>
+            <Title className="code-title" text={title}>
+              {language}
+            </Title>
+            <pre className={className} style={{ ...style, ...ifTitle, padding: '1rem' }}>
+              {tokens.map((line, i) => {
+                const lineProps = getLineProps({ line, key: i })
+                console.log({ line })
+                if (shouldHighlightLine(i)) {
+                  lineProps.className = `${lineProps.className} highlight-line`
+                }
+
+                return (
+                  <StyledLine key={i} {...lineProps}>
+                    {line.map((token, key) => (
+                      <span {...getTokenProps({ token, key })} key={key} />
+                    ))}
+                  </StyledLine>
+                )
+              })}
+            </pre>
+          </>
+        )
+      }}
+    </Highlight>
+  )
+}
+const Code = (props: any) => <SyntaxHiglight {...props} />
+
 export default Code
+
+const StyledLine = styled.div`
+  &.highlight-line {
+    background-color: #010101;
+    display: block;
+    margin-right: -5em;
+    margin-left: -1em;
+    padding-right: 1em;
+    padding-left: 0.75em;
+    border-left: 0.1em solid #d23669;
+  }
+`

@@ -2,11 +2,8 @@ import { createGlobalStyle } from 'styled-components'
 import { normalize } from 'styled-normalize'
 
 export const GlobalStyles = createGlobalStyle`
-    ${normalize}
-
     @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
-
 
     *, *::before, *::after {
         box-sizing: border-box;
@@ -30,7 +27,6 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     pre {
-        font-family: 'Ubuntu Mono';
         overflow-x: scroll;
         /* Hide scrollbar for IE, Edge and Firefox */
         -ms-overflow-style: none; /* IE and Edge */
@@ -53,7 +49,6 @@ export const GlobalStyles = createGlobalStyle`
     h5,
     h6,
     p,
-    pre,
     button,
     fieldset,
     form,
