@@ -8,6 +8,8 @@ const StyledTitleContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   font-family: 'Source Sans Pro';
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 `
 
 const StyledText = styled.h2`

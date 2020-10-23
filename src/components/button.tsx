@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const StyledButton = styled.button`
   position: absolute;
   right: 0;
-  top: 4rem;
+  top: 1.5rem;
   border: none;
   box-shadow: none;
   text-decoration: none;

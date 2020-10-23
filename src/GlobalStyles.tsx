@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
 
     body {
         margin: 0;
-        font-size: 15px;
+        font-size: 18px;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -31,6 +31,7 @@ export const GlobalStyles = createGlobalStyle`
         /* Hide scrollbar for IE, Edge and Firefox */
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */  
+        position: relative;
     }
 
     /* Hide scrollbar for Chrome, Safari and Opera */

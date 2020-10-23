@@ -62,7 +62,17 @@ const SyntaxHiglight = (props: { className: string; metastring: string; children
             <Title className="code-title" text={title}>
               {language}
             </Title>
-            <pre className={className} style={{ ...style, ...ifTitle, padding: '3rem 1rem 1rem 1rem' }}>
+            <pre
+              className={className}
+              style={{
+                ...style,
+                ...ifTitle,
+                padding: '3rem 1rem 1rem 1rem',
+                position: 'static',
+                borderBottomLeftRadius: '1rem',
+                borderBottomRightRadius: '1rem',
+              }}
+            >
               <Button
                 onClick={() => {
                   copyToClipboard(props.children)

@@ -6,22 +6,50 @@ wtf
 this is wack
 
 holy shit 
+fromf
+fromf
+fromf
+fromf
+asdfafas
+df
+asdfaasdffda
+sdfasdf
 
-```js:title=src/components/code.js {7-9}
-const http = require('http');
+# Interesting
 
-const hostname = '127.0.0.1';
-const port = 3000;
+## This is an H2
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
-});
+### An H3 here!
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+#### An H4, and so on...
+
+*Google Analytics* is a web analytics service offered by Google that tracks and reports website traffic. 
+They offer a great dashboard and the service is **free**.
+
+React inline styles are not specified as a string. 
+They are specified as a javascript object whose key is the camelCased version of the style name, 
+and whose value is the style’s value, usually a string, e.g.
+
+*Google Analytics* is a web analytics service offered by Google that tracks and reports website traffic. 
+They offer a great dashboard and the service is **free**.
+
+
+```tsx:title=src/components/code.tsx {7-9}
+
+const Layout = ({ children }) => {
+  return (
+    <StyledLayout>
+      <StyledContainer>
+        <MDXProvider components={components}>
+          <GlobalStyles />
+          {children}
+        </MDXProvider>
+      </StyledContainer>
+    </StyledLayout>
+  )
+}
+
+export default Layout
 ```
 
 huh is this going to asdfkasdf
