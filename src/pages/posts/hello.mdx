@@ -2,62 +2,225 @@ import styled from 'styled-components'
 import Header from '../../components/header'
 export const myVariable = 'Yay!'
 
-wtf
-this is wack
 
-holy shit 
-fromf
-fromf
-fromf
-fromf
-asdfafas
-df
-asdfaasdffda
-sdfasdf
+# Bloated Components with Apollo Client 3
 
-# Interesting
-
-## This is an H2
-
-### An H3 here!
-
-#### An H4, and so on...
-
-*Google Analytics* is a web analytics service offered by Google that tracks and reports website traffic. 
-They offer a great dashboard and the service is **free**.
-
-React inline styles are not specified as a string. 
-They are specified as a javascript object whose key is the camelCased version of the style name, 
-and whose value is the style’s value, usually a string, e.g.
-
-*Google Analytics* is a web analytics service offered by Google that tracks and reports website traffic. 
-They offer a great dashboard and the service is **free**.
+In this post I would like to discuss my issue of bloated components while using Apollo Client 3. 
+I will go through how I ran into the issue, what I 
 
 
-```tsx:title=src/components/code.tsx {7-9}
+### Bloat in React
 
-const Layout = ({ children }) => {
+I love to write code in a single file. There's just something about it that screams "efficient", until it's not. 
+No matter what feature I am building, my tendency is to write multi-component files until it starts to get messy. 
+It's in this chaos that *real* developers are born.
+
+Kidding. 
+
+But it is a skill that is important to learn as a developer. Breaking large components, delegating function calls, moving things around. 
+It's something that we all have to get use to. In my SAAS application, this is how I solved my bloat issue.
+
+Take a look at a component that creates a menu. 
+For brevity sake, I've skimmed the imports, removed styles and other form fields.
+
+
+```jsx:title=src/components/CreateMenu.js
+export const CreateMenu = ({ setIsOpen }) => {
+  const [{ organizationId, image }, dispatch] = useContext(UserContext)
+  const [addMenu, { data }] = useMutation(ADD_MENU)
+
+  const { values, errors, handleChange, handleSubmit } = useForm({
+    onSubmit: ({ values }) => {
+      const { menuTitle } = values
+
+      addMenu({
+        variables: { organization_id: organizationId, title: menuTitle },
+        update: (store, { data }) => {
+          const menuData = store.readQuery({
+            query: MENUS_BY_ORGANIZATION,
+            variables: { organization_id: organization_id },
+          })
+
+          store.writeQuery({
+            query: MENUS_BY_ORGANIZATION,
+            variables: { organization_id: organization_id },
+            data: {
+              menusByOrganization: [
+                ...menuData.menusByOrganization,
+                data.addMenu,
+              ],
+            },
+          })
+        },
+      }).then(() => {
+        dispatch(menuCreated())
+        setIsOpen(false)
+      })
+    },
+  })
+
   return (
-    <StyledLayout>
-      <StyledContainer>
-        <MDXProvider components={components}>
-          <GlobalStyles />
-          {children}
-        </MDXProvider>
-      </StyledContainer>
-    </StyledLayout>
+    <form onSubmit={handleSubmit}>
+      <Field
+        id="menuTitle"
+        name="menuTitle"
+        required
+        label="Menu Title"
+        placeholder="Ex. Drink Menu"
+        value={values.menuTitle}
+        onChange={handleChange}
+        type="text"
+        error={errors.menuTitle}
+      />
+      <Button type="submit">
+        Create
+      </Button>
+    </form>
   )
 }
 
-export default Layout
 ```
 
-huh is this going to asdfkasdf
+We are using a custom hook to handle the form
+and utilizing the **update** function to update Apollo's cache once the item is added. 
 
-asdfa
-sdf
-asdfaasdf
+In my case, I wanted to extract all service logic that was referencing my API in a **services** folder. 
+This right here, was the culprit. 
+
+```tsx:title=src/components/code.tsx {9-33}
+export const CreateMenu = ({ setIsOpen }) => {
+  const [{ organizationId, image }, dispatch] = useContext(UserContext)
+  const [addMenu, { data }] = useMutation(ADD_MENU)
+
+  const { values, errors, handleChange, handleSubmit } = useForm({
+    onSubmit: ({ values }) => {
+      const { menuTitle } = values
+
+      addMenu({
+        variables: { organization_id: organizationId, title: menuTitle },
+        update: (store, { data }) => {
+          const menuData = store.readQuery({
+            query: MENUS_BY_ORGANIZATION,
+            variables: { organization_id: organization_id },
+          })
+
+          store.writeQuery({
+            query: MENUS_BY_ORGANIZATION,
+            variables: { organization_id: organization_id },
+            data: {
+              menusByOrganization: [
+                ...menuData.menusByOrganization,
+                data.addMenu,
+              ],
+            },
+          })
+        },
+      }).then(() => {
+        dispatch(menuCreated())
+        setIsOpen(false)
+      })
+    },
+  })
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Field
+        id="menuTitle"
+        name="menuTitle"
+        required
+        label="Menu Title"
+        placeholder="Ex. Drink Menu"
+        value={values.menuTitle}
+        onChange={handleChange}
+        type="text"
+        error={errors.menuTitle}
+      />
+      <Button type="submit">
+        Create
+      </Button>
+    </form>
+  )
+}
+```
+
+What I did was take that service logic and extract it in its own file, and then import the function and pass the required parameters. 
+I called this new function **handleCreateMenu** as it calls my API / resolver to tell my server to create a menu for the user.
+
+We pass in the function that is destructured from the `useMutation` hook along with an args object.
+That args object contains the variables for the mutate function, `addMenu`, and the `organizationId` to update the cache. 
 
 
+Apollo then updates the UI with it's fantastic caching abilities. 
 
-asdfasdf
+
+```tsx:title=src/components/code.tsx 
+export const handleCreateMenu = async (mutation, args) => {
+  const { variables, organizationId } = args
+
+  const data = await mutation({
+    variables: variables,
+    update: (store, { data }) => {
+      const menuData: any = store.readQuery({
+        query: MENUS_BY_ORGANIZATION,
+        variables: { organization_id: organizationId },
+      })
+
+      store.writeQuery({
+        query: MENUS_BY_ORGANIZATION,
+        variables: { organization_id: organizationId },
+        data: {
+          menusByOrganization: [...menuData.menusByOrganization, data.addMenu],
+        },
+      })
+    },
+  })
+
+  return data
+}
+```
+
+Another good reason to do this is because now we only import `MENUS_BY_ORGANIZATION` in 
+a single file where we want to call it. So now we can extract all other services such as `deleteMenu`, `editMenu`, `publishMenu`, etc... *as an example...*
+
+This is how we use the function
+
+```tsx:title=src/components/code.tsx {6-14}
+export const CreateMenu = ({ setIsOpen }) => {
+  const [{ organizationId, image }, dispatch] = useContext(UserContext)
+  const [addMenu, { data }] = useMutation(ADD_MENU)
+
+  const { values, errors, handleChange, handleSubmit } = useForm({
+    onSubmit: async ({ values }) => {
+      const { menuTitle } = values
+      const variables = { organization_id: organizationId, title: menu_title }
+      const args = { variables, organizationId }
+      const data = await handleCreateMenu(addMenu, args).then(() => {
+        dispatch(menuCreated())
+        setIsOpen(false)
+      })
+    },
+  })
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Field
+        id="menuTitle"
+        name="menuTitle"
+        required
+        label="Menu Title"
+        placeholder="Ex. Drink Menu"
+        value={values.menuTitle}
+        onChange={handleChange}
+        type="text"
+        error={errors.menuTitle}
+      />
+      <Button type="submit">
+        Create
+      </Button>
+    </form>
+  )
+}
+```
+
+After this configuration to move out the service logic from the component I felt that
+it was much easy 

@@ -10,8 +10,18 @@ const StyledLayout = styled.main`
   justify-content: center;
   align-items: center;
 
-  p {
-    margin-bottom: 2rem;
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 1rem 2rem 1rem;
+  }
+
+  h1 {
+    margin: 2rem 1rem;
   }
 `
 

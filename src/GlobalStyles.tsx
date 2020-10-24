@@ -32,6 +32,7 @@ export const GlobalStyles = createGlobalStyle`
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */  
         position: relative;
+        margin-bottom: 1rem;
     }
 
     /* Hide scrollbar for Chrome, Safari and Opera */
