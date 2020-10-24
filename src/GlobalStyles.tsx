@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
 
     body {
         margin: 0;
-        font-size: 18px;
+        font-size: 15px;
     }
 
     h1, h2, h3, h4, h5, h6 {

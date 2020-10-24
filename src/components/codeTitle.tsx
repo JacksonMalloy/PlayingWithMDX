@@ -12,14 +12,14 @@ const StyledTitleContainer = styled.header`
   border-top-right-radius: 1rem;
 `
 
-const StyledText = styled.h2`
+const StyledText = styled.h6`
   font-size: 1rem;
   color: rgb(214, 222, 235);
   padding: 0 0.5rem;
   font-family: 'Source Sans Pro';
 `
 
-const StyledLanguageTag = styled.div`
+const StyledLanguageTag = styled.h6`
   color: rgb(214, 222, 235);
   padding: 0 0.5rem;
   border-radius: 4px;
@@ -36,8 +36,9 @@ const Title = (props: CodeTitleProps) => {
   const { text, children, className } = props
   return (
     <StyledTitleContainer className={className}>
-      <StyledText>{text}</StyledText>
       <StyledLanguageTag>{children}</StyledLanguageTag>
+
+      <StyledText>{text}</StyledText>
     </StyledTitleContainer>
   )
 }

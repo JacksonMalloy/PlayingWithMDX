@@ -16,12 +16,42 @@ const StyledLayout = styled.main`
   h3,
   h4,
   h5,
-  h6 {
+  ol {
     margin: 0 1rem 2rem 1rem;
   }
 
+  /* type-scale x1.5 for desktop */
   h1 {
     margin: 2rem 1rem;
+    font-size: 7.594rem;
+  }
+
+  h2 {
+    font-size: 5.063rem;
+  }
+
+  h3 {
+    font-size: 3.375rem;
+  }
+
+  h4 {
+    font-size: 2.25rem;
+  }
+
+  h5 {
+    font-size: 1.5rem;
+  }
+
+  blockquote {
+    border-left: 1rem solid #cccccc;
+    margin-left: 2rem;
+    background-color: #f2f2f2;
+    padding: 1rem;
+    margin-bottom: 2rem;
+
+    p {
+      margin: 0;
+    }
   }
 `
 

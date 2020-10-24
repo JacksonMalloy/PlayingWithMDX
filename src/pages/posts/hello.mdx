@@ -3,16 +3,17 @@ import Header from '../../components/header'
 export const myVariable = 'Yay!'
 
 
-# Bloated Components with Apollo Client 3
+# My Bloated Components with Apollo Client 3
 
-In this post I would like to discuss my issue of bloated components while using Apollo Client 3. 
-I will go through how I ran into the issue, what I 
+> A discussion on cleaning up components that make use of Apollo Client's `useMutation` hook. 
+ I found that by extracting the API service logic into a seperate folder, it's much easier to scale 
+ components, read components, and understand their functionality. 
 
 
 ### Bloat in React
 
-I love to write code in a single file. There's just something about it that screams "efficient", until it's not. 
-No matter what feature I am building, my tendency is to write multi-component files until it starts to get messy. 
+I love to write code in a single file. There's just something about it that screams "efficient & productive", until it's not. 
+No matter what feature I'm building, my tendency is to write multi-component files until it starts to get messy. 
 It's in this chaos that *real* developers are born.
 
 Kidding. 
@@ -20,7 +21,7 @@ Kidding.
 But it is a skill that is important to learn as a developer. Breaking large components, delegating function calls, moving things around. 
 It's something that we all have to get use to. In my SAAS application, this is how I solved my bloat issue.
 
-Take a look at a component that creates a menu. 
+Take a look at this component that creates a menu. 
 For brevity sake, I've skimmed the imports, removed styles and other form fields.
 
 
@@ -84,10 +85,14 @@ export const CreateMenu = ({ setIsOpen }) => {
 We are using a custom hook to handle the form
 and utilizing the **update** function to update Apollo's cache once the item is added. 
 
+There are a couple things wrong here that I would like to fix. 
+1. #1. I'm not using async await which might make this more readable
+2. #2. That update function is messy (although sometimes necessary due to having full control of the cache)
+
 In my case, I wanted to extract all service logic that was referencing my API in a **services** folder. 
 This right here, was the culprit. 
 
-```tsx:title=src/components/code.tsx {9-33}
+```jsx:title=src/components/CreateMenu.js {9-31}
 export const CreateMenu = ({ setIsOpen }) => {
   const [{ organizationId, image }, dispatch] = useContext(UserContext)
   const [addMenu, { data }] = useMutation(ADD_MENU)
@@ -146,14 +151,13 @@ export const CreateMenu = ({ setIsOpen }) => {
 What I did was take that service logic and extract it in its own file, and then import the function and pass the required parameters. 
 I called this new function **handleCreateMenu** as it calls my API / resolver to tell my server to create a menu for the user.
 
-We pass in the function that is destructured from the `useMutation` hook along with an args object.
-That args object contains the variables for the mutate function, `addMenu`, and the `organizationId` to update the cache. 
+This new function takes 2 arguments, the mutation from the `useMutation` hook, and an `args` object which contains
+variables for the mutation and an organizationId for updating the cache. 
 
 
-Apollo then updates the UI with it's fantastic caching abilities. 
+```tsx:title=src/services/menu.js
+import { MENUS_BY_ORGANIZATION } from 'graphql/queries/menu/menusByOrganization'
 
-
-```tsx:title=src/components/code.tsx 
 export const handleCreateMenu = async (mutation, args) => {
   const { variables, organizationId } = args
 
@@ -182,7 +186,7 @@ export const handleCreateMenu = async (mutation, args) => {
 Another good reason to do this is because now we only import `MENUS_BY_ORGANIZATION` in 
 a single file where we want to call it. So now we can extract all other services such as `deleteMenu`, `editMenu`, `publishMenu`, etc... *as an example...*
 
-This is how we use the function
+This is how the useForm hook looks now. Much cleaner :)
 
 ```tsx:title=src/components/code.tsx {6-14}
 export const CreateMenu = ({ setIsOpen }) => {
@@ -192,7 +196,7 @@ export const CreateMenu = ({ setIsOpen }) => {
   const { values, errors, handleChange, handleSubmit } = useForm({
     onSubmit: async ({ values }) => {
       const { menuTitle } = values
-      const variables = { organization_id: organizationId, title: menu_title }
+      const variables = { organization_id: organizationId, title: menuTitle }
       const args = { variables, organizationId }
       const data = await handleCreateMenu(addMenu, args).then(() => {
         dispatch(menuCreated())
@@ -222,5 +226,3 @@ export const CreateMenu = ({ setIsOpen }) => {
 }
 ```
 
-After we  service logic from the component I felt that
-it was much easy 
