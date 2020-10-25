@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import Code from './components/code'
 import { GlobalStyles } from './GlobalStyles'
+import { Footer } from './components/footer'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -71,6 +72,11 @@ const StyledLayout = styled.main`
       line-height: 2.5rem;
     }
   }
+
+  pre {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 `
 
 export const StyledContainer = styled.section`
@@ -108,6 +114,7 @@ const Layout = ({ children }) => {
           {children}
         </MDXProvider>
       </StyledContainer>
+      {/* <Footer /> */}
     </StyledLayout>
   )
 }
