@@ -24,6 +24,7 @@ const StyledLayout = styled.main`
   h1 {
     margin: 2rem 1rem;
     font-size: 7.594rem;
+    line-height: 9rem;
   }
 
   h2 {
@@ -42,15 +43,32 @@ const StyledLayout = styled.main`
     font-size: 1.5rem;
   }
 
+  p,
+  ol {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+  }
+
+  code {
+    background-color: #011627;
+    color: rgb(214, 222, 235);
+    padding: 0.1rem 0.4rem;
+    margin: 0 0.2rem;
+    border-radius: 0.5rem;
+  }
+
   blockquote {
     border-left: 1rem solid #cccccc;
     margin-left: 2rem;
     background-color: #f2f2f2;
     padding: 1rem;
     margin-bottom: 2rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
 
     p {
       margin: 0;
+      line-height: 2.5rem;
     }
   }
 `

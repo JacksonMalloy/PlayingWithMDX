@@ -86,8 +86,8 @@ We are using a custom hook to handle the form
 and utilizing the **update** function to update Apollo's cache once the item is added. 
 
 There are a couple things wrong here that I would like to fix. 
-1. #1. I'm not using async await which might make this more readable
-2. #2. That update function is messy (although sometimes necessary due to having full control of the cache)
+1. I'm not using async await which might make this more readable
+2. That update function is messy (although sometimes necessary to have full control of the cache)
 
 In my case, I wanted to extract all service logic that was referencing my API in a **services** folder. 
 This right here, was the culprit. 
@@ -155,7 +155,7 @@ This new function takes 2 arguments, the mutation from the `useMutation` hook, a
 variables for the mutation and an organizationId for updating the cache. 
 
 
-```tsx:title=src/services/menu.js
+```js:title=src/services/menu.js
 import { MENUS_BY_ORGANIZATION } from 'graphql/queries/menu/menusByOrganization'
 
 export const handleCreateMenu = async (mutation, args) => {
@@ -188,7 +188,7 @@ a single file where we want to call it. So now we can extract all other services
 
 This is how the useForm hook looks now. Much cleaner :)
 
-```tsx:title=src/components/code.tsx {6-14}
+```jsx:title=src/components/CreateMenu.js {6-14}
 export const CreateMenu = ({ setIsOpen }) => {
   const [{ organizationId, image }, dispatch] = useContext(UserContext)
   const [addMenu, { data }] = useMutation(ADD_MENU)

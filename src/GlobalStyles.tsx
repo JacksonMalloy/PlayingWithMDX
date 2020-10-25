@@ -1,10 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
-import { normalize } from 'styled-normalize'
 
 export const GlobalStyles = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
-
     *, *::before, *::after {
         box-sizing: border-box;
         padding: 0rem;
@@ -21,7 +17,7 @@ export const GlobalStyles = createGlobalStyle`
         font-weight: 900;
     }
 
-    p, small {
+    p, small, ol {
         font-family: 'Source Sans Pro';
         font-weight: 400;
     }
@@ -33,6 +29,13 @@ export const GlobalStyles = createGlobalStyle`
         scrollbar-width: none; /* Firefox */  
         position: relative;
         margin-bottom: 1rem;
+        font-family: 'Fira Mono';
+        font-weight: 400;
+    }
+
+    code {
+        font-family: 'Fira Mono';
+        font-weight: 400;
     }
 
     /* Hide scrollbar for Chrome, Safari and Opera */
