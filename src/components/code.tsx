@@ -53,8 +53,6 @@ const SyntaxHiglight = (props: { className: string; metastring: string; children
   return (
     <Highlight {...defaultProps} theme={theme} code={props.children.trim()} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => {
-        console.log({ className, style, tokens })
-
         const shouldHighlightLine = calculateLinesToHighlight(metastring)
 
         return (
@@ -85,7 +83,6 @@ const SyntaxHiglight = (props: { className: string; metastring: string; children
 
               {tokens.map((line, i) => {
                 const lineProps = getLineProps({ line, key: i })
-                console.log({ line })
                 if (shouldHighlightLine(i)) {
                   lineProps.className = `${lineProps.className} highlight-line`
                 }

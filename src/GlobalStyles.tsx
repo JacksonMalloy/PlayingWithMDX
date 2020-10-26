@@ -67,6 +67,8 @@ export const GlobalStyles = createGlobalStyle`
     a,
     a * {
         cursor: pointer;
+        text-decoration: none;
+        color: black;
     }
     ul,
     li {

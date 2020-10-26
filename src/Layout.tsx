@@ -4,6 +4,9 @@ import { MDXProvider } from '@mdx-js/react'
 import Code from './components/code'
 import { GlobalStyles } from './GlobalStyles'
 import { Footer } from './components/footer'
+import { h1Extract, h2Extract, h3Extract, h4Extract, h5Extract } from './createMediaQuery'
+
+console.log(h1Extract())
 
 const StyledLayout = styled.main`
   display: flex;
@@ -21,41 +24,55 @@ const StyledLayout = styled.main`
     margin: 0 1rem 2rem 1rem;
   }
 
+  small {
+    margin: 0.3rem 1rem;
+  }
+
   /* type-scale x1.5 for desktop */
   h1 {
     margin: 2rem 1rem;
-    font-size: 7.594rem;
-    line-height: 9rem;
+    /* line-height: 9rem; */
+
+    ${h1Extract()}
   }
 
   h2 {
-    font-size: 5.063rem;
+    ${h2Extract()}
   }
 
   h3 {
-    font-size: 3.375rem;
+    ${h3Extract()}
   }
 
   h4 {
-    font-size: 2.25rem;
+    ${h4Extract()}
   }
 
   h5 {
-    font-size: 1.5rem;
+    ${h5Extract()}
   }
 
   p,
   ol {
     font-size: 1.5rem;
     line-height: 2.5rem;
+
+    @media (max-width: 576px) {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
   }
 
   code {
     background-color: #011627;
     color: rgb(214, 222, 235);
-    padding: 0.1rem 0.4rem;
+    padding: 0.1rem 0.6rem;
     margin: 0 0.2rem;
     border-radius: 0.5rem;
+
+    @media (max-width: 576px) {
+      font-size: 1rem;
+    }
   }
 
   blockquote {
@@ -73,11 +90,30 @@ const StyledLayout = styled.main`
     }
   }
 
+  @media (max-width: 576px) {
+    blockquote {
+      font-size: 1rem;
+
+      p {
+        margin: 0;
+        line-height: 1.5rem;
+      }
+    }
+  }
+
   pre {
     font-size: 1rem;
     line-height: 1.5rem;
+
+    @media (max-width: 576px) {
+      font-size: 0.8rem;
+    }
   }
 `
+
+const ExtendStyledLayout = styled(StyledLayout)({
+  ...h1Extract(),
+})
 
 export const StyledContainer = styled.section`
   width: 700px;
@@ -107,7 +143,7 @@ const components = {
 
 const Layout = ({ children }) => {
   return (
-    <StyledLayout>
+    <ExtendStyledLayout>
       <StyledContainer>
         <MDXProvider components={components}>
           <GlobalStyles />
@@ -115,7 +151,7 @@ const Layout = ({ children }) => {
         </MDXProvider>
       </StyledContainer>
       {/* <Footer /> */}
-    </StyledLayout>
+    </ExtendStyledLayout>
   )
 }
 
