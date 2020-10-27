@@ -6,8 +6,6 @@ import { GlobalStyles } from './GlobalStyles'
 import { Footer } from './components/footer'
 import { h1Extract, h2Extract, h3Extract, h4Extract, h5Extract } from './createMediaQuery'
 
-console.log(h1Extract())
-
 const StyledLayout = styled.main`
   display: flex;
   flex-direction: column;
@@ -21,6 +19,7 @@ const StyledLayout = styled.main`
   h4,
   h5,
   ol {
+    color: #011627;
     margin: 0 1rem 2rem 1rem;
   }
 
@@ -28,11 +27,8 @@ const StyledLayout = styled.main`
     margin: 0.3rem 1rem;
   }
 
-  /* type-scale x1.5 for desktop */
   h1 {
     margin: 2rem 1rem;
-    /* line-height: 9rem; */
-
     ${h1Extract()}
   }
 
@@ -52,6 +48,17 @@ const StyledLayout = styled.main`
     ${h5Extract()}
   }
 
+  @media (max-width: 700px) {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      padding: 0 1rem;
+    }
+  }
+
   p,
   ol {
     font-size: 1.5rem;
@@ -59,7 +66,8 @@ const StyledLayout = styled.main`
 
     @media (max-width: 576px) {
       font-size: 1rem;
-      line-height: 1.5rem;
+      line-height: 2rem;
+      padding: 0 1rem;
     }
   }
 
@@ -76,12 +84,12 @@ const StyledLayout = styled.main`
   }
 
   blockquote {
-    border-left: 1rem solid #cccccc;
+    border-left: 0.5rem solid #011627;
     margin-left: 2rem;
     background-color: #f2f2f2;
     padding: 1rem;
     margin-bottom: 2rem;
-    border-radius: 1rem;
+    border-bottom-left-radius: 0rem;
     font-size: 1.5rem;
 
     p {
