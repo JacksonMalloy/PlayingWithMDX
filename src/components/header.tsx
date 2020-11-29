@@ -21,6 +21,7 @@ const Header = ({ siteTitle }: HeaderTypes): React.ReactElement => (
           }}
         >
           {siteTitle}
+          sup
         </Link>
       </h1>
     </div>

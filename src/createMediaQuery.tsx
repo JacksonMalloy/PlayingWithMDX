@@ -55,7 +55,7 @@ export const h1Extract = () => ({
     {
       property: 'font-size',
       // Perfect fifth, perfect fourth, major third
-      values: ['7.594rem', '4.209rem', '3.052rem'],
+      values: ['5.063rem', '4.209rem', '3.052rem'],
     },
   ]),
 })

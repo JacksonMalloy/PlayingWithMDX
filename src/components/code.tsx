@@ -1,10 +1,73 @@
 import React, { useState } from 'react'
 import rangeParser from 'parse-numeric-range'
 import Highlight, { defaultProps } from 'prism-react-renderer'
-import theme from 'prism-react-renderer/themes/nightOwl'
+// import theme from 'prism-react-renderer/themes/github'
 import Title from './codeTitle'
 import styled from 'styled-components'
 import Button from './button'
+
+const theme = {
+  plain: {
+    color: '#36313D',
+    backgroundColor: '#fdfaf6',
+  },
+  styles: [
+    {
+      types: ['prolog', 'constant', 'builtin'],
+      style: {
+        color: 'rgb(189, 147, 249)',
+      },
+    },
+    {
+      types: ['inserted', 'function'],
+      style: {
+        color: '#B94185',
+      },
+    },
+    {
+      types: ['deleted'],
+      style: {
+        color: 'rgb(255, 85, 85)',
+      },
+    },
+    {
+      types: ['changed'],
+      style: {
+        color: 'rgb(255, 255, 108,',
+      },
+    },
+    {
+      types: ['punctuation', 'symbol'],
+      style: {
+        color: '#36313D',
+      },
+    },
+    {
+      types: ['string', 'char', 'tag', 'selector'],
+      style: {
+        color: 'rgb(255, 121, 198)',
+      },
+    },
+    {
+      types: ['keyword', 'variable'],
+      style: {
+        color: '#096FB3',
+      },
+    },
+    {
+      types: ['comment'],
+      style: {
+        color: '#527713',
+      },
+    },
+    {
+      types: ['attr-name'],
+      style: {
+        color: '#ff8c00',
+      },
+    },
+  ],
+}
 
 type getParamsTypes = (className: string) => any
 
@@ -108,12 +171,12 @@ export default Code
 
 const StyledLine = styled.div`
   &.highlight-line {
-    background-color: #010101;
+    background-color: rgba(0, 255, 255, 0.1);
     display: block;
     margin-right: -300px;
     margin-left: -1em;
     padding-right: 1em;
     padding-left: 0.75em;
-    border-left: 0.1em solid #d23669;
+    border-left: 0.1em solid rgba(0, 255, 255, 1);
   }
 `

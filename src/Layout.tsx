@@ -6,8 +6,6 @@ import { GlobalStyles } from './GlobalStyles'
 import { Footer } from './components/footer'
 import { h1Extract, h2Extract, h3Extract, h4Extract, h5Extract } from './createMediaQuery'
 
-console.log(h1Extract())
-
 const StyledLayout = styled.main`
   display: flex;
   flex-direction: column;
@@ -64,14 +62,15 @@ const StyledLayout = styled.main`
   }
 
   code {
-    background-color: #011627;
-    color: rgb(214, 222, 235);
+    background-color: #fdfaf6;
+    color: #663399;
     padding: 0.1rem 0.6rem;
     margin: 0 0.2rem;
     border-radius: 0.5rem;
+    font-size: 1.2rem;
 
     @media (max-width: 576px) {
-      font-size: 1rem;
+      font-size: 0.7rem;
     }
   }
 
