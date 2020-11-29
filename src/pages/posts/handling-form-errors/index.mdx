@@ -6,8 +6,6 @@ tags: ["Apollo Client", "React", "GraphQL"]
 published: false
 ---
 
-import { SampleField } from './sampleField'
-
 # Handling Form Errors
 
 tsx:title=src/components/field.tsx {6-14}
@@ -46,7 +44,7 @@ export default function Field(props: FieldProps) {
   } = props
 
   return (
-    <StyledField>
+    <div>
       <StyledLabel htmlFor={name}>{label}</StyledLabel>
       <StyledInput
         id={id}
@@ -63,9 +61,8 @@ export default function Field(props: FieldProps) {
       />
       {error && <StyledError>{error}</StyledError>}
       {serverError?.error && !error && <StyledError>{serverError?.message}</StyledError>}
-    </StyledField>
+    </div>
   )
 }
 
 ```
-<SampleField />
