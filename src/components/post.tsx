@@ -13,7 +13,22 @@ const StyledPost = styled(Link)`
   }
 
   div {
+    display: flex;
+
     margin: 1rem;
+
+    @media (max-width: 415px) {
+      flex-direction: column;
+    }
+
+    code {
+      font-size: 1rem;
+
+      @media (max-width: 415px) {
+        margin: 0.1rem;
+        width: auto;
+      }
+    }
   }
 
   h3 {

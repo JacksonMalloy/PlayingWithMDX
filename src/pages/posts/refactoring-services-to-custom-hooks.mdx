@@ -6,7 +6,6 @@ tags: ["Apollo Client", "React", "GraphQL", "React Hooks"]
 published: true
 ---
 
-import styled from 'styled-components'
 import Header from '../../components/header'
 
 # Refactoring Services to Custom Hooks
@@ -15,21 +14,24 @@ import Header from '../../components/header'
  I found that by extracting the API service logic into a seperate folder, it's much easier to scale 
  components, read components, and understand their functionality. 
 
+> A discussion on cleaning up components. In this example, Apollo Client is causing my component to be a bit challenging to comprehend.
+  I found that by seperating concerns, components were much easier to test, extend new features, prevent bugs and onboard new developers.
 
 ### Bloat in React
 
-I love to write code in a single file. There's just something about it that screams "efficient & productive", until it's not. 
-No matter what feature I'm building, my tendency is to write multi-component files until it starts to get messy. 
+I love to write code in a single file. There's just something about it that screams "efficient & productive", until it's not.
+No matter what feature I'm building, my tendency is to write multi-component files until it starts to get messy.
 It's in this chaos that *real* developers are born.
 
-Kidding. 
+Kidding.
 
-But it is a skill that is important to learn as a developer. Breaking large components, delegating function calls, moving things around. 
-It's something that we all have to get use to. In my SAAS application, this is how I solved my bloat issue.
+But it is a skill that is important to learn as a developer. Breaking large components, delegating function calls, moving things around.
+It's something that we all have to get use to.
 
-Take a look at this component that creates a menu. 
+This is how I solved component bloat.
+
+Take a look at this component that creates a menu.
 For brevity sake, I've skimmed the imports, removed styles and other form fields.
-
 
 ```jsx:title=src/components/CreateMenu.js
 export const CreateMenu = ({ setIsOpen }) => {
@@ -88,15 +90,19 @@ export const CreateMenu = ({ setIsOpen }) => {
 
 ```
 
-We are using a custom hook to handle the form
-and utilizing the **update** function to update Apollo's cache once the item is added. 
+I'm using a custom hook to handle the form and utilizing the **update** function to update Apollo's cache.
 
-There are a couple things wrong here that I would like to fix. 
-1. I'm not using async await which might make this more readable
-2. That update function is messy (although sometimes necessary to have full control of the cache)
+1.. First things first, I would like to be using async await.
+Async await usually can make code easier to read and it makes sense to do so in this use case.
 
-In my case, I wanted to extract all service logic that was referencing my API in a **services** folder. 
-This right here, was the culprit. 
+2.. That update function is a lot to take in (although sometimes necessary to have full control of the cache).
+
+I want to extract all logic that's referencing my API in a **services** folder.
+The idea behind doing so is to seperate the concerns.
+In an ideal world, I would like to have components that handle state, components that handle view and components that handle servicing APIs.
+I enjoy writing components like this as it becomes easier to test, debug, and understand what is going on.
+
+Take a look at this snippet of code...
 
 ```jsx:title=src/components/CreateMenu.js {9-31}
 export const CreateMenu = ({ setIsOpen }) => {
@@ -153,12 +159,14 @@ export const CreateMenu = ({ setIsOpen }) => {
   )
 }
 ```
+I want `CreateMenu` to be purely managing its state. Remember, I want to seperate the concerns of my components.
+Although sometimes challenging, it's best practice in my opinion to *try* to abide by these soft rules in large scale react projects.
 
-What I did was take that service logic and extract it in its own file, and then import the function and pass the required parameters. 
-I called this new function **handleCreateMenu** as it calls my API / resolver to tell my server to create a menu for the user.
+I'm going to extract the snippet of code above (the snippet that interacts with my API) and put it in its own `/services` folder.
+I called this new function **handleCreateMenu**.
 
 This new function takes 2 arguments, the mutation from the `useMutation` hook, and an `args` object which contains
-variables for the mutation and an organizationId for updating the cache. 
+variables for the mutation and an organizationId for updating the cache.
 
 
 ```js:title=src/services/menu.js
@@ -189,10 +197,10 @@ export const handleCreateMenu = async (mutation, args) => {
 }
 ```
 
-Another good reason to do this is because now we only import `MENUS_BY_ORGANIZATION` in 
-a single file where we want to call it. So now we can extract all other services such as `deleteMenu`, `editMenu`, `publishMenu`, etc... *as an example...*
+Now we only need to import `MENUS_BY_ORGANIZATION` in a single file.
+If we want to extract all other services such as `deleteMenu`, `editMenu`, `publishMenu`, etc... we would add them to this file within our `/services` directory.
 
-This is how the useForm hook looks now. Much cleaner :)
+This is how the component looks now.
 
 ```jsx:title=src/components/CreateMenu.js {6-14}
 export const CreateMenu = ({ setIsOpen }) => {
@@ -231,4 +239,10 @@ export const CreateMenu = ({ setIsOpen }) => {
   )
 }
 ```
+
+We're still not fully seperating concerns, but at least we're closer.
+What really matters here is improving the speed at which we develop new features, reduce bugs and solve existing ones, onboarding new developers, and enjoying the building process!
+
+Cheers to my first blog post!
+
 
