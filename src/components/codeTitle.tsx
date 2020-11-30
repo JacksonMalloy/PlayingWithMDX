@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledTitleContainer = styled.header`
-  background-color: #f8f8f8;
+  background-color: #fdfaf6;
   padding: 0.3rem;
   display: flex;
   justify-content: space-between;

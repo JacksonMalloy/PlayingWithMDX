@@ -10,7 +10,11 @@ const StyledButton = styled.button`
   text-decoration: none;
   margin: 8px;
   padding: 8px 12px;
-  background-color: #e2e8f022;
+  background-color: rgba(185, 65, 133, 0.5);
+
+  &:hover {
+    background-color: rgb(189, 147, 249, 0.8);
+  }
   color: white;
   border-radius: 8px;
   cursor: pointer;
