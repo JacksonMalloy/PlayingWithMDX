@@ -44,7 +44,7 @@ export const GlobalStyles = createGlobalStyle`
         font-weight: 900;
     }
 
-    p, small, ol {
+    p, small, ol, blockquote, a {
         font-family: 'Source Sans Pro Light';
         font-weight: 400;
     }

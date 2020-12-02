@@ -5,6 +5,7 @@ import Code from './components/code'
 import { GlobalStyles } from './GlobalStyles'
 import { Footer } from './components/footer'
 import { h1Extract, h2Extract, h3Extract, h4Extract, h5Extract } from './createMediaQuery'
+import Header from './components/header'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -85,28 +86,28 @@ const StyledLayout = styled.main`
   }
 
   blockquote {
-    border-left: 0.5rem solid #011627;
-    margin-left: 2rem;
-    background-color: #f2f2f2;
+    /* border-left: 0.5rem solid #663399; */
+    border-radius: 0.2rem;
+    background-color: #fdfaf6;
     padding: 1rem;
-    margin-bottom: 2rem;
-    border-bottom-left-radius: 0rem;
+    margin: 2rem;
     font-size: 1.5rem;
+    line-height: 2.5rem;
 
     p {
       margin: 0;
-      line-height: 2.5rem;
+      padding: 0 1rem;
+    }
+
+    code {
+      padding: 0;
     }
   }
 
   @media (max-width: 576px) {
     blockquote {
       font-size: 1rem;
-
-      p {
-        margin: 0;
-        line-height: 1.5rem;
-      }
+      line-height: 2rem;
     }
   }
 
@@ -153,13 +154,13 @@ const components = {
 const Layout = ({ children }) => {
   return (
     <ExtendStyledLayout>
+      <Header />
       <StyledContainer>
         <MDXProvider components={components}>
           <GlobalStyles />
           {children}
         </MDXProvider>
       </StyledContainer>
-      {/* <Footer /> */}
     </ExtendStyledLayout>
   )
 }

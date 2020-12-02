@@ -53,7 +53,7 @@ const renderPosts = (data) => {
       } = node
 
       return (
-        <StyledPost key={i} to={`posts${path}`}>
+        <StyledPost key={i} to={`${path}`}>
           <small>{date}</small>
           <h3>{title}</h3>
           <div>
