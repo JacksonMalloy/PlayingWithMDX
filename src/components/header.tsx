@@ -3,10 +3,33 @@ import React from 'react'
 import Image from './image'
 
 import styled from 'styled-components'
+import { useSwipeable } from 'react-swipeable'
+import { useUI } from '../Context'
 
 const Header = (): React.ReactElement => {
+  const { openNavigation } = useUI()
+  const config = {
+    delta: 10, // min distance(px) before a swipe starts
+    preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
+    trackTouch: true, // track touch input
+    trackMouse: false, // track mouse input
+    rotationAngle: 0, // set a rotation angle
+  }
+
+  const handleLeftSwipe = (eventData) => {
+    if (eventData.dir === 'Right') {
+      console.log('opened')
+      openNavigation()
+    }
+  }
+
+  const handlers = useSwipeable({
+    onSwiped: (eventData) => handleLeftSwipe(eventData),
+    ...config,
+  })
+
   return (
-    <StyledHeader>
+    <StyledHeader {...handlers}>
       <Link to="/posts" className="posts">
         /posts
       </Link>
