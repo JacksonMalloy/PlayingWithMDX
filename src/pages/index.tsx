@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../Layout'
 import { About } from '../components/about'
+import { Drawer } from '../components/drawer'
 
 const IndexPage = ({ data }) => {
   const {
@@ -36,10 +37,14 @@ const IndexPage = ({ data }) => {
   }
 
   return (
-    <Layout>
-      <h1>{sayHello()}</h1>
-      <About />
-    </Layout>
+    <>
+      <Layout>
+        <Drawer />
+
+        <h1>{sayHello()}</h1>
+        <About />
+      </Layout>
+    </>
   )
 }
 

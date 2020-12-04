@@ -3,24 +3,10 @@ import React from 'react'
 import Image from './image'
 
 import styled from 'styled-components'
-import { useSwipeable } from 'react-swipeable'
 
 const Header = (): React.ReactElement => {
-  const config = {
-    delta: 10, // min distance(px) before a swipe starts
-    preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
-    trackTouch: true, // track touch input
-    trackMouse: false, // track mouse input
-    rotationAngle: 0, // set a rotation angle
-  }
-
-  // Consider moving this to layout and then playing with context to open drawer for menu?
-  const handlers = useSwipeable({
-    onSwiped: (eventData) => console.log('User Swiped!', eventData),
-    ...config,
-  })
   return (
-    <StyledHeader {...handlers}>
+    <StyledHeader>
       <Link to="/posts" className="posts">
         /posts
       </Link>

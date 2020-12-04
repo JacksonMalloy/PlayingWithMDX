@@ -6,6 +6,7 @@ import { GlobalStyles } from './GlobalStyles'
 import { Footer } from './components/footer'
 import { h1Extract, h2Extract, h3Extract, h4Extract, h5Extract } from './createMediaQuery'
 import Header from './components/header'
+import { ManagedUIContext } from './Context'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -153,15 +154,17 @@ const components = {
 
 const Layout = ({ children }) => {
   return (
-    <ExtendStyledLayout>
-      <Header />
-      <StyledContainer>
-        <MDXProvider components={components}>
-          <GlobalStyles />
-          {children}
-        </MDXProvider>
-      </StyledContainer>
-    </ExtendStyledLayout>
+    <ManagedUIContext>
+      <ExtendStyledLayout>
+        <Header />
+        <StyledContainer>
+          <MDXProvider components={components}>
+            <GlobalStyles />
+            {children}
+          </MDXProvider>
+        </StyledContainer>
+      </ExtendStyledLayout>
+    </ManagedUIContext>
   )
 }
 

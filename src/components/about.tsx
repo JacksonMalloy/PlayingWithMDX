@@ -1,8 +1,31 @@
 import React from 'react'
+import { useSwipeable } from 'react-swipeable'
+import { useUI } from '../Context'
 
 export const About = () => {
+  const { openNavigation } = useUI()
+  const config = {
+    delta: 10, // min distance(px) before a swipe starts
+    preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
+    trackTouch: true, // track touch input
+    trackMouse: false, // track mouse input
+    rotationAngle: 0, // set a rotation angle
+  }
+
+  const handleLeftSwipe = (eventData) => {
+    if (eventData.dir === 'Right') {
+      console.log('opened')
+      openNavigation()
+    }
+  }
+
+  const handlers = useSwipeable({
+    onSwiped: (eventData) => handleLeftSwipe(eventData),
+    ...config,
+  })
+
   return (
-    <div>
+    <div {...handlers}>
       <blockquote>
         Welcome to my domain! Here you'll find information about me, my work and a few tips and tricks to help other
         developers navigate the modern web.
