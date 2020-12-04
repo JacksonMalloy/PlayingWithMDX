@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSwipeable } from 'react-swipeable'
+import { SwipeEventData, useSwipeable } from 'react-swipeable'
 import { useUI } from '../Context'
 
 export const About = () => {
@@ -12,7 +12,7 @@ export const About = () => {
     rotationAngle: 0, // set a rotation angle
   }
 
-  const handleLeftSwipe = (eventData) => {
+  const handleLeftSwipe = (eventData: SwipeEventData) => {
     if (eventData.dir === 'Right') {
       console.log('opened')
       openNavigation()
@@ -24,8 +24,37 @@ export const About = () => {
     ...config,
   })
 
+  const sayHello = () => {
+    const date = new Date()
+
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+    const options = {
+      hour: 'numeric',
+      hourCycle: 'h24',
+      timeZone: timezone,
+    }
+
+    // To use browsers default locale pass empty array
+    const dateTime = new Intl.DateTimeFormat([], options).format(date)
+
+    if (parseInt(dateTime) >= 4 && parseInt(dateTime) < 12) {
+      return 'Good Morning! 🌞'
+    }
+
+    if (parseInt(dateTime) >= 12 && parseInt(dateTime) < 16) {
+      return 'Good Afternoon! 🍲'
+    }
+
+    if ((parseInt(dateTime) >= 16 && parseInt(dateTime) <= 24) || parseInt(dateTime) < 4) {
+      return 'Good Evening! 🌃'
+    }
+  }
+
   return (
     <div {...handlers}>
+      <h1>{sayHello()}</h1>
+
       <blockquote>
         Welcome to my domain! Here you'll find information about me, my work and a few tips and tricks to help other
         developers navigate the modern web.

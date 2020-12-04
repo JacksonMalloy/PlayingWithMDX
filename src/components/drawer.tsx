@@ -1,9 +1,9 @@
 import React from 'react'
 import { useUI } from '../Context'
 import styled from 'styled-components'
-import { useSwipeable } from 'react-swipeable'
+import { SwipeEventData, useSwipeable } from 'react-swipeable'
 import { Link } from 'gatsby'
-import Image from './image'
+// import Image from './image'
 
 export const Drawer = () => {
   const { displayNavigation, closeNavigation } = useUI()
@@ -16,7 +16,7 @@ export const Drawer = () => {
     rotationAngle: 0, // set a rotation angle
   }
 
-  const handleLeftSwipe = (eventData) => {
+  const handleLeftSwipe = (eventData: SwipeEventData) => {
     if (eventData.dir === 'Left') {
       console.log('closed')
       closeNavigation()
