@@ -69,6 +69,8 @@ const StyledDrawer = styled.nav`
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   padding: 1rem;
   align-items: center;
+  padding-bottom: 3rem;
+  overflow-y: auto;
 
   .nav-about {
     grid-row: 2 / 3;
