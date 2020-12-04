@@ -31,7 +31,7 @@ export const Drawer = () => {
   if (displayNavigation) {
     return (
       <StyledDrawer {...handlers}>
-        <Image className="nav-image" />
+        {/* <Image className="nav-image" /> */}
         <Link to="/about" className="nav-about">
           /about
         </Link>
@@ -68,13 +68,7 @@ const StyledDrawer = styled.nav`
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   padding: 1rem;
-
-  .nav-image {
-    grid-row: 1 / 2;
-    grid-column: 1 / 2;
-    justify-self: center;
-    align-self: center;
-  }
+  align-items: center;
 
   .nav-about {
     grid-row: 2 / 3;
