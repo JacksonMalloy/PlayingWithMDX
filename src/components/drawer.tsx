@@ -58,7 +58,7 @@ const StyledDrawer = styled.nav`
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: white;
+  background-color: var(--primary);
   z-index: 9;
   top: 0;
   left: 0;

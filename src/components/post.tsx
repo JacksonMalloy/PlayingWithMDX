@@ -20,15 +20,6 @@ const StyledPost = styled(Link)`
     @media (max-width: 415px) {
       flex-direction: column;
     }
-
-    code {
-      font-size: 1rem;
-
-      @media (max-width: 415px) {
-        margin: 0.1rem;
-        width: auto;
-      }
-    }
   }
 
   h3 {
@@ -67,5 +58,10 @@ const renderPosts = (data) => {
 }
 
 export const Post = ({ data }) => {
-  return renderPosts(data)
+  return (
+    <>
+      <h1>Blog</h1>
+      {renderPosts(data)}
+    </>
+  )
 }

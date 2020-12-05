@@ -8,6 +8,7 @@ export interface State {
 const initialState = {
   displayToast: false,
   displayNavigation: false,
+  serverState: { submitting: false, status: null },
 }
 
 type TOAST_VARIANTS = 'WARNING' | 'ERROR' | 'SUCCESS'
@@ -25,6 +26,10 @@ type Action =
       type: 'OPEN_NAVIGATION'
     }
   | { type: 'CLOSE_NAVIGATION' }
+  | {
+      type: 'SET_SERVER_STATE'
+      serverState: any
+    }
 
 export const UIContext = React.createContext<State | any>(initialState)
 
@@ -56,6 +61,12 @@ function uiReducer(state: State, action: Action) {
         displayNavigation: false,
       }
     }
+    case 'SET_SERVER_STATE': {
+      return {
+        ...state,
+        serverState: { submitting: action.serverState.submitting, status: action.serverState.status },
+      }
+    }
   }
 }
 
@@ -68,6 +79,8 @@ export const UIProvider: FC = (props) => {
   const openNavigation = () => dispatch({ type: 'OPEN_NAVIGATION' })
   const closeNavigation = () => dispatch({ type: 'CLOSE_NAVIGATION' })
 
+  const setServerState = (serverState: any) => dispatch({ type: 'SET_SERVER_STATE', serverState })
+
   const value = useMemo(
     () => ({
       ...state,
@@ -78,6 +91,8 @@ export const UIProvider: FC = (props) => {
       // ALERTS
       openToast,
       closeToast,
+
+      setServerState,
     }),
     [state]
   )

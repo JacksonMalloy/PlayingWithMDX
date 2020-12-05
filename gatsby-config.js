@@ -11,7 +11,7 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: {
-          default: require.resolve('./src/Layout.tsx'),
+          default: require.resolve('./src/PostLayout.tsx'),
         },
       },
     },

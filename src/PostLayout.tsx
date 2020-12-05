@@ -4,16 +4,7 @@ import { MDXProvider } from '@mdx-js/react'
 import Code from './components/code'
 import { GlobalStyles } from './GlobalStyles'
 import { Footer } from './components/footer'
-import {
-  bqExtract,
-  h1Extract,
-  h2Extract,
-  h3Extract,
-  h4Extract,
-  h5Extract,
-  pExtract,
-  preExtract,
-} from './createMediaQuery'
+import { h1Extract, h2Extract, h3Extract, h4Extract, h5Extract } from './createMediaQuery'
 import Header from './components/header'
 import { ManagedUIContext } from './Context'
 
@@ -66,17 +57,19 @@ const StyledLayout = styled.main`
     h4,
     h5,
     h6 {
-      padding: var(--space);
+      padding: 0 var(--space);
     }
   }
 
   p,
   ol {
-    ${pExtract()}
+    font-size: 1rem;
     line-height: 2.5rem;
 
     @media (max-width: 576px) {
-      padding: var(--space);
+      font-size: 1rem;
+      line-height: 2rem;
+      padding: 0 var(--space);
     }
   }
 
@@ -98,8 +91,8 @@ const StyledLayout = styled.main`
     border-radius: 0.2rem;
     background-color: var(--secondary);
     padding: var(--space);
-    margin: 1rem 2rem;
-    ${bqExtract()}
+    margin: 2rem;
+    font-size: 1.5rem;
     line-height: 2.5rem;
 
     p {
@@ -112,9 +105,20 @@ const StyledLayout = styled.main`
     }
   }
 
+  @media (max-width: 576px) {
+    blockquote {
+      font-size: 1rem;
+      line-height: 2rem;
+    }
+  }
+
   pre {
-    ${preExtract()}
+    font-size: 1rem;
     line-height: 1.5rem;
+
+    @media (max-width: 576px) {
+      font-size: 0.8rem;
+    }
   }
 `
 
@@ -123,7 +127,24 @@ const ExtendStyledLayout = styled(StyledLayout)({
 })
 
 export const StyledContainer = styled.section`
-  max-width: ${({ viewportLimit }) => viewportLimit || '700px'};
+  width: 700px;
+
+  @media (max-width: 715px) {
+    width: 600px;
+  }
+
+  @media (max-width: 615px) {
+    width: 500px;
+  }
+
+  @media (max-width: 515px) {
+    width: 400px;
+  }
+
+  @media (max-width: 415px) {
+    width: 300px;
+  }
+
   min-width: 320px;
 `
 
@@ -131,12 +152,12 @@ const components = {
   code: Code,
 }
 
-const Layout = ({ children, viewportLimit }) => {
+const PostLayout = ({ children }) => {
   return (
     <ManagedUIContext>
       <ExtendStyledLayout>
         <Header />
-        <StyledContainer viewportLimit={viewportLimit}>
+        <StyledContainer>
           <MDXProvider components={components}>
             <GlobalStyles />
             {children}
@@ -147,4 +168,4 @@ const Layout = ({ children, viewportLimit }) => {
   )
 }
 
-export default Layout
+export default PostLayout

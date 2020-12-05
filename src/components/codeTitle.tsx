@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledTitleContainer = styled.header`
-  background-color: #fdfaf6;
+  background-color: var(--secondary);
   padding: 0.3rem;
   display: flex;
   justify-content: space-between;
@@ -13,12 +13,12 @@ const StyledTitleContainer = styled.header`
 
 const StyledText = styled.h6`
   font-size: 1rem;
-  color: #333333;
+  color: var(--text);
   padding: 0 0.5rem;
 `
 
 const StyledLanguageTag = styled.h6`
-  color: #333333;
+  color: var(--text);
   padding: 0 0.5rem;
   border-radius: 4px;
 `

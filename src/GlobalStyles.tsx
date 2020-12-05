@@ -28,6 +28,23 @@ export const GlobalStyles = createGlobalStyle`
         font-display: auto;
     }
 
+    :root {
+        /* Colours */
+        --primary: #ffffff;
+        --secondary: #fdfaf6;
+        --code: #663399;
+        --text: #202020;
+
+        /* Spacing */
+        --space: 1rem;
+
+        /* Form input */
+        --input-border: #8b8a8b;
+        --input-focus-h: 245;
+        --input-focus-s: 100%;
+        --input-focus-l: 42%;
+    }
+
     *, *::before, *::after {
         box-sizing: border-box;
         padding: 0rem;
@@ -36,7 +53,7 @@ export const GlobalStyles = createGlobalStyle`
 
     body {
         margin: 0;
-        font-size: 15px;
+        font-size: 16px;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -44,7 +61,7 @@ export const GlobalStyles = createGlobalStyle`
         font-weight: 900;
     }
 
-    p, small, ol, blockquote, a {
+    p, small, ol, blockquote, a, span {
         font-family: 'Source Sans Pro Light';
         font-weight: 400;
     }
@@ -90,12 +107,13 @@ export const GlobalStyles = createGlobalStyle`
     select {
         margin: 0;
         padding: 0;
+        color: var(--text);
     }
     a,
     a * {
         cursor: pointer;
         text-decoration: none;
-        color: black;
+        color: var(--text);
     }
     ul,
     li {

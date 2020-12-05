@@ -99,3 +99,33 @@ export const h5Extract = () => ({
     },
   ]),
 })
+
+export const pExtract = () => ({
+  ...createMediaQueries([
+    {
+      property: 'font-size',
+      // Perfect fifth, perfect fourth, major third
+      values: ['1.5rem', '1.333rem', '1.25rem'],
+    },
+  ]),
+})
+
+export const bqExtract = () => ({
+  ...createMediaQueries([
+    {
+      property: 'font-size',
+      // Perfect fifth, perfect fourth, major third
+      values: ['1.5rem', '1.333rem', '1.25rem'],
+    },
+  ]),
+})
+
+export const preExtract = () => ({
+  ...createMediaQueries([
+    {
+      property: 'font-size',
+      // Perfect fifth, perfect fourth, major third
+      values: ['1.5rem', '1.333rem', '1.25rem'],
+    },
+  ]),
+})
