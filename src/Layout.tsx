@@ -16,6 +16,7 @@ import {
 } from './createMediaQuery'
 import Header from './components/header'
 import { ManagedUIContext } from './Context'
+import { Toast } from './components/toast'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -143,6 +144,7 @@ const Layout = ({ children, viewportLimit }) => {
   return (
     <ManagedUIContext>
       <ExtendStyledLayout>
+        <Toast />
         <Header />
         <StyledContainer viewportLimit={viewportLimit}>
           <MDXProvider components={components}>

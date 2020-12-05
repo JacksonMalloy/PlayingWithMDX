@@ -171,7 +171,7 @@ export default Code
 
 const StyledLine = styled.div`
   /* Width needs to be set for mobile overflow-x scrolling */
-  width: 200px;
+  width: 100px;
 
   span {
     width: 100%;

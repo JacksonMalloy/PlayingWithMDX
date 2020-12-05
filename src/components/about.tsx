@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SwipeEventData, useSwipeable } from 'react-swipeable'
 import { useUI } from '../Context'
 
 export const About = () => {
-  const { openNavigation } = useUI()
+  const { openNavigation, openToast } = useUI()
+
+  useEffect(() => {
+    const message = 'Swipe ➡ for menu'
+    const variant = 'SUCCESS'
+
+    openToast(message, variant)
+  }, [])
+
   const config = {
     delta: 10, // min distance(px) before a swipe starts
     preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
@@ -52,7 +60,7 @@ export const About = () => {
   }
 
   return (
-    <div {...handlers}>
+    <section {...handlers} className="about">
       <h1>{sayHello()}</h1>
 
       <blockquote>
@@ -84,6 +92,6 @@ export const About = () => {
         <br />
         Thanks for reading, Have a great day!
       </p>
-    </div>
+    </section>
   )
 }

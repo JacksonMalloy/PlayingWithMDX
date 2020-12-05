@@ -3,18 +3,39 @@ import { graphql } from 'gatsby'
 import Layout from '../Layout'
 import { About } from '../components/about'
 import { Drawer } from '../components/drawer'
+import styled from 'styled-components'
+import { Sidebar } from '../components/sidebar'
+
+const StyledGrid = styled.main`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0rem;
+  justify-self: center;
+  padding: 0 10rem;
+
+  aside {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .about {
+    grid-column: 2 / 4;
+  }
+`
 
 const IndexPage = ({ data }) => {
   const {
-    allMdx: { edges },
+    allFile: { edges },
   } = data
 
   return (
     <>
-      <Layout>
+      <Layout viewportLimit="1920px">
         <Drawer />
-
-        <About />
+        <StyledGrid>
+          <About />
+          <Sidebar data={edges} />
+        </StyledGrid>
       </Layout>
     </>
   )
@@ -23,16 +44,18 @@ const IndexPage = ({ data }) => {
 export default IndexPage
 
 export const query = graphql`
-  query {
-    allMdx {
+  query MyQuery {
+    allFile(filter: { sourceInstanceName: { eq: "pages" }, name: { regex: "/^(?!index|404).*$/" } }) {
       edges {
         node {
-          frontmatter {
-            title
-            path
-            tags
-            date(formatString: "MMMM DD, YYYY")
-            published
+          name
+          relativeDirectory
+          childMdx {
+            frontmatter {
+              path
+              date
+              published
+            }
           }
         }
       }

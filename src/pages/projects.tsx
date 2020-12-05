@@ -4,9 +4,7 @@ import Layout from '../Layout'
 const ProjectsPage = () => {
   return (
     <Layout>
-      <div>
-        <>Projects here</>
-      </div>
+      <h1>Coming Soon!</h1>
     </Layout>
   )
 }

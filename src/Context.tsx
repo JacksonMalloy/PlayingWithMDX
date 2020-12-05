@@ -7,6 +7,7 @@ export interface State {
 
 const initialState = {
   displayToast: false,
+  toastMessage: '',
   displayNavigation: false,
   serverState: { submitting: false, status: null },
 }
@@ -41,6 +42,7 @@ function uiReducer(state: State, action: Action) {
       return {
         ...state,
         displayToast: true,
+        toastMessage: action.message,
       }
     }
     case 'CLOSE_TOAST': {
