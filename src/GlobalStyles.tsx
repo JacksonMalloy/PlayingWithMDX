@@ -67,12 +67,9 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     pre {
-        overflow-x: scroll;
         /* Hide scrollbar for IE, Edge and Firefox */
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */  
-        position: relative;
-        margin-bottom: 1rem;
         font-family: 'Fira Mono Regular';
         font-weight: 400;
     }

@@ -125,7 +125,7 @@ export const preExtract = () => ({
     {
       property: 'font-size',
       // Perfect fifth, perfect fourth, major third
-      values: ['1.5rem', '1.333rem', '1.25rem'],
+      values: ['1rem', '1rem', '1rem'],
     },
   ]),
 })

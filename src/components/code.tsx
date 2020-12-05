@@ -170,13 +170,21 @@ const Code = (props: any) => <SyntaxHiglight {...props} />
 export default Code
 
 const StyledLine = styled.div`
+  /* Width needs to be set for mobile overflow-x scrolling */
+  width: 200px;
+
+  span {
+    width: 100%;
+    overflow: hidden;
+  }
+
   &.highlight-line {
-    background-color: rgba(0, 255, 255, 0.1);
+    /* background-color: rgba(0, 255, 255, 0.1);
     display: block;
     margin-right: -300px;
     margin-left: -1em;
     padding-right: 1em;
     padding-left: 0.75em;
-    border-left: 0.1em solid rgba(0, 255, 255, 1);
+    border-left: 0.1em solid rgba(0, 255, 255, 1); */
   }
 `

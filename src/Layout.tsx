@@ -115,6 +115,15 @@ const StyledLayout = styled.main`
   pre {
     ${preExtract()}
     line-height: 1.5rem;
+    font-family: 'Fira Mono Regular';
+    width: 100%;
+    padding: var(--space);
+    overflow-x: auto;
+    position: relative;
+
+    span {
+      font-family: inherit;
+    }
   }
 `
 
@@ -124,7 +133,6 @@ const ExtendStyledLayout = styled(StyledLayout)({
 
 export const StyledContainer = styled.section`
   max-width: ${({ viewportLimit }) => viewportLimit || '700px'};
-  min-width: 320px;
 `
 
 const components = {

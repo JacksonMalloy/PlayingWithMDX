@@ -9,6 +9,7 @@ const StyledTitleContainer = styled.header`
   align-items: center;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
+  width: 100%;
 `
 
 const StyledText = styled.h6`
