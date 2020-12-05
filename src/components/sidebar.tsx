@@ -177,5 +177,5 @@ function Tree({ items, depth = 0 }) {
 const StyledTreeItem = styled(Link)`
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
+  font-family: 'Source Sans Pro Light';
 `

@@ -5,6 +5,7 @@ import Image from './image'
 import styled from 'styled-components'
 import { useSwipeable } from 'react-swipeable'
 import { useUI } from '../Context'
+import { BackgroundImage } from './backgroundImage'
 
 const Header = (): React.ReactElement => {
   const { openNavigation } = useUI()
@@ -30,20 +31,9 @@ const Header = (): React.ReactElement => {
 
   return (
     <StyledHeader {...handlers}>
-      <Link to="/posts" className="posts">
-        /posts
-      </Link>
-      <Link to="/projects" className="projects">
-        /projects
-      </Link>
+      <BackgroundImage />
       <Link to="/" className="image">
         <Image />
-      </Link>
-      <Link to="/work" className="work">
-        /work
-      </Link>
-      <Link to="/contact" className="contact">
-        /contact
       </Link>
     </StyledHeader>
   )
@@ -57,6 +47,8 @@ const StyledHeader = styled.header`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
 
   .image {
     grid-column: 4 / 4;
