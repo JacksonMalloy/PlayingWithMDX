@@ -11,7 +11,7 @@ const PostsPage = ({ data }) => {
   } = data
 
   return (
-    <Layout>
+    <Layout viewportLimit="1920px">
       <Post data={edges} />
     </Layout>
   )

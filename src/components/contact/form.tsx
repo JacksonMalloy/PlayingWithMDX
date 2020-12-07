@@ -18,7 +18,7 @@ const StyledInput = styled.div`
   label {
     /* display: grid;
     grid-template-rows: 1fr 2fr; */
-    font-family: 'Source Sans Pro Light';
+    font-family: 'Open Sans Regular';
     position: relative;
     display: flex;
     flex-direction: column;
@@ -67,7 +67,7 @@ const StyledInput = styled.div`
 
 const StyledTextArea = styled(StyledInput)`
   label {
-    font-family: 'Source Sans Pro Light';
+    font-family: 'Open Sans Regular';
     position: relative;
     display: flex;
     flex-direction: column;

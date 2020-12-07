@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 import FiraMonoRegular from './fonts/fira-mono.regular.ttf'
 import SourceSansProBlack from './fonts/source-sans-pro.black.ttf'
 import SourceSansProLight from './fonts/source-sans-pro.light.ttf'
+import OpenSansRegular from './fonts/OpenSans-Regular.ttf'
 
 export const GlobalStyles = createGlobalStyle`
     @font-face {
@@ -21,8 +22,8 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     @font-face {
-        font-family: 'Source Sans Pro Light';
-        src: url(${SourceSansProLight}) format('truetype');
+        font-family: 'Open Sans Regular';
+        src: url(${OpenSansRegular}) format('truetype');
         font-weight: 300;
         font-style: normal;
         font-display: auto;
@@ -63,14 +64,14 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     p, small, ol, blockquote, a, span {
-        font-family: 'Source Sans Pro Light';
+        font-family: 'Open Sans Regular';
         font-weight: 400;
     }
 
     pre {
         /* Hide scrollbar for IE, Edge and Firefox */
         -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */  
+        scrollbar-width: none; /* Firefox */
         font-family: 'Fira Mono Regular';
         font-weight: 400;
     }

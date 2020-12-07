@@ -42,22 +42,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-nasa',
-      options: {
-        key: 'QUPw7DOFGJULIpTF1G9NSJPk2gMgbLZc5UIbTsET',
-        images: [
-          {
-            type: 'apod',
-            date: '2019-01-01',
-          },
-          {
-            type: 'epic',
-            date: '2019-01-01',
-          },
-        ],
-      },
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,

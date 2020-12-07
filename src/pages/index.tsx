@@ -4,9 +4,9 @@ import Layout from '../Layout'
 import { About } from '../components/about'
 import { Drawer } from '../components/drawer'
 import styled from 'styled-components'
-import { Sidebar } from '../components/sidebar'
+import Sidebar from '../components/sidebar'
 
-const StyledGrid = styled.main`
+export const StyledGrid = styled.main`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 0rem;
