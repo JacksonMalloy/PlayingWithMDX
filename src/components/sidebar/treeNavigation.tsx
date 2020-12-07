@@ -15,9 +15,6 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
 
   return items.map((item, index) => {
     const { relativeDirectory, name } = item
-
-    console.log({ item })
-
     const linkTo = relativeDirectory ? `/${relativeDirectory}/${name}/` : name === 'home' ? '/' : `/${name}`
 
     return (
@@ -36,5 +33,22 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
 const StyledTreeItem = styled(Link)`
   display: flex;
   flex-direction: column;
-  font-family: 'Open Sans Regular';
+  text-transform: capitalize;
+  opacity: 0.3;
+  transition: opacity 0.1s;
+
+  &:hover {
+    color: var(--text);
+    opacity: 0.8;
+    transition: opacity 0.1s;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: none;
+    color: var(--text);
+    opacity: 0.8;
+    transition: opacity 0.1s;
+    text-decoration: underline;
+  }
 `
