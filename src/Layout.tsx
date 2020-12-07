@@ -17,6 +17,7 @@ import {
 import Header from './components/header'
 import { ManagedUIContext } from './Context'
 import { Toast } from './components/toast'
+import Link from './components/link'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -138,6 +139,7 @@ export const StyledContainer = styled.section`
 
 const components = {
   code: Code,
+  a: Link,
 }
 
 const Layout = ({ children, viewportLimit }) => {
