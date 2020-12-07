@@ -59,9 +59,9 @@ const renderPosts = (data) => {
 
 export const Post = ({ data }) => {
   return (
-    <>
+    <section>
       <h1>Blog</h1>
       {renderPosts(data)}
-    </>
+    </section>
   )
 }

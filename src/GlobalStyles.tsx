@@ -56,6 +56,7 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         font-size: 16px;
         display: inline-block;
+        width: 100%;
     }
 
     h1, h2, h3, h4, h5, h6 {

@@ -1,6 +1,6 @@
 ---
 title: Hooks for Logging
-path: /posts/use-console-logs
+path: /work/use-console-logs
 date: 2020-11-28
 tags: ["React", "React Hooks"]
 published: true
@@ -12,15 +12,15 @@ import Header from '../../components/header'
 # Hooks for Logging
 
 I've always had to work on clearing logs from my apps while prepping for launch.
-Sometimes it can be as easy as a quick search and replace in VS Code. But sometimes, 
-you may find yourself wanting some of those logs in production. You may have reasons, like me, 
-where commenting out logs is not acceptable. Perhaps you want messages in prod warning the user. 
+Sometimes it can be as easy as a quick search and replace in VS Code. But sometimes,
+you may find yourself wanting some of those logs in production. You may have reasons, like me,
+where commenting out logs is not acceptable. Perhaps you want messages in prod warning the user.
 
-What if there was a better way to use console.log around your app. A way where we don't have to 
+What if there was a better way to use console.log around your app. A way where we don't have to
 mass replace, comment out, be weary of, while developing in different stages of our app. What if we
-*could* have the same logs in development, staging and production? 
+*could* have the same logs in development, staging and production?
 
-What if we wrote a custom hook? 
+What if we wrote a custom hook?
 I'll start from scratch.
 
 ```jsx:title=src/components/useConsoleLog.js
@@ -28,9 +28,9 @@ const useConsoleLog = () => {
     return {}
 }
 ```
-We'll take the basic shape of a custom hook, 
-which takes some parameter(s) and returns an object. What do we want this hook to return? 
-Well, console methods! So lets make a function for a few. 
+We'll take the basic shape of a custom hook,
+which takes some parameter(s) and returns an object. What do we want this hook to return?
+Well, console methods! So lets make a function for a few.
 
 ```jsx:title=src/components/useConsoleLog.js {3-17}
 const useConsoleLog = () => {
@@ -55,7 +55,7 @@ const useConsoleLog = () => {
 }
 ```
 
-It's just missing some parameters now. But what do we want to pass to our hook? 
+It's just missing some parameters now. But what do we want to pass to our hook?
 Perhaps a message, the variable, anything else? Lets add those for now.
 
 ```jsx:title=src/components/useConsoleLog.js
@@ -81,8 +81,8 @@ const useConsoleLog = (variable, message = '') => {
 }
 ```
 
-We could stop here. But this wasn't enough for me. 
-I want my logs to show depending on the environement. 
+We could stop here. But this wasn't enough for me.
+I want my logs to show depending on the environement.
 
 
 ```jsx:title=src/components/useConsoleLog.js {3-5}
@@ -115,10 +115,10 @@ const useConsoleLog = () => {
 }
 ```
 
-Now we have granular control over how we display our logs in development, staging and production. 
-A smiple but useful little snippet that could save you time in the long run. 
+Now we have granular control over how we display our logs in development, staging and production.
+A smiple but useful little snippet that could save you time in the long run.
 
-Here's how to use our new hook. 
+Here's how to use our new hook.
 
 ```jsx:title=src/components/useConsoleLog.js
 
@@ -184,11 +184,11 @@ const useConsoleLog = (variable, message = '', type = 'log') => {
 }
 ```
 
-But now what if we don't want to just add a message to our hook? 
-That could be annoying to have to type `log(tacos, '', 'info')` everytime we want to log something. 
+But now what if we don't want to just add a message to our hook?
+That could be annoying to have to type `log(tacos, '', 'info')` everytime we want to log something.
 
-There are a million different ways we could take this, but it's just a start and I wanted to keep it simple. 
+There are a million different ways we could take this, but it's just a start and I wanted to keep it simple.
 
-I hope you enjoyed my DevTalk. 
+I hope you enjoyed my DevTalk.
 
 Please throw me a follow on Twitter!

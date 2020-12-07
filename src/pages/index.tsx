@@ -3,25 +3,8 @@ import { graphql } from 'gatsby'
 import Layout from '../Layout'
 import { About } from '../components/about'
 import { Drawer } from '../components/drawer'
-import styled from 'styled-components'
 import Sidebar from '../components/sidebar'
-
-export const StyledGrid = styled.main`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 0rem;
-  justify-self: center;
-  padding: 0 10rem;
-
-  aside {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-  }
-
-  .about {
-    grid-column: 2 / 4;
-  }
-`
+import { Grid } from '../components/grid'
 
 const IndexPage = ({ data }) => {
   const {
@@ -29,15 +12,13 @@ const IndexPage = ({ data }) => {
   } = data
 
   return (
-    <>
-      <Layout viewportLimit="1920px">
-        <Drawer />
-        <StyledGrid>
-          <About />
-          <Sidebar data={edges} />
-        </StyledGrid>
-      </Layout>
-    </>
+    <Layout viewportLimit="1920px">
+      <Drawer />
+      <Grid>
+        <About />
+        <Sidebar data={edges} />
+      </Grid>
+    </Layout>
   )
 }
 

@@ -13,18 +13,21 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
     return null
   }
 
-  return items.map((item: { name: any; children?: any; relativeDirectory?: any }) => {
+  return items.map((item, index) => {
     const { relativeDirectory, name } = item
+
+    console.log({ item })
 
     const linkTo = relativeDirectory ? `/${relativeDirectory}/${name}/` : name === 'home' ? '/' : `/${name}`
 
     return (
-      <React.Fragment key={item.name}>
-        {/* Multiply the depth by a constant to create consistent spacing */}
+      <React.Fragment key={`${index}-${item.name}`}>
         <StyledTreeItem style={{ paddingLeft: depth * 30 }} to={linkTo}>
           {item.name}
         </StyledTreeItem>
-        <TreeNavigation items={item.children} depth={depth + 1} />
+        {item.childMdx && item.childMdx.frontmatter.featured && (
+          <TreeNavigation items={item.children} depth={depth + 1} />
+        )}
       </React.Fragment>
     )
   })

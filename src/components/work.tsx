@@ -1,8 +1,11 @@
 import React from 'react'
+import { useSwipe } from './useSwipe'
 
 export const Work = () => {
+  const { handlers, handleRightSwipe } = useSwipe()
+
   return (
-    <div>
+    <section className="container">
       <h1>Six12creative</h1>
       <blockquote>My current place of employment since June 2019</blockquote>
       <h3>My Story</h3>
@@ -41,6 +44,6 @@ export const Work = () => {
         Rock Paper Prizes 4 was a huge project. Past iterations of the contest were written with PHP but with my
         influence, we had decided to rewrite the contest in React!
       </p>
-    </div>
+    </section>
   )
 }

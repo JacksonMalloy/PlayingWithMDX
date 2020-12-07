@@ -11,15 +11,15 @@ import Header from '../../components/header'
 
 # Let me put hooks into context
 
-So there's this new pattern arising, I'm sure many of you have heard. 
-Sometimes it can be a bit fishy (if you catch my drift), but mark my words 
+So there's this new pattern arising, I'm sure many of you have heard.
+Sometimes it can be a bit fishy (if you catch my drift), but mark my words
 once you learn how to create your own, it will improve the experience you have
-working with your codebase significantly. 
+working with your codebase significantly.
 
->Lets take a look at `useContext`. 
+>Lets take a look at `useContext`.
 
-The `useContext` hook is a hook to provide a sort of "global store" as you might call it; 
-a global, single location to store state for a specific service, a particular function, similar logic. 
+The `useContext` hook is a hook to provide a sort of "global store" as you might call it;
+a global, single location to store state for a specific service, a particular function, similar logic.
 
 Lets take a look at a simple use case of `useContext`
 
@@ -32,12 +32,12 @@ export const Component = () => {
     return (
         <SomeContext.Provider value={"hello world"}>
             <ChildComponent/>
-        </SomeContext.Provider> 
+        </SomeContext.Provider>
     )
 
 }
 
------------------------------------------------- 
+------------------------------------------------
 
 export const ChildComponent = () => {
     return (
@@ -47,7 +47,7 @@ export const ChildComponent = () => {
     )
 }
 
------------------------------------------------- 
+------------------------------------------------
 
 export const GrandChildComponent = () => {
     const value = useContext(SomeContext);
@@ -60,20 +60,20 @@ export const GrandChildComponent = () => {
 }
 
 ```
- What's happening here is that we're creating a store for state in a parent component. 
+ What's happening here is that we're creating a store for state in a parent component.
  And **Sharing** that state with the children, grand children, great grandchildren and all
- the other generations of the family tree. 
+ the other generations of the family tree.
 
- This means that you can now access the prop `value="Hello World"` from anywhere within the component tree, 
- just by calling useContext! 
+ This means that you can now access the prop `value="Hello World"` from anywhere within the component tree,
+ just by calling useContext!
 
-Prop drilling can become a real problem and using context can save you from prop drill hell. 
+Prop drilling can become a real problem and using context can save you from prop drill hell.
 
-But what's the use of passing through just a single prop. 
-What if we want to share multiple values, multiple props through the same context. 
-What if we wanted to add methods to edit those values from anywhere within the children of our parent tree. 
+But what's the use of passing through just a single prop.
+What if we want to share multiple values, multiple props through the same context.
+What if we wanted to add methods to edit those values from anywhere within the children of our parent tree.
 
-Lets start with something simple first. 
+Lets start with something simple first.
 
 
 ```jsx:title=src/components.js {}
@@ -89,12 +89,12 @@ export const Component = () => {
     return (
         <SomeContext.Provider value={values}>
             <ChildComponent />
-        </SomeContext.Provider> 
+        </SomeContext.Provider>
     )
 
 }
 
------------------------------------------------- 
+------------------------------------------------
 
 export const ChildComponent = () => {
     return (
@@ -104,7 +104,7 @@ export const ChildComponent = () => {
     )
 }
 
------------------------------------------------- 
+------------------------------------------------
 
 export const GrandChildComponent = () => {
     const { count, setCount } = useContext(SomeContext);
@@ -134,7 +134,7 @@ export const GrandChildComponent = () => {
 
 Ok that was pretty easy! Just don't forget your imports if you're playing with this code.
 What we're doing above is passing count and setCount through our component tree, letting all our
-children components access the method / value without having to pass props through them. 
+children components access the method / value without having to pass props through them.
 
 Pretty neat!
 
@@ -167,12 +167,12 @@ export const Component = () => {
     return (
         <SomeContext.Provider value={values}>
             <ChildComponent />
-        </SomeContext.Provider> 
+        </SomeContext.Provider>
     )
 
 }
 
------------------------------------------------- 
+------------------------------------------------
 
 export const ChildComponent = () => {
     return (
@@ -182,7 +182,7 @@ export const ChildComponent = () => {
     )
 }
 
------------------------------------------------- 
+------------------------------------------------
 
 export const GrandChildComponent = () => {
     const [state, dispatch] = useContext(SomeContext);

@@ -60,7 +60,7 @@ export const About = () => {
   }
 
   return (
-    <section {...handlers} className="about">
+    <section {...handlers} className="container">
       <h1>{sayHello()}</h1>
 
       <blockquote>

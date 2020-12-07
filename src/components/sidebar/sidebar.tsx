@@ -64,9 +64,6 @@ const Sidebar = ({ data }) => {
   return (
     <StyledSidebar>
       <section>
-        <div>
-          <TreeNavigation items={items} />
-        </div>
         {/* <ul>
           <li>
             <Twitter />
@@ -78,6 +75,9 @@ const Sidebar = ({ data }) => {
             <Facebook />
           </li>
         </ul> */}
+        <div>
+          <TreeNavigation items={items} />
+        </div>
       </section>
     </StyledSidebar>
   )

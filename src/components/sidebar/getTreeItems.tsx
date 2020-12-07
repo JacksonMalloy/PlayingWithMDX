@@ -32,7 +32,7 @@ export const getTreeItems = (data: { node: any }[]) => {
   const groupedKeys = groupByKey(baseDirectories, 'relativeDirectory')
 
   const connectChildrenToBase = () => {
-    let baseNavigation: any[] = []
+    let baseNavigation: any[] = [{ name: 'home', relativeDirectory: '', children: [] }]
 
     baseDirectories.forEach((directory, index, array) => {
       if (Object.keys(groupedKeys).includes(directory.name)) {

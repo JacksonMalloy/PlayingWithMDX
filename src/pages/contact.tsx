@@ -4,7 +4,7 @@ import Layout from '../Layout'
 import styled from 'styled-components'
 import { Message } from '../components/contact/message'
 
-const StyledGrid = styled.section`
+const StyledContact = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
 
@@ -35,10 +35,10 @@ const ContactPage = () => {
 
   return (
     <Layout viewportLimit="1920px">
-      <StyledGrid>
+      <StyledContact>
         <Message bottom={bottom} />
         <Form />
-      </StyledGrid>
+      </StyledContact>
     </Layout>
   )
 }

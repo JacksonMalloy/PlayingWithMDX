@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby'
 import React from 'react'
-import { StyledGrid } from '.'
+import { Drawer } from '../components/drawer'
+import { Grid } from '../components/grid'
 import Sidebar from '../components/sidebar'
 import { Work } from '../components/work'
 import Layout from '../Layout'
@@ -12,10 +13,12 @@ const WorkPage = ({ data }) => {
 
   return (
     <Layout viewportLimit="1920px">
-      <StyledGrid>
+      <Drawer />
+
+      <Grid>
         <Work />
         <Sidebar data={edges} />
-      </StyledGrid>
+      </Grid>
     </Layout>
   )
 }
@@ -23,7 +26,20 @@ const WorkPage = ({ data }) => {
 export default WorkPage
 
 export const query = graphql`
-  query WorkQuery {
+  query {
+    allMdx(filter: { slug: { regex: "/work/" } }) {
+      edges {
+        node {
+          frontmatter {
+            title
+            path
+            tags
+            date(formatString: "MMMM DD, YYYY")
+            published
+          }
+        }
+      }
+    }
     allFile(filter: { sourceInstanceName: { eq: "pages" }, name: { regex: "/^(?!index|404).*$/" } }) {
       edges {
         node {
