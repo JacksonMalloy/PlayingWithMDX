@@ -62,7 +62,7 @@ export const Post = ({ data }) => {
   const { handlers } = useSwipe()
 
   return (
-    <section {...handlers}>
+    <section {...handlers} className="container">
       <h1>Blog</h1>
       {renderPosts(data)}
     </section>

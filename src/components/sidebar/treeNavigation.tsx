@@ -17,16 +17,33 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
     const { relativeDirectory, name } = item
     const linkTo = relativeDirectory ? `/${relativeDirectory}/${name}/` : name === 'home' ? '/' : `/${name}`
 
-    return (
-      <React.Fragment key={`${index}-${item.name}`}>
-        <StyledTreeItem style={{ paddingLeft: depth * 30 }} to={linkTo}>
-          {item.name}
-        </StyledTreeItem>
-        {item.childMdx && item.childMdx.frontmatter.featured && (
+    console.log({ item })
+
+    if (depth && item.childMdx && item.childMdx.frontmatter.featured && item.childMdx.frontmatter.published) {
+      return (
+        <React.Fragment key={`${index}-${item.name}`}>
+          <StyledTreeItem style={{ paddingLeft: depth * 30 }} to={linkTo}>
+            {item.name}
+          </StyledTreeItem>
+
           <TreeNavigation items={item.children} depth={depth + 1} />
-        )}
-      </React.Fragment>
-    )
+        </React.Fragment>
+      )
+    }
+
+    if (!depth) {
+      return (
+        <React.Fragment key={`${index}-${item.name}`}>
+          <StyledTreeItem style={{ paddingLeft: depth * 30 }} to={linkTo}>
+            {item.name}
+          </StyledTreeItem>
+
+          <TreeNavigation items={item.children} depth={depth + 1} />
+        </React.Fragment>
+      )
+    }
+
+    return null
   })
 }
 

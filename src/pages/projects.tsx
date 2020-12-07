@@ -25,6 +25,7 @@ export const query = graphql`
             tags
             date(formatString: "MMMM DD, YYYY")
             published
+            featured
           }
         }
       }
@@ -39,6 +40,7 @@ export const query = graphql`
               path
               date
               published
+              featured
             }
           }
         }
