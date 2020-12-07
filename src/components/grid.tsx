@@ -11,11 +11,19 @@ export const StyledGrid = styled.main`
   grid-gap: 0rem;
   justify-self: center;
   justify-items: center;
-  padding: 0 10rem;
+  padding: 0rem;
 
   aside {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
+  }
+
+  @media (max-width: 700px) {
+    display: flex;
+
+    aside {
+      display: none;
+    }
   }
 
   .container {
