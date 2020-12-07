@@ -51,9 +51,5 @@ export const BackgroundImage = () => {
     }
   }
 
-  return (
-    <StyledBackgroundImage>
-      <Img fluid={randomizeImages()} />
-    </StyledBackgroundImage>
-  )
+  return <StyledBackgroundImage>{/* <Img fluid={randomizeImages()} /> */}</StyledBackgroundImage>
 }

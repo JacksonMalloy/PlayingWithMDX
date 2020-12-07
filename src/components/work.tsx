@@ -2,11 +2,11 @@ import React from 'react'
 import { useSwipe } from './useSwipe'
 
 export const Work = () => {
-  const { handlers, handleRightSwipe } = useSwipe()
+  const { handlers } = useSwipe()
 
   return (
-    <section className="container">
-      <h1>Six12creative</h1>
+    <section className="container" {...handlers}>
+      <h1>Six12 Creative</h1>
       <blockquote>My current place of employment since June 2019</blockquote>
       <h3>My Story</h3>
       <p>

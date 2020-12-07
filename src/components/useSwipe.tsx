@@ -31,5 +31,5 @@ export const useSwipe = () => {
     ...config,
   })
 
-  return { handleLeftSwipe, handleRightSwipe, handlers }
+  return { handlers }
 }

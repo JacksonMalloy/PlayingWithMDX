@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-import { SwipeEventData, useSwipeable } from 'react-swipeable'
 import { useUI } from '../Context'
+import { useSwipe } from './useSwipe'
 
 export const About = () => {
-  const { openNavigation, openToast } = useUI()
+  const { openToast } = useUI()
+  const { handlers } = useSwipe()
 
   useEffect(() => {
     const message = 'Swipe ➡ for menu'
@@ -11,26 +12,6 @@ export const About = () => {
 
     openToast(message, variant)
   }, [])
-
-  const config = {
-    delta: 10, // min distance(px) before a swipe starts
-    preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
-    trackTouch: true, // track touch input
-    trackMouse: false, // track mouse input
-    rotationAngle: 0, // set a rotation angle
-  }
-
-  const handleLeftSwipe = (eventData: SwipeEventData) => {
-    if (eventData.dir === 'Right') {
-      console.log('opened')
-      openNavigation()
-    }
-  }
-
-  const handlers = useSwipeable({
-    onSwiped: (eventData) => handleLeftSwipe(eventData),
-    ...config,
-  })
 
   const sayHello = () => {
     const date = new Date()

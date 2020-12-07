@@ -1,6 +1,7 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
+import { useSwipe } from './useSwipe'
 
 const StyledPost = styled(Link)`
   display: flex;
@@ -58,8 +59,10 @@ const renderPosts = (data) => {
 }
 
 export const Post = ({ data }) => {
+  const { handlers } = useSwipe()
+
   return (
-    <section>
+    <section {...handlers}>
       <h1>Blog</h1>
       {renderPosts(data)}
     </section>

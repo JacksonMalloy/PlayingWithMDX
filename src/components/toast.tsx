@@ -6,7 +6,7 @@ const StyledToast = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  background-color: var(--secondary);
+  background: repeating-linear-gradient(45deg, var(--primary), var(--secondary) 10px, var(--primary) 10px);
   color: var(--text);
 
   .toast-message {
@@ -19,7 +19,7 @@ const StyledToast = styled.div`
 
   .close-toast {
     border: none;
-    background-color: var(--secondary);
+    background-color: transparent;
     color: var(--text);
     font-size: 2rem;
     padding: var(--space);

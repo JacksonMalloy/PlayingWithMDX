@@ -6,6 +6,7 @@ import { LinkedIn } from '../linkedin'
 import { Facebook } from '../facebook'
 import { TreeNavigation } from './treeNavigation'
 import { getTreeItems } from './getTreeItems'
+import { useSwipe } from '../useSwipe'
 
 const StyledSidebar = styled.aside`
   padding-top: 3.5rem;
@@ -34,8 +35,10 @@ const StyledSidebar = styled.aside`
 const Sidebar = ({ data }) => {
   const items = getTreeItems(data)
 
+  const { handlers } = useSwipe()
+
   return (
-    <StyledSidebar>
+    <StyledSidebar {...handlers}>
       <section>
         <TreeNavigation items={items} />
       </section>
