@@ -2,7 +2,7 @@ import { useSwipeable } from 'react-swipeable'
 import { useUI } from '../../Context'
 
 export const useSwipe = () => {
-  const { openNavigation, closeNavigation } = useUI()
+  const { openNavigation, closeNavigation, setDrawerPosition, drawerPosition } = useUI()
 
   const config = {
     delta: 10, // min distance(px) before a swipe starts
@@ -22,6 +22,7 @@ export const useSwipe = () => {
         closeNavigation()
       }
     },
+    onSwiping: (eventData) => setDrawerPosition(eventData),
     ...config,
   })
 
