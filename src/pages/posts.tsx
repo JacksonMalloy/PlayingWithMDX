@@ -2,23 +2,15 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Post } from '../components/post'
 import Layout from '../Layout'
-import Navigation from '../components/navigation'
-import { Drawer } from '../components/drawer'
-import { Grid } from '../components/grid'
 
 const PostsPage = ({ data }) => {
   const {
     allMdx: { edges },
-    allFile: { edges: files },
   } = data
 
   return (
     <Layout viewportLimit="1920px">
-      <Drawer />
-      <Grid>
-        <Post data={edges} />
-        <Navigation data={files} />
-      </Grid>
+      <Post data={edges} />
     </Layout>
   )
 }
@@ -37,22 +29,6 @@ export const query = graphql`
             date(formatString: "MMMM DD, YYYY")
             published
             featured
-          }
-        }
-      }
-    }
-    allFile(filter: { sourceInstanceName: { eq: "pages" }, name: { regex: "/^(?!index|404).*$/" } }) {
-      edges {
-        node {
-          name
-          relativeDirectory
-          childMdx {
-            frontmatter {
-              path
-              date
-              published
-              featured
-            }
           }
         }
       }

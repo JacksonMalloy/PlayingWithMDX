@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useUI } from '../Context'
-import { useSwipe } from './useSwipe'
+import { useSwipe } from './drawer/useSwipe'
 
 export const About = () => {
   const { openToast } = useUI()

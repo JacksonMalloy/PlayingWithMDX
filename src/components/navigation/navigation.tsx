@@ -6,7 +6,7 @@ import styled from 'styled-components'
 // import { Facebook } from '../facebook'
 import { TreeNavigation } from './treeNavigation'
 import { getTreeItems } from './getTreeItems'
-import { useSwipe } from '../useSwipe'
+import { useSwipe } from '../drawer/useSwipe'
 import { useNavigation } from './useNavigation'
 
 const StyledNavigation = styled.aside`

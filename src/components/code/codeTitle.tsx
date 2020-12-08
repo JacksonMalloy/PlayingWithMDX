@@ -13,7 +13,7 @@ const StyledTitleContainer = styled.header`
 `
 
 const StyledText = styled.h6`
-  font-size: 1rem;
+  font-size: 0.7rem;
   color: var(--text);
   padding: 0 0.5rem;
 `

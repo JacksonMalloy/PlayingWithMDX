@@ -1,61 +1,17 @@
 import { graphql } from 'gatsby'
 import React from 'react'
-import { Drawer } from '../components/drawer'
+import { Drawer } from '../components/drawer/drawer'
 import { Grid } from '../components/grid'
 import Navigation from '../components/navigation'
 import { Work } from '../components/work'
 import Layout from '../Layout'
 
-const WorkPage = ({ data }) => {
-  const {
-    allFile: { edges },
-  } = data
-
+const WorkPage = () => {
   return (
     <Layout viewportLimit="1920px">
-      <Drawer />
-
-      <Grid>
-        <Work />
-        <Navigation data={edges} />
-      </Grid>
+      <Work />
     </Layout>
   )
 }
 
 export default WorkPage
-
-export const query = graphql`
-  query {
-    allMdx(filter: { slug: { regex: "/work/" } }) {
-      edges {
-        node {
-          frontmatter {
-            title
-            path
-            tags
-            date(formatString: "MMMM DD, YYYY")
-            published
-            featured
-          }
-        }
-      }
-    }
-    allFile(filter: { sourceInstanceName: { eq: "pages" }, name: { regex: "/^(?!index|404).*$/" } }) {
-      edges {
-        node {
-          name
-          relativeDirectory
-          childMdx {
-            frontmatter {
-              path
-              date
-              published
-              featured
-            }
-          }
-        }
-      }
-    }
-  }
-`
