@@ -137,7 +137,8 @@ const ExtendStyledLayout = styled(StyledLayout)({
 })
 
 export const StyledContainer = styled.section`
-  max-width: ${({ viewportLimit }) => viewportLimit || '700px'};
+  max-width: ${({ viewportLimit }) => viewportLimit || '1920px'};
+  width: 100%;
 `
 
 const components = {

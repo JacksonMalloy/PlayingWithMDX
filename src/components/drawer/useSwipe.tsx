@@ -15,8 +15,10 @@ export const useSwipe = () => {
   const handlers = useSwipeable({
     onSwiped: (eventData) => {
       if (eventData.dir === `Right`) {
+        console.log('open')
         openNavigation()
       } else if (eventData.dir === `Left`) {
+        console.log('close')
         closeNavigation()
       }
     },

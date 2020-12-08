@@ -12,6 +12,7 @@ export const StyledGrid = styled.main`
   justify-self: center;
   justify-items: center;
   padding: 0rem;
+  padding-right: 10%;
 
   aside {
     grid-column: 1 / 2;
