@@ -72,7 +72,9 @@ const StyledLayout = styled.main`
     h4,
     h5,
     h6 {
-      padding: var(--space);
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
     }
   }
 
@@ -82,7 +84,8 @@ const StyledLayout = styled.main`
     line-height: 2.5rem;
 
     @media (max-width: 576px) {
-      padding: var(--space);
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
     }
   }
 
@@ -107,6 +110,7 @@ const StyledLayout = styled.main`
     margin: 1rem 2rem;
     ${bqFontSizes()}
     line-height: 2.5rem;
+    border-radius: 1rem;
 
     p {
       margin: 0;
@@ -115,6 +119,10 @@ const StyledLayout = styled.main`
 
     code {
       padding: 0;
+    }
+
+    @media (max-width: 576px) {
+      margin: var(--space);
     }
   }
 
@@ -126,9 +134,14 @@ const StyledLayout = styled.main`
     padding: var(--space);
     overflow-x: auto;
     position: relative;
+    margin-bottom: 1rem;
 
     span {
       font-family: inherit;
+    }
+
+    @media (max-width: 576px) {
+      margin-bottom: 0.5rem;
     }
   }
 `
