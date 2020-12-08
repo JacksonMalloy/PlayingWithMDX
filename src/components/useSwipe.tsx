@@ -1,8 +1,8 @@
-import { SwipeEventData, useSwipeable } from 'react-swipeable'
+import { useSwipeable } from 'react-swipeable'
 import { useUI } from '../Context'
 
 export const useSwipe = () => {
-  const { openNavigation, openToast } = useUI()
+  const { openNavigation, closeNavigation } = useUI()
 
   const config = {
     delta: 10, // min distance(px) before a swipe starts
@@ -12,22 +12,14 @@ export const useSwipe = () => {
     rotationAngle: 0, // set a rotation angle
   }
 
-  const handleLeftSwipe = (eventData: SwipeEventData) => {
-    if (eventData.dir === 'Right') {
-      console.log('opened')
-      openNavigation()
-    }
-  }
-
-  const handleRightSwipe = (eventData: SwipeEventData) => {
-    if (eventData.dir === 'Right') {
-      console.log('opened')
-      //   openNavigation()
-    }
-  }
-
   const handlers = useSwipeable({
-    onSwiped: (eventData) => handleLeftSwipe(eventData),
+    onSwiped: (eventData) => {
+      if (eventData.dir === `Right`) {
+        openNavigation()
+      } else if (eventData.dir === `Left`) {
+        closeNavigation()
+      }
+    },
     ...config,
   })
 

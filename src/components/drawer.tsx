@@ -2,32 +2,12 @@ import React from 'react'
 import { useUI } from '../Context'
 import styled from 'styled-components'
 import { SwipeEventData, useSwipeable } from 'react-swipeable'
-import { Link } from 'gatsby'
 import Navigation from './navigation'
-// import Image from './image'
+import { useSwipe } from './useSwipe'
 
 export const Drawer = () => {
   const { displayNavigation, closeNavigation } = useUI()
-
-  const config = {
-    delta: 10, // min distance(px) before a swipe starts
-    preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
-    trackTouch: true, // track touch input
-    trackMouse: false, // track mouse input
-    rotationAngle: 0, // set a rotation angle
-  }
-
-  const handleLeftSwipe = (eventData: SwipeEventData) => {
-    if (eventData.dir === 'Left') {
-      console.log('closed')
-      closeNavigation()
-    }
-  }
-
-  const handlers = useSwipeable({
-    onSwiped: (eventData) => handleLeftSwipe(eventData),
-    ...config,
-  })
+  const { handlers } = useSwipe()
 
   if (displayNavigation) {
     return (
@@ -57,29 +37,4 @@ const StyledDrawer = styled.nav`
   align-items: center;
   padding-bottom: 4.5rem;
   overflow-y: auto;
-
-  .nav-about {
-    grid-row: 2 / 3;
-    grid-column: 3 / 4;
-  }
-
-  .nav-posts {
-    grid-row: 3 / 4;
-    grid-column: 3 / 4;
-  }
-
-  .nav-work {
-    grid-row: 4 / 5;
-    grid-column: 3 / 4;
-  }
-
-  .nav-projects {
-    grid-row: 5 / 6;
-    grid-column: 3 / 4;
-  }
-
-  .nav-contact {
-    grid-row: 1 / 2;
-    grid-column: 3 / 4;
-  }
 `
