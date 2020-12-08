@@ -9,7 +9,9 @@ export const Drawer = () => {
   const { displayNavigation, drawerPosition } = useUI()
   const { handlers } = useSwipe()
 
-  if (displayNavigation) {
+  console.log({ drawerPosition })
+
+  if (true) {
     return (
       <StyledDrawer {...handlers} deltaX={drawerPosition?.deltaX}>
         <Navigation />
@@ -30,7 +32,7 @@ const StyledDrawer = styled.nav`
   left: 0;
   right: 0;
   bottom: 0;
-  transform: translateX(${({ deltaX }) => (deltaX ? `${deltaX}px` : 0)});
+  transform: translateX(${({ deltaX }) => (deltaX ? `${deltaX}px` : `-100vw`)});
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -38,5 +40,4 @@ const StyledDrawer = styled.nav`
   align-items: center;
   padding-bottom: 4.5rem;
   overflow-y: auto;
-  transition: 0.3s fade;
 `

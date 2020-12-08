@@ -13,13 +13,15 @@ export const useSwipe = () => {
   }
 
   const handlers = useSwipeable({
-    onSwiped: (eventData) => {
-      if (eventData.dir === `Right`) {
-        console.log('open')
-        openNavigation()
-      } else if (eventData.dir === `Left`) {
-        console.log('close')
-        closeNavigation()
+    onSwiped: ({ dir, deltaX }) => {
+      if (dir === `Right`) {
+        if (deltaX > 100) {
+          openNavigation()
+        }
+      } else if (dir === `Left`) {
+        if (deltaX < -100) {
+          closeNavigation()
+        }
       }
     },
     onSwiping: (eventData) => setDrawerPosition(eventData),
