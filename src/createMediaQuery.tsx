@@ -50,7 +50,7 @@ const createMediaQueries = (css) => {
   }
 }
 
-export const h1Extract = () => ({
+export const h1FontSizes = () => ({
   ...createMediaQueries([
     {
       property: 'font-size',
@@ -60,7 +60,7 @@ export const h1Extract = () => ({
   ]),
 })
 
-export const h2Extract = () => ({
+export const h2FontSizes = () => ({
   ...createMediaQueries([
     {
       property: 'font-size',
@@ -70,7 +70,7 @@ export const h2Extract = () => ({
   ]),
 })
 
-export const h3Extract = () => ({
+export const h3FontSizes = () => ({
   ...createMediaQueries([
     {
       property: 'font-size',
@@ -80,7 +80,7 @@ export const h3Extract = () => ({
   ]),
 })
 
-export const h4Extract = () => ({
+export const h4FontSizes = () => ({
   ...createMediaQueries([
     {
       property: 'font-size',
@@ -90,7 +90,7 @@ export const h4Extract = () => ({
   ]),
 })
 
-export const h5Extract = () => ({
+export const h5FontSizes = () => ({
   ...createMediaQueries([
     {
       property: 'font-size',
@@ -100,27 +100,35 @@ export const h5Extract = () => ({
   ]),
 })
 
-export const pExtract = () => ({
+export const pFontSizes = () => ({
   ...createMediaQueries([
     {
       property: 'font-size',
       // Perfect fifth, perfect fourth, major third
-      values: ['1.5rem', '1.333rem', '1.25rem'],
+      values: ['1.333rem', '1.25rem', '1rem'],
+    },
+    {
+      property: 'line-height',
+      values: ['2.3rem', '2rem', '1.8rem'],
     },
   ]),
 })
 
-export const bqExtract = () => ({
+export const bqFontSizes = () => ({
   ...createMediaQueries([
     {
       property: 'font-size',
       // Perfect fifth, perfect fourth, major third
-      values: ['1.5rem', '1.333rem', '1.25rem'],
+      values: ['1.333rem', '1.25rem', '1rem'],
+    },
+    {
+      property: 'line-height',
+      values: ['2.3rem', '2rem', '1.8rem'],
     },
   ]),
 })
 
-export const preExtract = () => ({
+export const preFontSizes = () => ({
   ...createMediaQueries([
     {
       property: 'font-size',

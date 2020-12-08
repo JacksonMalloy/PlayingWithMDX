@@ -14,6 +14,10 @@ export const StyledGrid = styled.main`
   padding: 0rem;
   padding-right: 10%;
 
+  @media (max-width: 900px) {
+    padding-right: 0rem;
+  }
+
   aside {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
