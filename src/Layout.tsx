@@ -21,6 +21,7 @@ import Link from './components/link'
 import { Grid } from './components/grid'
 import Navigation from './components/navigation'
 import { Drawer } from './components/drawer/drawer'
+import Container from './Container'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -136,11 +137,6 @@ const ExtendStyledLayout = styled(StyledLayout)({
   ...h1Extract(),
 })
 
-export const StyledContainer = styled.section`
-  max-width: ${({ viewportLimit }) => viewportLimit || '1920px'};
-  width: 100%;
-`
-
 const components = {
   code: Code,
   a: Link,
@@ -152,7 +148,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
       <ExtendStyledLayout>
         <Toast />
         <Header />
-        <StyledContainer viewportLimit={viewportLimit}>
+        <Container viewportLimit={viewportLimit}>
           <MDXProvider components={components}>
             <GlobalStyles />
             <Drawer />
@@ -165,7 +161,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
               </Grid>
             )}
           </MDXProvider>
-        </StyledContainer>
+        </Container>
       </ExtendStyledLayout>
     </ManagedUIContext>
   )
