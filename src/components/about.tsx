@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { useUI } from '../Context'
-import { useSwipe } from './drawer/useSwipe'
 
 export const About = () => {
   const { openToast } = useUI()
-  const { handlers } = useSwipe()
 
   useEffect(() => {
     const message = 'Swipe ➡ for menu'
@@ -41,7 +39,7 @@ export const About = () => {
   }
 
   return (
-    <section {...handlers} className="container">
+    <section className="container">
       <h1>{sayHello()}</h1>
 
       <blockquote>
