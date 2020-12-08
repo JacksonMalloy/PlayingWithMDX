@@ -1,7 +1,7 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
-import { useSwipe } from './useSwipe'
+import { useSwipe } from './drawer/useSwipe'
 
 const StyledPost = styled(Link)`
   display: flex;

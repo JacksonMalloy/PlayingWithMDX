@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import rangeParser from 'parse-numeric-range'
 import Highlight, { defaultProps } from 'prism-react-renderer'
-// import theme from 'prism-react-renderer/themes/github'
 import Title from './codeTitle'
 import styled from 'styled-components'
-import Button from './button'
+import Button from '../button'
 
 const theme = {
   plain: {

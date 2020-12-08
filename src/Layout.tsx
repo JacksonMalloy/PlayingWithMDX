@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
-import Code from './components/code'
+import Code from './components/code/code'
 import { GlobalStyles } from './GlobalStyles'
 import { Footer } from './components/footer'
 import {

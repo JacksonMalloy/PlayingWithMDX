@@ -1,5 +1,5 @@
 import { useSwipeable } from 'react-swipeable'
-import { useUI } from '../Context'
+import { useUI } from '../../Context'
 
 export const useSwipe = () => {
   const { openNavigation, closeNavigation } = useUI()

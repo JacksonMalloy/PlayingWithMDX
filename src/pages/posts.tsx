@@ -3,13 +3,12 @@ import { graphql } from 'gatsby'
 import { Post } from '../components/post'
 import Layout from '../Layout'
 import Navigation from '../components/navigation'
-import { Drawer } from '../components/drawer'
+import { Drawer } from '../components/drawer/drawer'
 import { Grid } from '../components/grid'
 
 const PostsPage = ({ data }) => {
   const {
     allMdx: { edges },
-    allFile: { edges: files },
   } = data
 
   return (
@@ -17,7 +16,7 @@ const PostsPage = ({ data }) => {
       <Drawer />
       <Grid>
         <Post data={edges} />
-        <Navigation data={files} />
+        <Navigation />
       </Grid>
     </Layout>
   )

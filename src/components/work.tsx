@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSwipe } from './useSwipe'
+import { useSwipe } from './drawer/useSwipe'
 
 export const Work = () => {
   const { handlers } = useSwipe()

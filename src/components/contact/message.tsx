@@ -1,11 +1,11 @@
 import React from 'react'
 import { useUI } from '../../Context'
 
-export const Message = ({ bottom }) => {
+export const Message = () => {
   const { serverState } = useUI()
 
   return (
-    <aside ref={bottom}>
+    <aside>
       {serverState.status ? (
         <h1>{serverState.status.message}</h1>
       ) : (

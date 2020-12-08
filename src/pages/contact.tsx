@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { Form } from '../components/contact/form'
 import Layout from '../Layout'
 import styled from 'styled-components'
@@ -25,18 +25,10 @@ const StyledContact = styled.section`
 `
 
 const ContactPage = () => {
-  const bottom = useRef(null)
-
-  const scrollToBottom = () => {
-    bottom.current.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  useEffect(scrollToBottom, [])
-
   return (
     <Layout viewportLimit="1920px">
       <StyledContact>
-        <Message bottom={bottom} />
+        <Message />
         <Form />
       </StyledContact>
     </Layout>
