@@ -9,12 +9,7 @@ import Layout from '../Layout'
 const WorkPage = () => {
   return (
     <Layout viewportLimit="1920px">
-      <Drawer />
-
-      <Grid>
-        <Work />
-        <Navigation />
-      </Grid>
+      <Work />
     </Layout>
   )
 }

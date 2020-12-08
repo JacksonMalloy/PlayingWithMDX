@@ -26,7 +26,7 @@ const StyledContact = styled.section`
 
 const ContactPage = () => {
   return (
-    <Layout viewportLimit="1920px">
+    <Layout viewportLimit="1920px" isContact>
       <StyledContact>
         <Message />
         <Form />

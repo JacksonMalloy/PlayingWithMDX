@@ -18,6 +18,9 @@ import Header from './components/header'
 import { ManagedUIContext } from './Context'
 import { Toast } from './components/toast'
 import Link from './components/link'
+import { Grid } from './components/grid'
+import Navigation from './components/navigation'
+import { Drawer } from './components/drawer/drawer'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -142,7 +145,7 @@ const components = {
   a: Link,
 }
 
-const Layout = ({ children, viewportLimit }) => {
+const Layout = ({ children, viewportLimit, isContact }) => {
   return (
     <ManagedUIContext>
       <ExtendStyledLayout>
@@ -151,7 +154,15 @@ const Layout = ({ children, viewportLimit }) => {
         <StyledContainer viewportLimit={viewportLimit}>
           <MDXProvider components={components}>
             <GlobalStyles />
-            {children}
+            <Drawer />
+            {isContact ? (
+              <>{children}</>
+            ) : (
+              <Grid>
+                <Navigation />
+                <section className="container">{children}</section>
+              </Grid>
+            )}
           </MDXProvider>
         </StyledContainer>
       </ExtendStyledLayout>
