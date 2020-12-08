@@ -3,6 +3,7 @@ import { useUI } from '../Context'
 import styled from 'styled-components'
 import { SwipeEventData, useSwipeable } from 'react-swipeable'
 import { Link } from 'gatsby'
+import Navigation from './navigation'
 // import Image from './image'
 
 export const Drawer = () => {
@@ -31,22 +32,7 @@ export const Drawer = () => {
   if (displayNavigation) {
     return (
       <StyledDrawer {...handlers}>
-        {/* <Image className="nav-image" /> */}
-        <Link to="/about" className="nav-about">
-          /about
-        </Link>
-        <Link to="/posts" className="nav-posts">
-          /posts
-        </Link>
-        <Link to="/work" className="nav-work">
-          /work
-        </Link>
-        <Link to="/projects" className="nav-projects">
-          /projects
-        </Link>
-        <Link to="/contact" className="nav-contact">
-          /contact
-        </Link>
+        <Navigation />
       </StyledDrawer>
     )
   }

@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import Layout from '../Layout'
 import { About } from '../components/about'
 import { Drawer } from '../components/drawer'
-import Sidebar from '../components/sidebar'
+import Navigation from '../components/navigation'
 import { Grid } from '../components/grid'
 
 const IndexPage = ({ data }) => {
@@ -16,7 +16,7 @@ const IndexPage = ({ data }) => {
       <Drawer />
       <Grid>
         <About />
-        <Sidebar data={edges} />
+        <Navigation data={edges} />
       </Grid>
     </Layout>
   )

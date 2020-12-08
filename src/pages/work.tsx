@@ -2,7 +2,7 @@ import { graphql } from 'gatsby'
 import React from 'react'
 import { Drawer } from '../components/drawer'
 import { Grid } from '../components/grid'
-import Sidebar from '../components/sidebar'
+import Navigation from '../components/navigation'
 import { Work } from '../components/work'
 import Layout from '../Layout'
 
@@ -17,7 +17,7 @@ const WorkPage = ({ data }) => {
 
       <Grid>
         <Work />
-        <Sidebar data={edges} />
+        <Navigation data={edges} />
       </Grid>
     </Layout>
   )

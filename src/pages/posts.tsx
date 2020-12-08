@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Post } from '../components/post'
 import Layout from '../Layout'
-import Sidebar from '../components/sidebar'
+import Navigation from '../components/navigation'
 import { Drawer } from '../components/drawer'
 import { Grid } from '../components/grid'
 
@@ -17,7 +17,7 @@ const PostsPage = ({ data }) => {
       <Drawer />
       <Grid>
         <Post data={edges} />
-        <Sidebar data={files} />
+        <Navigation data={files} />
       </Grid>
     </Layout>
   )

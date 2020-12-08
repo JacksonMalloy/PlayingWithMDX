@@ -2,12 +2,6 @@ import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 
-interface ItemInterface {
-  name: string
-  relativeDirectory: string
-  children?: [ItemInterface]
-}
-
 export const TreeNavigation = ({ items, depth = 0 }) => {
   if (!items || !items.length) {
     return null
@@ -16,8 +10,6 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
   return items.map((item, index) => {
     const { relativeDirectory, name } = item
     const linkTo = relativeDirectory ? `/${relativeDirectory}/${name}/` : name === 'home' ? '/' : `/${name}`
-
-    console.log({ item })
 
     if (depth && item.childMdx && item.childMdx.frontmatter.featured && item.childMdx.frontmatter.published) {
       return (
