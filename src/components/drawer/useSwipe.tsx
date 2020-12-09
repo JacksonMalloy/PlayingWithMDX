@@ -5,7 +5,7 @@ export const useSwipe = () => {
   const { setDrawerPosition } = useUI()
 
   const config = {
-    delta: 100, // min distance(px) before a swipe starts
+    delta: 150, // min distance(px) before a swipe starts
     preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
     trackTouch: true, // track touch input
     trackMouse: false, // track mouse input
