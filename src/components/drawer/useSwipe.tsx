@@ -2,11 +2,11 @@ import { useSwipeable } from 'react-swipeable'
 import { useUI } from '../../Context'
 
 export const useSwipe = () => {
-  const { openNavigation, closeNavigation, setDrawerPosition, drawerPosition } = useUI()
+  const { setDrawerPosition } = useUI()
 
   const config = {
-    delta: 10, // min distance(px) before a swipe starts
-    preventDefaultTouchmoveEvent: true, // call e.preventDefault *See Details*
+    delta: 20, // min distance(px) before a swipe starts
+    preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
     trackTouch: true, // track touch input
     trackMouse: false, // track mouse input
     rotationAngle: 0, // set a rotation angle
@@ -24,9 +24,8 @@ export const useSwipe = () => {
         setTimeout(() => {
           setDrawerPosition({ isOpen: false, sliding: false, dir: 'LEFT' })
         }, 50)
-      }
+      } else return null
     },
-    onSwiping: (eventData) => setDrawerPosition(eventData),
     ...config,
   })
 
