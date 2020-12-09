@@ -5,7 +5,7 @@ export const useSwipe = () => {
   const { setDrawerPosition } = useUI()
 
   const config = {
-    delta: 150, // min distance(px) before a swipe starts
+    delta: 100, // min distance(px) before a swipe starts
     preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
     trackTouch: true, // track touch input
     trackMouse: false, // track mouse input
@@ -16,7 +16,7 @@ export const useSwipe = () => {
     onSwiped: ({ velocity, dir }) => {
       console.log({ velocity })
 
-      if (dir === `Right` && velocity > 2) {
+      if (dir === `Right` && velocity > 1.5) {
         setDrawerPosition({ isOpen: true, sliding: true, dir: 'RIGHT' })
         setTimeout(() => {
           setDrawerPosition({ isOpen: true, sliding: false, dir: 'RIGHT' })
