@@ -4,11 +4,11 @@ import styled from 'styled-components'
 
 const StyledToast = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   width: 100%;
   background: repeating-linear-gradient(45deg, var(--primary), var(--secondary) 10px, var(--primary) 10px);
   color: var(--text);
-  display: none;
 
   .toast-message {
     padding: 0;
@@ -29,8 +29,8 @@ const StyledToast = styled.div`
     cursor: pointer;
   }
 
-  @media (max-width: 700px) {
-    display: block;
+  @media (min-width: 700px) {
+    display: none;
   }
 `
 

@@ -6,12 +6,12 @@ import { useSwipe } from './useSwipe'
 
 // Perhaps add motion animations
 export const Drawer = () => {
-  const { displayNavigation } = useUI()
+  const { displayNavigation, drawerPosition } = useUI()
   const { handlers } = useSwipe()
 
   if (displayNavigation) {
     return (
-      <StyledDrawer {...handlers}>
+      <StyledDrawer {...handlers} deltaX={drawerPosition?.deltaX}>
         <Navigation />
       </StyledDrawer>
     )
@@ -30,6 +30,7 @@ const StyledDrawer = styled.nav`
   left: 0;
   right: 0;
   bottom: 0;
+  transform: translateX(${({ deltaX }) => (deltaX ? `${deltaX}px` : 0)});
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -37,4 +38,5 @@ const StyledDrawer = styled.nav`
   align-items: center;
   padding-bottom: 4.5rem;
   overflow-y: auto;
+  transition: 0.3s fade;
 `

@@ -5,14 +5,14 @@ import Code from './components/code/code'
 import { GlobalStyles } from './GlobalStyles'
 import { Footer } from './components/footer'
 import {
-  bqExtract,
-  h1Extract,
-  h2Extract,
-  h3Extract,
-  h4Extract,
-  h5Extract,
-  pExtract,
-  preExtract,
+  bqFontSizes,
+  h1FontSizes,
+  h2FontSizes,
+  h3FontSizes,
+  h4FontSizes,
+  h5FontSizes,
+  pFontSizes,
+  preFontSizes,
 } from './createMediaQuery'
 import Header from './components/header'
 import { ManagedUIContext } from './Context'
@@ -21,6 +21,7 @@ import Link from './components/link'
 import { Grid } from './components/grid'
 import Navigation from './components/navigation'
 import { Drawer } from './components/drawer/drawer'
+import Container from './Container'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -45,23 +46,23 @@ const StyledLayout = styled.main`
 
   h1 {
     margin: 2rem 1rem;
-    ${h1Extract()}
+    ${h1FontSizes()}
   }
 
   h2 {
-    ${h2Extract()}
+    ${h2FontSizes()}
   }
 
   h3 {
-    ${h3Extract()}
+    ${h3FontSizes()}
   }
 
   h4 {
-    ${h4Extract()}
+    ${h4FontSizes()}
   }
 
   h5 {
-    ${h5Extract()}
+    ${h5FontSizes()}
   }
 
   @media (max-width: 700px) {
@@ -71,17 +72,20 @@ const StyledLayout = styled.main`
     h4,
     h5,
     h6 {
-      padding: var(--space);
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
     }
   }
 
   p,
   ol {
-    ${pExtract()}
+    ${pFontSizes()}
     line-height: 2.5rem;
 
     @media (max-width: 576px) {
-      padding: var(--space);
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
     }
   }
 
@@ -104,8 +108,9 @@ const StyledLayout = styled.main`
     background-color: var(--secondary);
     padding: var(--space);
     margin: 1rem 2rem;
-    ${bqExtract()}
+    ${bqFontSizes()}
     line-height: 2.5rem;
+    border-radius: 1rem;
 
     p {
       margin: 0;
@@ -115,30 +120,35 @@ const StyledLayout = styled.main`
     code {
       padding: 0;
     }
+
+    @media (max-width: 576px) {
+      margin: var(--space);
+    }
   }
 
   pre {
-    ${preExtract()}
+    ${preFontSizes()}
     line-height: 1.5rem;
     font-family: 'Fira Mono Regular';
     width: 100%;
     padding: var(--space);
     overflow-x: auto;
     position: relative;
+    margin-bottom: 1rem;
 
     span {
       font-family: inherit;
+    }
+
+    @media (max-width: 576px) {
+      margin-bottom: 0.5rem;
     }
   }
 `
 
 const ExtendStyledLayout = styled(StyledLayout)({
-  ...h1Extract(),
+  ...h1FontSizes(),
 })
-
-export const StyledContainer = styled.section`
-  max-width: ${({ viewportLimit }) => viewportLimit || '700px'};
-`
 
 const components = {
   code: Code,
@@ -151,7 +161,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
       <ExtendStyledLayout>
         <Toast />
         <Header />
-        <StyledContainer viewportLimit={viewportLimit}>
+        <Container viewportLimit={viewportLimit}>
           <MDXProvider components={components}>
             <GlobalStyles />
             <Drawer />
@@ -164,7 +174,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
               </Grid>
             )}
           </MDXProvider>
-        </StyledContainer>
+        </Container>
       </ExtendStyledLayout>
     </ManagedUIContext>
   )

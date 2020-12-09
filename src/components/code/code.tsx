@@ -127,7 +127,7 @@ const SyntaxHiglight = (props: { className: string; metastring: string; children
               style={{
                 ...style,
                 ...ifTitle,
-                padding: '3rem 1rem 1rem 1rem',
+                padding: '2rem 1rem 1rem 1rem',
                 position: 'static',
                 borderBottomLeftRadius: '1rem',
                 borderBottomRightRadius: '1rem',
@@ -171,6 +171,7 @@ export default Code
 const StyledLine = styled.div`
   /* Width needs to be set for mobile overflow-x scrolling */
   width: 100px;
+  padding: 0.1rem 0;
 
   span {
     width: 100%;

@@ -2,7 +2,7 @@ import { useSwipeable } from 'react-swipeable'
 import { useUI } from '../../Context'
 
 export const useSwipe = () => {
-  const { openNavigation, closeNavigation } = useUI()
+  const { openNavigation, closeNavigation, setDrawerPosition, drawerPosition } = useUI()
 
   const config = {
     delta: 10, // min distance(px) before a swipe starts
@@ -15,11 +15,14 @@ export const useSwipe = () => {
   const handlers = useSwipeable({
     onSwiped: (eventData) => {
       if (eventData.dir === `Right`) {
+        console.log('open')
         openNavigation()
       } else if (eventData.dir === `Left`) {
+        console.log('close')
         closeNavigation()
       }
     },
+    onSwiping: (eventData) => setDrawerPosition(eventData),
     ...config,
   })
 

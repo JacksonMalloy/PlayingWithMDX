@@ -1,5 +1,5 @@
 import React from 'react'
-import { pExtract } from '../../createMediaQuery'
+import { pFontSizes } from '../../createMediaQuery'
 import styled from 'styled-components'
 // import { Twitter } from '../socials/twitter'
 // import { LinkedIn } from '../linkedin'
@@ -29,7 +29,7 @@ const StyledNavigation = styled.aside`
   a {
     padding: 1rem;
     width: 100%;
-    ${pExtract()}
+    ${pFontSizes()}
   }
 `
 
