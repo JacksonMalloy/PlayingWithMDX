@@ -13,8 +13,10 @@ export const useSwipe = () => {
   }
 
   const handlers = useSwipeable({
-    onSwiped: ({ dir }) => {
-      if (dir === `Right`) {
+    onSwiped: ({ velocity, dir }) => {
+      console.log({ velocity })
+
+      if (dir === `Right` && velocity > 2) {
         setDrawerPosition({ isOpen: true, sliding: true, dir: 'RIGHT' })
         setTimeout(() => {
           setDrawerPosition({ isOpen: true, sliding: false, dir: 'RIGHT' })
