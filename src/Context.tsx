@@ -10,7 +10,7 @@ const initialState = {
   toastMessage: '',
   displayNavigation: false,
   serverState: { submitting: false, status: null },
-  drawerPosition: null,
+  drawerPosition: { isOpen: false, sliding: false, dir: 'RIGHT' },
 }
 
 type TOAST_VARIANTS = 'WARNING' | 'ERROR' | 'SUCCESS'
@@ -34,7 +34,7 @@ type Action =
     }
   | {
       type: 'SET_DRAWER_POSITION'
-      event: any
+      drawerState: any
     }
 
 export const UIContext = React.createContext<State | any>(initialState)
@@ -77,7 +77,7 @@ function uiReducer(state: State, action: Action) {
     case 'SET_DRAWER_POSITION': {
       return {
         ...state,
-        drawerPosition: action.event,
+        drawerPosition: action.drawerState,
       }
     }
   }
@@ -94,7 +94,7 @@ export const UIProvider: FC = (props) => {
 
   const setServerState = (serverState: any) => dispatch({ type: 'SET_SERVER_STATE', serverState })
 
-  const setDrawerPosition = (event: any) => dispatch({ type: 'SET_DRAWER_POSITION', event })
+  const setDrawerPosition = (drawerState: any) => dispatch({ type: 'SET_DRAWER_POSITION', drawerState })
 
   const value = useMemo(
     () => ({

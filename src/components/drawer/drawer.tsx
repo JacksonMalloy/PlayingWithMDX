@@ -6,20 +6,19 @@ import { useSwipe } from './useSwipe'
 
 // Perhaps add motion animations
 export const Drawer = () => {
-  const { displayNavigation, drawerPosition } = useUI()
+  const { drawerPosition } = useUI()
   const { handlers } = useSwipe()
 
-  console.log({ drawerPosition })
-
-  if (true) {
-    return (
-      <StyledDrawer {...handlers} deltaX={drawerPosition?.deltaX}>
-        <Navigation />
-      </StyledDrawer>
-    )
-  }
-
-  return null
+  return (
+    <StyledDrawer
+      {...handlers}
+      dir={drawerPosition.dir}
+      sliding={drawerPosition.sliding}
+      isOpen={drawerPosition.isOpen}
+    >
+      <Navigation />
+    </StyledDrawer>
+  )
 }
 
 const StyledDrawer = styled.nav`
@@ -32,7 +31,16 @@ const StyledDrawer = styled.nav`
   left: 0;
   right: 0;
   bottom: 0;
-  transform: translateX(${({ deltaX }) => (deltaX ? `${deltaX}px` : `-100vw`)});
+  transition: ${(props) => 'transform 0.2s ease'};
+  transform: ${(props) => {
+    if (!props.sliding && !props.isOpen) return 'translateX(calc(-100%))'
+    if (!props.sliding && !props.isOpen) return 'translateX(calc(-100%))'
+    if (props.dir === 'right') return 'translateX(calc(2 * (-80% - 20px)))'
+    if (props.isOpen) return 'translateX(0%)'
+    if (!props.isOpen) return 'translateX(-100%)'
+
+    return 'translateX(0%)'
+  }};
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;

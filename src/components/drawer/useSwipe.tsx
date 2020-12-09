@@ -6,22 +6,24 @@ export const useSwipe = () => {
 
   const config = {
     delta: 10, // min distance(px) before a swipe starts
-    preventDefaultTouchmoveEvent: false, // call e.preventDefault *See Details*
+    preventDefaultTouchmoveEvent: true, // call e.preventDefault *See Details*
     trackTouch: true, // track touch input
     trackMouse: false, // track mouse input
     rotationAngle: 0, // set a rotation angle
   }
 
   const handlers = useSwipeable({
-    onSwiped: ({ dir, deltaX }) => {
+    onSwiped: ({ dir }) => {
       if (dir === `Right`) {
-        if (deltaX > 100) {
-          openNavigation()
-        }
+        setDrawerPosition({ isOpen: true, sliding: true, dir: 'RIGHT' })
+        setTimeout(() => {
+          setDrawerPosition({ isOpen: true, sliding: false, dir: 'RIGHT' })
+        }, 50)
       } else if (dir === `Left`) {
-        if (deltaX < -100) {
-          closeNavigation()
-        }
+        setDrawerPosition({ isOpen: false, sliding: true, dir: 'LEFT' })
+        setTimeout(() => {
+          setDrawerPosition({ isOpen: false, sliding: false, dir: 'LEFT' })
+        }, 50)
       }
     },
     onSwiping: (eventData) => setDrawerPosition(eventData),
