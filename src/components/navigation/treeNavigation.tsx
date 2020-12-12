@@ -43,8 +43,12 @@ const StyledTreeItem = styled(Link)`
   display: flex;
   flex-direction: column;
   text-transform: capitalize;
-  opacity: 0.3;
+  opacity: 1;
   transition: opacity 0.1s;
+
+  a {
+    color: var(--text) !important;
+  }
 
   &:hover {
     color: var(--text);

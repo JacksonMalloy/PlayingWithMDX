@@ -22,6 +22,7 @@ import { Grid } from './components/grid'
 import Navigation from './components/navigation'
 import { Drawer } from './components/drawer/drawer'
 import Container from './Container'
+import './global.css'
 
 const StyledLayout = styled.main`
   display: flex;

@@ -42,8 +42,7 @@ const StyledDrawer = styled.nav`
     return 'translateX(0%)'
   }};
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   padding: 1rem;
   align-items: center;
   padding-bottom: 4.5rem;

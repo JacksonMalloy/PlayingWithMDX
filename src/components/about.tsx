@@ -1,3 +1,4 @@
+import { Link } from 'gatsby'
 import React, { useEffect } from 'react'
 import { useUI } from '../Context'
 
@@ -43,33 +44,49 @@ export const About = () => {
       <h1>{sayHello()}</h1>
 
       <blockquote>
-        Welcome to my domain! Here you'll find information about me, my work and a few tips and tricks to help other
-        developers navigate the modern web.
+        Welcome to my 🍕 of the web! Here you'll find information about me, my work and a few tips and tricks I've
+        learned along the way.
       </blockquote>
 
       <p>
-        As a firm believer in the future of the web, I have become vehemently obsessed with web technologies. From the
-        countless hours I've spent studying about the web, I'm happy to call this one of my passions.
+        <br />
+        <h4 style={{ marginLeft: 0 }}>Who am I?</h4>
+        My name is Jacks. I'm an experienced full stack web developer from Vancouver BC with a specialty in JavaScript &
+        TypeScript. Writing React.js is my most practiced skill in the JavaScript ecosystem. I most enjoy writing
+        React.js within a framework such as{' '}
+        <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
+          Next.js
+        </a>{' '}
+        or{' '}
+        <a href="https://www.gatsbyjs.com/" target="_blank" rel="noreferrer">
+          Gatsby.js
+        </a>
+        . I'm also very engaged in the GraphQL ecosystem.
         <br />
         <br />
-        My name is Jacks, and I'm an experienced full stack web developer from Vancouver BC. My specialty is with
-        JavaScript/TypeScript - it's what study and write nearly every single day. Writing React.js is my most practiced
-        skill in the JavaScript ecosystem. While I most enjoy writing React.js, other frameworks I'm familiar with are
-        Angular and Svelte. I'm also very engaged in the GraphQL ecosystem.
+        Web development, music and soccer are my favourite things to do in my spare time. I play soccer semi
+        professionally as a center midfielder for the{' '}
+        <a href="https://www.instagram.com/mafctigers/" target="_blank" rel="noreferrer">
+          Burnaby Metro Atheltic Premier Soccer club
+        </a>{' '}
+        in Vancouver. I also produce music at{' '}
+        <a href="https://soundcloud.com/moonmelt" target="_blank" rel="noreferrer">
+          Moonmelt
+        </a>{' '}
+        with{' '}
+        <a href="https://www.linkedin.com/in/moonmelt/" target="_blank" rel="noreferrer">
+          Alexander Reid
+        </a>
+        .
         <br />
         <br />
-        Web development, music and soccer are my favourite things to do in my spare time. I'm a very competitive person.
-        I'm always up for a challenge. Perhaps it's why I'm so obsessed with learning about things that others have
-        troubles understanding. There's something about diving "under the hood", destructuring the very architecture to
-        understand technology, that I enjoy very much.
+        <h4 style={{ marginLeft: 0 }}>Thanks for visiting! 😊</h4>
+        Happy you've read this far. If you're looking for an experience full stack devloper, especially one with very
+        strong React skills I think I would be a great fit! You can reach me <Link to="/contact">here</Link>
+        .
         <br />
         <br />
-        Happy you've read this far. I'm looking for opportunity and more work. If you're looking for an experience full
-        stack devloper who lives in the React ecosystem I think I could really help! Regardless, if you'd just like to
-        chat drop me a message here.
-        <br />
-        <br />
-        Thanks for reading, Have a great day!
+        Have a great day!
       </p>
     </section>
   )

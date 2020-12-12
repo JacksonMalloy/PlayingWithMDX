@@ -8,9 +8,14 @@ import { TreeNavigation } from './treeNavigation'
 import { getTreeItems } from './getTreeItems'
 import { useSwipe } from '../drawer/useSwipe'
 import { useNavigation } from './useNavigation'
+import { useUI } from '../../Context'
 
 const StyledNavigation = styled.aside`
   padding-top: 3.5rem;
+
+  @media (max-width: 700px) {
+    padding-top: 0px;
+  }
 
   section {
     position: -webkit-sticky;
@@ -24,6 +29,19 @@ const StyledNavigation = styled.aside`
     font-size: 1rem;
     font-family: 'Source Sans Pro Black';
     overflow-y: auto;
+
+    button {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      padding: 1rem;
+      margin: 1rem;
+
+      @media (min-width: 700px) {
+        display: none;
+        pointer-events: none;
+      }
+    }
   }
 
   a {
@@ -36,11 +54,20 @@ const StyledNavigation = styled.aside`
 const Navigation = () => {
   const items = useNavigation()
   const { handlers } = useSwipe()
+  const { setDrawerPosition } = useUI()
+
+  const handleClick = () => {
+    setDrawerPosition({ isOpen: false, sliding: true, dir: 'LEFT' })
+    setTimeout(() => {
+      setDrawerPosition({ isOpen: false, sliding: false, dir: 'LEFT' })
+    }, 50)
+  }
 
   return (
     <StyledNavigation {...handlers}>
       <section>
         <TreeNavigation items={items} />
+        <button onClick={handleClick}>X</button>
       </section>
     </StyledNavigation>
   )

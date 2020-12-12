@@ -34,5 +34,9 @@ export const StyledGrid = styled.main`
   .container {
     grid-column: 2 / 4;
     max-width: 960px;
+
+    a {
+      text-decoration: underline;
+    }
   }
 `
