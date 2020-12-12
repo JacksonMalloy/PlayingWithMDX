@@ -5,7 +5,7 @@ import OpenSansRegular from './fonts/OpenSans-Regular.ttf' */
 
 @font-face {
   font-family: 'Fira Mono Regular';
-  src: url(${FiraMonoRegular}) format('truetype');
+  src: url('fira-mono.regular.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: auto;
@@ -13,7 +13,7 @@ import OpenSansRegular from './fonts/OpenSans-Regular.ttf' */
 
 @font-face {
   font-family: 'Source Sans Pro Black';
-  src: url(${SourceSansProBlack}) format('truetype');
+  src: url('source-sans-pro.black.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: auto;
@@ -21,12 +21,8 @@ import OpenSansRegular from './fonts/OpenSans-Regular.ttf' */
 
 @font-face {
   font-family: 'Open Sans Regular';
-  src: url(${OpenSansRegular}) format('truetype');
+  src: url('source-sans-pro.light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: auto;
-}
-
-* {
-  font-family: 'Source Sans Pro Black' !important;
 }

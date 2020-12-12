@@ -1,7 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
 
-import './global.css'
-
 export const GlobalStyles = createGlobalStyle`
     :root {
         /* Colours */
