@@ -1,8 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import FiraMonoRegular from './fonts/fira-mono.regular.ttf'
-import SourceSansProBlack from './fonts/source-sans-pro.black.ttf'
-import SourceSansProLight from './fonts/source-sans-pro.light.ttf'
-import OpenSansRegular from './fonts/OpenSans-Regular.ttf'
+
 import './global.css'
 
 export const GlobalStyles = createGlobalStyle`
