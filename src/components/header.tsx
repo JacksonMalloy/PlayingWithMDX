@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useSwipe } from './drawer/useSwipe'
 import { useUI } from '../Context'
 
-const Header = (): React.ReactElement => {
+const Header = ({ isContact }): React.ReactElement => {
   const { handlers } = useSwipe()
   const { setDrawerPosition } = useUI()
 
@@ -14,6 +14,10 @@ const Header = (): React.ReactElement => {
     setTimeout(() => {
       setDrawerPosition({ isOpen: true, sliding: false, dir: 'RIGHT' })
     }, 50)
+  }
+
+  if (isContact) {
+    return null
   }
 
   return (

@@ -1,6 +1,7 @@
 import { Link } from 'gatsby'
 import React, { useEffect } from 'react'
 import { useUI } from '../Context'
+import { ExternalLink } from './externalLink'
 
 export const About = () => {
   const { openToast } = useUI()
@@ -53,30 +54,19 @@ export const About = () => {
         <h4 style={{ marginLeft: 0 }}>Who am I?</h4>
         My name is Jacks. I'm an experienced full stack web developer from Vancouver BC with a specialty in JavaScript &
         TypeScript. Writing React.js is my most practiced skill in the JavaScript ecosystem. I most enjoy writing
-        React.js within a framework such as{' '}
-        <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
-          Next.js
-        </a>{' '}
-        or{' '}
-        <a href="https://www.gatsbyjs.com/" target="_blank" rel="noreferrer">
-          Gatsby.js
-        </a>
+        React.js within a framework such as <ExternalLink to={'https://nextjs.org/'}>Next.js</ExternalLink> or{' '}
+        <ExternalLink to={'https://www.gatsbyjs.com/'}>Gatsby.js</ExternalLink>
         . I'm also very engaged in the GraphQL ecosystem.
         <br />
         <br />
         Web development, music and soccer are my favourite things to do in my spare time. I play soccer semi
         professionally as a center midfielder for the{' '}
-        <a href="https://www.instagram.com/mafctigers/" target="_blank" rel="noreferrer">
+        <ExternalLink to={'https://www.instagram.com/mafctigers/'}>
           Burnaby Metro Atheltic Premier Soccer club
-        </a>{' '}
+        </ExternalLink>{' '}
         in Vancouver. I also produce music at{' '}
-        <a href="https://soundcloud.com/moonmelt" target="_blank" rel="noreferrer">
-          Moonmelt
-        </a>{' '}
-        with{' '}
-        <a href="https://www.linkedin.com/in/moonmelt/" target="_blank" rel="noreferrer">
-          Alexander Reid
-        </a>
+        <ExternalLink to={'https://soundcloud.com/moonmelt'}>Moonmelt</ExternalLink> with{' '}
+        <ExternalLink to={'https://www.linkedin.com/in/moonmelt/'}>Alexander Reid</ExternalLink>
         .
         <br />
         <br />

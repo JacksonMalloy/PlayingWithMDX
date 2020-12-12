@@ -24,7 +24,6 @@ import Navigation from './components/navigation'
 import { Drawer } from './components/drawer/drawer'
 import Container from './Container'
 import './fonts/font.css'
-import MDXImage from './components/MDXImage'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -168,7 +167,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
     <ManagedUIContext>
       <ExtendStyledLayout>
         <Toast />
-        <Header />
+        <Header isContact />
         <Container viewportLimit={viewportLimit}>
           <MDXProvider components={components}>
             <GlobalStyles />
