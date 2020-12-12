@@ -20,7 +20,8 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
           <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`}>
-            {removeSnakeCase()}
+            <small>FEATURED</small>
+            <span>{removeSnakeCase()}</span>
           </Link>
 
           <TreeNavigation items={item.children} depth={depth + 1} />

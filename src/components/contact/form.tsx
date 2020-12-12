@@ -118,6 +118,10 @@ const StyledButton = styled.div`
     text-shadow: 0px 1px 0px #cc9f52;
     border: none;
   }
+
+  @media (max-width: 700px) {
+    padding: 0.5rem;
+  }
 `
 
 type ServerStateTypes = {
