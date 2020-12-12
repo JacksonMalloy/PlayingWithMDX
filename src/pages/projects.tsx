@@ -8,4 +8,5 @@ const ProjectsPage = () => {
     </Layout>
   )
 }
+
 export default ProjectsPage

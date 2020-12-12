@@ -13,6 +13,7 @@ import {
   h5FontSizes,
   pFontSizes,
   preFontSizes,
+  smallFontSizes,
 } from './createMediaQuery'
 import Header from './components/header'
 import { ManagedUIContext } from './Context'
@@ -64,6 +65,10 @@ const StyledLayout = styled.main`
 
   h5 {
     ${h5FontSizes()}
+  }
+
+  small {
+    ${smallFontSizes()}
   }
 
   @media (max-width: 700px) {

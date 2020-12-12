@@ -81,8 +81,7 @@ export const About = () => {
         <br />
         <br />
         <h4 style={{ marginLeft: 0 }}>Thanks for visiting! 😊</h4>
-        Happy you've read this far. If you're looking for an experience full stack devloper, especially one with very
-        strong React skills I think I would be a great fit! You can reach me <Link to="/contact">here</Link>
+        Happy you've read this far. If you'd like to get in touch you can reach me <Link to="/contact">here</Link>
         .
         <br />
         <br />
