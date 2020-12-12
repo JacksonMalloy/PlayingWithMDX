@@ -69,27 +69,27 @@ export const About = () => {
         of the web! Here you'll find information about me, my work and a few tips and tricks I've learned along the way.
       </blockquote>
       <h4 style={{ marginBottom: '0rem' }}>Who am I?</h4>
+      <p style={{ paddingTop: '2rem' }}>
+        I'm Jackson, an experienced full stack developer from Vancouver BC with a specialty in JavaScript & TypeScript.
+        Writing React code is my most practiced skill in the JavaScript ecosystem. I most enjoy working within a
+        framework such as <ExternalLink to={'https://nextjs.org/'}>Next</ExternalLink> or{' '}
+        <ExternalLink to={'https://www.gatsbyjs.com/'}>Gatsby</ExternalLink>.
+      </p>
       <p>
-        <br />
-        My name is Jacks. I'm an experienced full stack web developer from Vancouver BC with a specialty in JavaScript &
-        TypeScript. Writing React.js is my most practiced skill in the JavaScript ecosystem. I most enjoy writing
-        React.js within a framework such as <ExternalLink to={'https://nextjs.org/'}>Next.js</ExternalLink> or{' '}
-        <ExternalLink to={'https://www.gatsbyjs.com/'}>Gatsby.js</ExternalLink>
-        . I'm also very engaged in the GraphQL ecosystem.
-        <br />
-        <br />
-        Web development, music and soccer are my favourite things to do in my spare time. I play soccer semi
-        professionally as a center midfielder for the{' '}
+        Web development, music and soccer are my passions. I play soccer semi professionally as a center midfielder for
+        the{' '}
         <ExternalLink to={'https://www.instagram.com/mafctigers/'}>
           Burnaby Metro Atheltic Premier Soccer club
         </ExternalLink>{' '}
         in Vancouver. I also produce music at{' '}
         <ExternalLink to={'https://soundcloud.com/moonmelt'}>Moonmelt</ExternalLink> with{' '}
-        <ExternalLink to={'https://www.linkedin.com/in/moonmelt/'}>Alexander Reid</ExternalLink>
-        .
+        <ExternalLink to={'https://www.linkedin.com/in/moonmelt/'}>Alexander Reid</ExternalLink>. I love to play the{' '}
+        <ExternalLink to={'https://www.instagram.com/p/BAvLzSjtN6i/'}>guitar</ExternalLink> and{' '}
+        <ExternalLink to="https://www.instagram.com/p/BUbSI3hlCmq/">piano</ExternalLink>, and have been doing so by ear,
+        teaching myself music theory and best practices online for over a decade.
         <br />
         <br />
-        Have a great day!
+        Happy you've read this far. If you'd like to get in touch you can reach me <Link to="/contact">here</Link>.
       </p>
       <h4>
         Thanks for visiting!{' '}
@@ -97,10 +97,6 @@ export const About = () => {
           😊
         </span>
       </h4>
-      <p>
-        {' '}
-        Happy you've read this far. If you'd like to get in touch you can reach me <Link to="/contact">here</Link>.
-      </p>
     </section>
   )
 }

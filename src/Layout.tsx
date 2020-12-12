@@ -88,11 +88,18 @@ const StyledLayout = styled.main`
   p,
   ol {
     ${pFontSizes()}
+    font-weight: 800;
     line-height: 2.5rem;
+    text-indent: 50px;
+
+    @media (max-width: 900px) {
+      text-indent: 35px;
+    }
 
     @media (max-width: 576px) {
       padding: 0.5rem;
       margin-bottom: 0.5rem;
+      text-indent: 20px;
     }
   }
 

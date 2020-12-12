@@ -10,13 +10,15 @@ export const Work = () => {
 
       <h5>Full Stack Web Development</h5>
       <p>
-        As a web developer at <ExternalLink to={'https://six12creative.com/'}>SIX12 Creative</ExternalLink> I have been
-        incredibly successful at infuencing technical decisions. I routinely advocate for progressive technological
-        paradigms which has led to the company embracing more JavaScript, specifically React. In my capacity as a full
-        stack web developer I have led the development of the front-end React &{' '}
-        <ExternalLink to={'https://nextjs.org/'}>Next.js</ExternalLink> architecture for client contests such as Rock
-        Paper Prizes 4, Drink. Snack. Score. , and 31 Days Of Circle K. These are managed prize-based contest systems
-        that reach millions of users in Canada and the United States.
+        As a web developer at <ExternalLink to={'https://six12creative.com/'}>SIX12 Creative</ExternalLink> I am part of
+        a team of developers building and managing promotional SMS systems. These systems primarily serve Circle K by
+        driving foot traffic to brick and morter locations through coupon & rewards programs. I have been incredibly
+        successful at infuencing technical decisions at the company. I routinely advocate for progressive ideas which I
+        believe has greatly contributed to the company embracing more JavaScript, specifically React and{' '}
+        <ExternalLink to={'https://nextjs.org/'}>Next.js</ExternalLink>. In my capacity as a full stack web developer I
+        have led the development of the front-end React & Next.js architecture for client contests such as Rock Paper
+        Prizes 4, Drink. Snack. Score. , and 31 Days Of Circle K. These are managed promotional systems that reach
+        millions of users in Canada and the United States.
       </p>
 
       <h5>Individual Projects</h5>
@@ -24,20 +26,17 @@ export const Work = () => {
         Smaller client projects of which I was a sole developer include{' '}
         <ExternalLink to={'https://circlekwestgolf.com/'}>Circle K West Charity Golf Tournament</ExternalLink>,{' '}
         <ExternalLink to={'https://viranifoundation.ca/'}>The Virani Foundation</ExternalLink>, and in my earlier days,
-        a WordPress site called <ExternalLink to={'https://sunblest.ca/'}>Sunblest</ExternalLink>. I was actually an
-        early adopter of <ExternalLink to={'https://www.wpgraphql.com/'}>WPGraphQL</ExternalLink>; a free, open-source
+        a WordPress site called <ExternalLink to={'https://sunblest.ca/'}>Sunblest</ExternalLink>. I was an early
+        adopter of <ExternalLink to={'https://www.wpgraphql.com/'}>WPGraphQL</ExternalLink>; a free, open-source
         WordPress plugin that provides an extendable GraphQL schema and API for any WordPress site. The Circle K West
         Charity Golf Tournament website is built with{' '}
         <ExternalLink to={'https://gatsbyjs.org/'}>Gatsby.js</ExternalLink> powered by a WPGraphQL schema.
       </p>
 
-      {/* <p>The comeback SMS project was a node script</p> */}
-
       <h5>Other responsibilities</h5>
-
       <p>
-        Aside from web development, other responsibilities have included reporting on Google Analytics data, leading the
-        support team for company run contests and helping with logistical problems such as grand prize fulfillment.
+        Other responsibilities have included reporting on Google Analytics data, leading the support team for company
+        run contests and helping with logistical problems such as grand prize fulfillment.
       </p>
     </section>
   )

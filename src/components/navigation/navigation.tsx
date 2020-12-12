@@ -13,7 +13,7 @@ const StyledNavigation = styled.aside`
   padding-top: 3.5rem;
 
   @media (max-width: 700px) {
-    padding-top: 0px;
+    padding-top: 2rem;
   }
 
   button {
@@ -89,6 +89,8 @@ const StyledNavigation = styled.aside`
   }
 
   .depth-0 {
+    padding: 0.5rem;
+
     &:hover {
       background: var(--text-gradient);
       -webkit-background-clip: text;
