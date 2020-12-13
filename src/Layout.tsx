@@ -24,6 +24,7 @@ import Navigation from './components/navigation'
 import { Drawer } from './components/drawer/drawer'
 import Container from './Container'
 import './fonts/font.css'
+import MDXImage from './components/MDXImage'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -48,6 +49,7 @@ const StyledLayout = styled.main`
 
   h1 {
     margin: 2rem 1rem;
+    text-align: center;
     ${h1FontSizes()}
   }
 
@@ -152,7 +154,7 @@ const StyledLayout = styled.main`
   }
 `
 
-const ExtendStyledLayout = styled(StyledLayout)({
+export const ExtendStyledLayout = styled(StyledLayout)({
   ...h1FontSizes(),
 })
 
