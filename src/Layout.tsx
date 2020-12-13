@@ -167,7 +167,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
     <ManagedUIContext>
       <ExtendStyledLayout>
         <Toast />
-        <Header isContact />
+        <Header isContact={isContact} />
         <Container viewportLimit={viewportLimit}>
           <MDXProvider components={components}>
             <GlobalStyles />
@@ -182,6 +182,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
             )}
           </MDXProvider>
         </Container>
+        <Footer isContact={isContact} />
       </ExtendStyledLayout>
     </ManagedUIContext>
   )

@@ -1,8 +1,7 @@
-import { Link } from 'gatsby'
 import React from 'react'
 import { Card } from './card'
 
-const renderPosts = (data) => {
+const renderProjects = (data) => {
   return data
     .filter(({ node }, i) => {
       const {
@@ -31,11 +30,11 @@ const renderPosts = (data) => {
     })
 }
 
-export const Post = ({ data }) => {
+export const Project = ({ data }) => {
   return (
     <section className="container">
-      <h1>Blog</h1>
-      {renderPosts(data)}
+      <h1>Projects</h1>
+      {renderProjects(data)}
     </section>
   )
 }

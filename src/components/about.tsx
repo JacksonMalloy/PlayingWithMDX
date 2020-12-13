@@ -2,6 +2,20 @@ import { Link } from 'gatsby'
 import React, { useEffect } from 'react'
 import { useUI } from '../Context'
 import { ExternalLink } from './externalLink'
+import Image from './image'
+
+import styled from 'styled-components'
+
+const StyledImage = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+
+  @media (max-width: 700px) {
+    justify-content: center;
+    padding: 0rem;
+  }
+`
 
 export const About = () => {
   const { openToast } = useUI()
@@ -42,6 +56,9 @@ export const About = () => {
 
   return (
     <section className="container">
+      <StyledImage>
+        <Image />
+      </StyledImage>
       <h1>{sayHello()}</h1>
 
       <blockquote>
@@ -51,10 +68,9 @@ export const About = () => {
         </span>{' '}
         of the web! Here you'll find information about me, my work and a few tips and tricks I've learned along the way.
       </blockquote>
-
+      <h4 style={{ marginBottom: '0rem' }}>Who am I?</h4>
       <p>
         <br />
-        <h4 style={{ marginLeft: 0 }}>Who am I?</h4>
         My name is Jacks. I'm an experienced full stack web developer from Vancouver BC with a specialty in JavaScript &
         TypeScript. Writing React.js is my most practiced skill in the JavaScript ecosystem. I most enjoy writing
         React.js within a framework such as <ExternalLink to={'https://nextjs.org/'}>Next.js</ExternalLink> or{' '}
@@ -73,12 +89,17 @@ export const About = () => {
         .
         <br />
         <br />
-        <h4 style={{ marginLeft: 0 }}>Thanks for visiting! 😊</h4>
-        Happy you've read this far. If you'd like to get in touch you can reach me <Link to="/contact">here</Link>
-        .
-        <br />
-        <br />
         Have a great day!
+      </p>
+      <h4>
+        Thanks for visiting!{' '}
+        <span role="img" aria-label="smile">
+          😊
+        </span>
+      </h4>
+      <p>
+        {' '}
+        Happy you've read this far. If you'd like to get in touch you can reach me <Link to="/contact">here</Link>.
       </p>
     </section>
   )

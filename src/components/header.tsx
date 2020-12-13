@@ -18,10 +18,26 @@ const Header = ({ isContact }): React.ReactElement => {
 
   return (
     <StyledHeader {...handlers} isContact={isContact}>
-      <Link to="/" className="image">
+      {/* <Link to="/" className="image">
         <Image />
-      </Link>
-      <button onClick={handleClick}>X</button>
+      </Link> */}
+      <button onClick={handleClick}>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
     </StyledHeader>
   )
 }
@@ -35,7 +51,7 @@ const StyledHeader = styled.header`
   grid-template-rows: 1fr 1fr;
   position: relative;
   overflow: hidden;
-  background-color: var(--secondary);
+  background-color: var(--primary);
   max-width: 1920px;
 
   .image {
@@ -47,12 +63,16 @@ const StyledHeader = styled.header`
   }
 
   button {
-    grid-column: 4 / 4;
     justify-self: center;
     grid-row: 1 / 3;
     align-self: center;
     padding: 1rem;
     margin: 1rem;
+    grid-column: 4 / 4;
+    grid-row: 1 / span 2;
+    justify-self: center;
+    background-color: transparent;
+    border: none;
 
     @media (min-width: 700px) {
       display: none;

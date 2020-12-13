@@ -16,7 +16,7 @@ export const Drawer = () => {
       sliding={drawerPosition.sliding}
       isOpen={drawerPosition.isOpen}
     >
-      <Navigation />
+      <Navigation drawer />
     </StyledDrawer>
   )
 }
