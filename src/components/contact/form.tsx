@@ -243,7 +243,6 @@ export const Form = () => {
             onChange={handleOnChange}
             value={inputs.name}
             className={fieldErrors.name ? 'error' : ''}
-            autoFocus
           />
           {renderFieldError('name')}
         </label>

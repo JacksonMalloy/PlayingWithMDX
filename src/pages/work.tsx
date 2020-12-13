@@ -8,9 +8,11 @@ import Layout from '../Layout'
 
 const WorkPage = () => {
   return (
-    <Layout viewportLimit="1920px">
-      <Work />
-    </Layout>
+    <>
+      <Layout viewportLimit="1920px">
+        <Work />
+      </Layout>
+    </>
   )
 }
 

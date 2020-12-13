@@ -1,34 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
-import FiraMonoRegular from './fonts/fira-mono.regular.ttf'
-import SourceSansProBlack from './fonts/source-sans-pro.black.ttf'
-import SourceSansProLight from './fonts/source-sans-pro.light.ttf'
-import OpenSansRegular from './fonts/OpenSans-Regular.ttf'
 
 export const GlobalStyles = createGlobalStyle`
-    @font-face {
-        font-family: 'Fira Mono Regular';
-        src: url(${FiraMonoRegular}) format('truetype');
-        font-weight: 300;
-        font-style: normal;
-        font-display: auto;
-    }
-
-    @font-face {
-        font-family: 'Source Sans Pro Black';
-        src: url(${SourceSansProBlack}) format('truetype');
-        font-weight: 300;
-        font-style: normal;
-        font-display: auto;
-    }
-
-    @font-face {
-        font-family: 'Open Sans Regular';
-        src: url(${OpenSansRegular}) format('truetype');
-        font-weight: 300;
-        font-style: normal;
-        font-display: auto;
-    }
-
     :root {
         /* Colours */
         --primary: #ffffff;

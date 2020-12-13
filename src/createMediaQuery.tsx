@@ -137,3 +137,13 @@ export const preFontSizes = () => ({
     },
   ]),
 })
+
+export const smallFontSizes = () => ({
+  ...createMediaQueries([
+    {
+      property: 'font-size',
+      // Perfect fifth, perfect fourth, major third
+      values: ['1rem', '1rem', '1rem'],
+    },
+  ]),
+})

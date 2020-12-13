@@ -13,6 +13,7 @@ import {
   h5FontSizes,
   pFontSizes,
   preFontSizes,
+  smallFontSizes,
 } from './createMediaQuery'
 import Header from './components/header'
 import { ManagedUIContext } from './Context'
@@ -22,6 +23,7 @@ import { Grid } from './components/grid'
 import Navigation from './components/navigation'
 import { Drawer } from './components/drawer/drawer'
 import Container from './Container'
+import './fonts/font.css'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -46,6 +48,7 @@ const StyledLayout = styled.main`
 
   h1 {
     margin: 2rem 1rem;
+    text-align: center;
     ${h1FontSizes()}
   }
 
@@ -63,6 +66,10 @@ const StyledLayout = styled.main`
 
   h5 {
     ${h5FontSizes()}
+  }
+
+  small {
+    ${smallFontSizes()}
   }
 
   @media (max-width: 700px) {
@@ -146,7 +153,7 @@ const StyledLayout = styled.main`
   }
 `
 
-const ExtendStyledLayout = styled(StyledLayout)({
+export const ExtendStyledLayout = styled(StyledLayout)({
   ...h1FontSizes(),
 })
 
@@ -160,7 +167,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
     <ManagedUIContext>
       <ExtendStyledLayout>
         <Toast />
-        <Header />
+        <Header isContact />
         <Container viewportLimit={viewportLimit}>
           <MDXProvider components={components}>
             <GlobalStyles />

@@ -2,33 +2,6 @@ module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
     author: 'Jacks',
-    menuLinks: [
-      {
-        name: 'home',
-        link: '/',
-        children: [],
-      },
-      {
-        name: 'contact',
-        link: '/contact',
-        children: [],
-      },
-      {
-        name: 'work',
-        link: '/work',
-        children: [],
-      },
-      {
-        name: 'projects',
-        link: '/projects',
-        children: [],
-      },
-      {
-        name: 'posts',
-        link: '/posts',
-        children: [],
-      },
-    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -36,6 +9,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 960,
+              quality: 100,
+            },
+          },
+        ],
         defaultLayouts: {
           default: require.resolve('./src/Layout.tsx'),
         },

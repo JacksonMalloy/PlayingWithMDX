@@ -3,12 +3,17 @@ import { useUI } from '../Context'
 import styled from 'styled-components'
 
 const StyledToast = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  background: repeating-linear-gradient(45deg, var(--primary), var(--secondary) 10px, var(--primary) 10px);
+  background: repeating-linear-gradient(45deg, var(--primary), var(--primary) 10px, var(--primary) 10px);
   color: var(--text);
+  z-index: 8;
 
   .toast-message {
     padding: 0;
@@ -37,16 +42,16 @@ const StyledToast = styled.div`
 export const Toast = () => {
   const { displayToast, toastMessage, closeToast } = useUI()
 
-  if (displayToast) {
-    return (
-      <StyledToast>
-        <p className="toast-message">{toastMessage}</p>
-        <button onClick={closeToast} className="close-toast">
-          ✖
-        </button>
-      </StyledToast>
-    )
-  }
+  // if (displayToast) {
+  //   return (
+  //     <StyledToast>
+  //       <p className="toast-message">{toastMessage}</p>
+  //       <button onClick={closeToast} className="close-toast">
+  //         ✖
+  //       </button>
+  //     </StyledToast>
+  //   )
+  // }
 
   return null
 }

@@ -22,6 +22,17 @@ const StyledContact = styled.section`
   form {
     grid-column: 2 / 3;
   }
+
+  svg {
+    width: 10%;
+  }
+
+  .left-key {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    width: 10%;
+  }
 `
 
 const ContactPage = () => {

@@ -11,11 +11,15 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
     const { relativeDirectory, name } = item
     const linkTo = relativeDirectory ? `/${relativeDirectory}/${name}/` : name === 'home' ? '/' : `/${name}`
 
+    const removeSnakeCase = () => {
+      return item.name.replaceAll('-', ' ')
+    }
+
     if (depth && item.childMdx && item.childMdx.frontmatter.featured && item.childMdx.frontmatter.published) {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
-          <StyledTreeItem style={{ paddingLeft: depth * 30 }} to={linkTo}>
-            {item.name}
+          <StyledTreeItem style={{ marginLeft: depth * 30 }} to={linkTo}>
+            {removeSnakeCase()}
           </StyledTreeItem>
 
           <TreeNavigation items={item.children} depth={depth + 1} />
@@ -26,10 +30,9 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
     if (!depth) {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
-          <StyledTreeItem style={{ paddingLeft: depth * 30 }} to={linkTo}>
-            {item.name}
-          </StyledTreeItem>
-
+          <StyledTreeItem style={{ marginLeft: depth * 30 }} to={linkTo}>
+            {removeSnakeCase()}
+          </StyledTreeItem>{' '}
           <TreeNavigation items={item.children} depth={depth + 1} />
         </React.Fragment>
       )
@@ -43,7 +46,7 @@ const StyledTreeItem = styled(Link)`
   display: flex;
   flex-direction: column;
   text-transform: capitalize;
-  opacity: 0.3;
+  opacity: 1;
   transition: opacity 0.1s;
 
   &:hover {

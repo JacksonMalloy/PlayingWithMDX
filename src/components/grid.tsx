@@ -21,6 +21,8 @@ export const StyledGrid = styled.main`
   aside {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
+    min-height: 100vh;
+    width: 100%;
   }
 
   @media (max-width: 700px) {
@@ -34,5 +36,10 @@ export const StyledGrid = styled.main`
   .container {
     grid-column: 2 / 4;
     max-width: 960px;
+    width: 100%;
+
+    a {
+      text-decoration: underline;
+    }
   }
 `
