@@ -70,6 +70,7 @@ const StyledLayout = styled.main`
 
   small {
     ${smallFontSizes()}
+    font-weight: 800;
   }
 
   @media (max-width: 700px) {
@@ -125,6 +126,7 @@ const StyledLayout = styled.main`
     ${bqFontSizes()}
     line-height: 2.5rem;
     border-radius: 1rem;
+    font-weight: 800;
 
     p {
       margin: 0;
@@ -157,6 +159,10 @@ const StyledLayout = styled.main`
     @media (max-width: 576px) {
       margin-bottom: 0.5rem;
     }
+  }
+
+  a {
+    font-weight: 800;
   }
 `
 
