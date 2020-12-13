@@ -29,6 +29,7 @@ const StyledNavigation = styled.aside`
     font-size: 1rem;
     font-family: 'Source Sans Pro Black';
     overflow-y: auto;
+    overflow-x: hidden;
 
     button {
       position: absolute;

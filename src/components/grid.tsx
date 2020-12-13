@@ -22,6 +22,7 @@ export const StyledGrid = styled.main`
     grid-column: 1 / 2;
     grid-row: 1 / 2;
     min-height: 100vh;
+    width: 100%;
   }
 
   @media (max-width: 700px) {

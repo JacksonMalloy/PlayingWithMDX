@@ -28,15 +28,15 @@ export const About = () => {
     const dateTime = new Intl.DateTimeFormat([], options).format(date)
 
     if (parseInt(dateTime) >= 4 && parseInt(dateTime) < 12) {
-      return 'Good Morning! 🌞'
+      return 'Good Morning! '
     }
 
     if (parseInt(dateTime) >= 12 && parseInt(dateTime) < 16) {
-      return 'Good Afternoon! 🍲'
+      return 'Good Afternoon! '
     }
 
     if ((parseInt(dateTime) >= 16 && parseInt(dateTime) <= 24) || parseInt(dateTime) < 4) {
-      return 'Good Evening! 🌃'
+      return 'Good Evening! '
     }
   }
 
@@ -45,8 +45,11 @@ export const About = () => {
       <h1>{sayHello()}</h1>
 
       <blockquote>
-        Welcome to my 🍕 of the web! Here you'll find information about me, my work and a few tips and tricks I've
-        learned along the way.
+        Welcome to my{' '}
+        <span role="img" aria-label="pizza">
+          🍕
+        </span>{' '}
+        of the web! Here you'll find information about me, my work and a few tips and tricks I've learned along the way.
       </blockquote>
 
       <p>

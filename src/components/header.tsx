@@ -16,12 +16,8 @@ const Header = ({ isContact }): React.ReactElement => {
     }, 50)
   }
 
-  if (isContact) {
-    return null
-  }
-
   return (
-    <StyledHeader {...handlers}>
+    <StyledHeader {...handlers} isContact={isContact}>
       <Link to="/" className="image">
         <Image />
       </Link>
@@ -40,6 +36,7 @@ const StyledHeader = styled.header`
   position: relative;
   overflow: hidden;
   background-color: var(--secondary);
+  max-width: 1920px;
 
   .image {
     grid-column: 1 / 1;

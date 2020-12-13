@@ -1,8 +1,9 @@
 import React from 'react'
+import styled from 'styled-components'
 
 export const ExternalLink = ({ children, to }) => {
   return (
-    <a href={to} target="_blank" rel="noreferrer">
+    <StyledLink href={to} target="_blank" rel="noreferrer" className="gradient">
       {children}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -21,6 +22,26 @@ export const ExternalLink = ({ children, to }) => {
         <polyline points="15 3 21 3 21 9"></polyline>
         <line x1="10" y1="14" x2="21" y2="3"></line>
       </svg>
-    </a>
+    </StyledLink>
   )
 }
+
+const StyledLink = styled.a`
+  &.gradient {
+    background: linear-gradient(darkblue, darkorchid);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &.gradient:hover {
+    background: linear-gradient(red, darkorchid);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    svg {
+      stroke: #5652bf;
+    }
+  }
+`

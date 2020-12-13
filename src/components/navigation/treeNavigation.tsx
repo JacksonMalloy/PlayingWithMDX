@@ -18,7 +18,7 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
     if (depth && item.childMdx && item.childMdx.frontmatter.featured && item.childMdx.frontmatter.published) {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
-          <StyledTreeItem style={{ paddingLeft: depth * 30 }} to={linkTo}>
+          <StyledTreeItem style={{ marginLeft: depth * 30 }} to={linkTo}>
             {removeSnakeCase()}
           </StyledTreeItem>
 
@@ -30,10 +30,9 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
     if (!depth) {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
-          <StyledTreeItem style={{ paddingLeft: depth * 30 }} to={linkTo}>
+          <StyledTreeItem style={{ marginLeft: depth * 30 }} to={linkTo}>
             {removeSnakeCase()}
-          </StyledTreeItem>
-
+          </StyledTreeItem>{' '}
           <TreeNavigation items={item.children} depth={depth + 1} />
         </React.Fragment>
       )
@@ -49,10 +48,6 @@ const StyledTreeItem = styled(Link)`
   text-transform: capitalize;
   opacity: 1;
   transition: opacity 0.1s;
-
-  a {
-    color: var(--text) !important;
-  }
 
   &:hover {
     color: var(--text);
