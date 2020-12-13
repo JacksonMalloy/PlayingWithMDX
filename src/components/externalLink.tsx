@@ -28,20 +28,22 @@ export const ExternalLink = ({ children, to }) => {
 
 const StyledLink = styled.a`
   &.gradient {
-    background: linear-gradient(darkblue, darkorchid);
+    background: var(--text-gradient);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   &.gradient:hover {
-    background: linear-gradient(red, darkorchid);
+    background: var(--text-gradient);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 
     svg {
-      stroke: #5652bf;
+      @media (min-width: 700px) {
+        height: 18px;
+      }
     }
   }
 `

@@ -7,6 +7,7 @@ export const GlobalStyles = createGlobalStyle`
         --secondary: #fdfaf6;
         --code: #663399;
         --text: #202020;
+        --text-gradient: linear-gradient(red, darkorchid);
 
         /* Spacing */
         --space: 1rem;

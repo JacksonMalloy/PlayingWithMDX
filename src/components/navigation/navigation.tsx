@@ -56,13 +56,13 @@ const StyledNavigation = styled.aside`
     text-transform: capitalize;
     opacity: 1;
     transition: opacity 0.1s;
-
     font-family: 'Source Sans Pro Black';
 
     &:hover {
-      color: var(--text);
-      opacity: 0.8;
-      transition: opacity 0.1s;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
       text-decoration: underline;
     }
 
@@ -72,6 +72,15 @@ const StyledNavigation = styled.aside`
       opacity: 0.8;
       transition: opacity 0.1s;
       text-decoration: underline;
+    }
+  }
+
+  .depth-0 {
+    &:hover {
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 `

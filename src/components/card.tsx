@@ -13,7 +13,6 @@ const StyledCard = styled(Link)`
   flex-direction: column;
   padding: 1rem;
   margin: 1rem;
-  transition: 0.2s ease-in-out;
 
   small {
     text-align: left;
@@ -31,8 +30,14 @@ const StyledCard = styled(Link)`
   }
 
   &:hover {
-    transition: 0.2s ease-in-out;
-    box-shadow: rgba(0, 0, 0, 0.06) 4px 4px 18px 0px, var(--secondary) -4px -4px 8px 0px;
+    box-shadow: rgba(255, 0, 0, 0.2) 4px 4px 18px 0px, rgba(153, 50, 204, 0.2) -4px -4px 18px 0px;
+
+    h3 {
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
 
   @media (max-width: 700px) {
