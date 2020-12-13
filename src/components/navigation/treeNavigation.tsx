@@ -12,7 +12,8 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
     const linkTo = relativeDirectory ? `/${relativeDirectory}/${name}/` : name === 'home' ? '/' : `/${name}`
 
     const removeSnakeCase = () => {
-      return item.name.replaceAll('-', ' ')
+      const regex = /-/gi
+      return item.name.replace(regex, ' ')
     }
 
     if (depth && item.childMdx && item.childMdx.frontmatter.featured && item.childMdx.frontmatter.published) {
