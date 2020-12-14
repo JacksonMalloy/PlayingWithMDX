@@ -1,68 +1,53 @@
 ---
-title: Use Console Logs
+title: Console Logging
 path: /posts/use-console-logs
 date: 2020-11-28
-tags: ["React", "React Hooks"]
+tags: ["React"]
 published: true
 featured: true
 ---
 
-import styled from 'styled-components'
-import Header from '../../components/header'
+# Console Logging
 
-# Using Console Log
-
-> You may find yourself wanting more centralized control over console logs throughout your application.
-> Here's a little trick...
+>You may find yourself wanting more centralized control over the output to your console throughout your application.
+Here's a little trick...
 
 
-I've always had to work on clearing logs from my apps while prepping for launch.
-Sometimes it can be as easy as a quick search and replace in VS Code. But sometimes,
-you may find yourself wanting some of those logs in production. You may have reasons, like me,
-where commenting out logs is not acceptable. Perhaps you want messages in prod warning the user.
+What if there was a better way to output to the console? A way where we don't have to
+mass replace, comment out, and be conscious of the different stages of our app. What if we
+could extract that logic and have the same function be used in development, staging and production?
 
-What if there was a better way to log to the console. A way where we don't have to
-mass replace, comment out, be weary of, while developing in different stages of our app. What if we
-*could* have the same code for logs in development, staging and production?
+#### Lets write a function!
 
-What if we wrote a custom hook?
-I'll start from scratch.
-
-```jsx:title=src/components/useConsoleLog.js
-const useConsoleLog = () => {
-    return {}
-}
-```
-We'll take the basic shape of a hook,
-which takes some parameter(s) and returns an object. What do we want this hook to return?
-Well, console methods! So lets make a function for a few.
-
-```jsx:title=src/components/useConsoleLog.js {3-17}
-const useConsoleLog = () => {
-    const log = () => {
-        console.log()
-    }
-
-    return { log }
+```jsx:title=src/utils/log.js
+export const log = () => {
+    console.log()
 }
 ```
 
-It's just missing some parameters now. But what do we want to pass to our hook?
-Perhaps a message, the data, the type of log, anything else? Lets add those with defaults for now.
+It's just missing some parameters now. But what do we want to pass to our function?
+Perhaps a message, the data, the type of log, anything else? Lets add those with defaults for now
+in the case we want to omit them.
 
-```jsx:title=src/components/useConsoleLog.js
-const useConsoleLog = (data = null, message = '', variant = 'LOG') => {
-    const log = (data, message) => {
-        switch (variant) {
-            case 'LOG':
-                console.log(message, { data })
-                break;
-            default:
-                return
-        }
+```jsx:title=src/utils/log.js
+export const log = ({ data = null, message = '', variant = 'LOG' }) => {
+    switch (variant) {
+        case 'LOG':
+            console.log(message, { data })
+            break;
+        case 'ERROR':
+            console.error(message, { data })
+            break;
+        case 'TABLE':
+            console.table(message, { data })
+            break;
+        case 'WARN':
+            console.warn(message, { data })
+            break;
+        // etc...
+        default:
+            return
     }
-
-    return { log }
 }
 ```
 
@@ -70,48 +55,53 @@ We could stop here. But this wasn't enough for me.
 I want my logs to show depending on the environment.
 
 
-```jsx:title=src/components/useConsoleLog.js {3-5}
-const useConsoleLog = () => {
-    const log = (variable, message) => {
-        if(process.env.NODE_ENV === 'DEVELOPMENT') {
-            switch (variant) {
-                case 'LOG':
-                    console.log(message, { data })
-                    break;
-                default:
-                    return
-            }
+```jsx:title=src/utils/log.js {3-5}
+const log = ({ data = null, message = '', variant = 'LOG' }) => {
+    if(process.env.NODE_ENV === 'DEVELOPMENT') {
+        switch (variant) {
+            case 'LOG':
+                console.log(message, { data })
+                break;
+            case 'ERROR':
+                console.error(message, { data })
+                break;
+            case 'TABLE':
+                console.table(message, { data })
+                break;
+            case 'WARN':
+                console.warn(message, { data })
+                break;
+            default:
+                return
         }
     }
-
-    return { log }
 }
 ```
 
 Now we have granular control over how we display our logs in development, staging and production.
-A IMple but useful little snippet that could save you time in the long run.
+If we want even more control, we can move the `NODE_ENV` check inside our switch statement.
+A simple but potentially useful little snippet that could save you time in the long run.
+This is how we use our function.
 
-Here's how to use our new hook.
-
-```jsx:title=src/components/useConsoleLog.js
+```jsx:title=src/components/component.js
+import { log } from 'src/utils/log'
 
 const Component = (props) => {
     const [data, setData] = useState(null)
-    const { log } = useConsoleLog()
 
     const handleClick = (event) => {
-        log(event.target.value, 'clicked')
+        log({ message: 'clicked' })
     }
 
     useEffect(() => {
         const fetch = async () => {
             try {
-                const remoteData = await fetchingRemoteData()
-                setData(remoteData)
-                log(data, 'Fetched from API')
+                const fetchedData = await fetchingData()
+                setData(fetchedData)
+                log({ data: fetchedData, message: 'Response from API' })
 
             } catch (error) {
-                log(error, 'Optional comment')
+                log({ data: error, message: 'Error from API', variant: 'ERROR' })
             }
         }
 
@@ -120,19 +110,18 @@ const Component = (props) => {
 
     return (
         <section>
-            {log(props, 'Logging props within JSX')}
-            <div>This is how we useConsoleLogs</div>
+            {log({ data: props })}
+            <div>This is how we logs</div>
             <button onClick={handleClick}>Click me!</button>
         </section>
     )
 }
-
 ```
 
-It takes a bit to get used to, especially since you lose the syntax highlighting for `console.log`.
+It takes a bit to get used to, especially with losing the syntax highlighting for `console.log` and having to import `log()` into each component you want to use it.
 There are a million different ways we could take this, but it's just a start and I wanted to keep it simple.
-Have any more ideas or similar use cases?
+Have any more ideas or similar use cases? [I would love to hear them!](/contact/)
 
-[I would love to hear them!](/contact/)
+#### Thanks for reading! 👋
 
-Thanks for reading! 👋
+

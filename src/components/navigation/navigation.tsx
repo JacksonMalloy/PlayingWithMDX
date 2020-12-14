@@ -13,7 +13,7 @@ const StyledNavigation = styled.aside`
   padding-top: 3.5rem;
 
   @media (max-width: 700px) {
-    padding-top: 0px;
+    padding-top: 2rem;
   }
 
   button {
@@ -58,6 +58,19 @@ const StyledNavigation = styled.aside`
     transition: opacity 0.1s;
     font-family: 'Source Sans Pro Black';
 
+    small {
+      font-size: 0.5rem;
+      margin: 0;
+      font-family: 'Source Sans Pro Black';
+    }
+
+    span {
+      @media (min-width: 700px) {
+        margin-top: -15px;
+      }
+      font-family: 'Source Sans Pro Black';
+    }
+
     &:hover {
       background: var(--text-gradient);
       -webkit-background-clip: text;
@@ -76,6 +89,8 @@ const StyledNavigation = styled.aside`
   }
 
   .depth-0 {
+    padding: 0.5rem;
+
     &:hover {
       background: var(--text-gradient);
       -webkit-background-clip: text;

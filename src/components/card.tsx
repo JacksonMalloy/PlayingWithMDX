@@ -42,13 +42,22 @@ const StyledCard = styled(Link)`
 
   @media (max-width: 700px) {
     padding: 0.5rem;
-    margin: 0.5rem;
+    /* margin: 0.5rem; */
 
     div,
     h3,
     small {
       margin: 0;
       padding: 0.5rem;
+    }
+
+    small {
+      font-size: 0.7rem;
+    }
+
+    div {
+      display: flex;
+      justify-content: flex-start;
     }
   }
 `
