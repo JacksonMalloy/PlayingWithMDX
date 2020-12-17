@@ -16,6 +16,19 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
       return item.name.replace(regex, ' ')
     }
 
+    if (depth && item && item.name === 'SIX12') {
+      return (
+        <React.Fragment key={`${index}-${item.name}`}>
+          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`}>
+            <small>CURRENT</small>
+            <span>{removeSnakeCase()}</span>
+          </Link>
+
+          <TreeNavigation items={item.children} depth={depth + 1} />
+        </React.Fragment>
+      )
+    }
+
     if (depth && item && item.frontmatter.featured && item.frontmatter.published) {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
