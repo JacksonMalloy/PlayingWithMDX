@@ -34,7 +34,7 @@ const renderPosts = (data) => {
 export const Post = ({ data }) => {
   return (
     <section className="container">
-      <h1>Blog</h1>
+      <h1>Dev Blog</h1>
       {renderPosts(data)}
     </section>
   )

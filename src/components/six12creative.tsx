@@ -1,20 +1,20 @@
 import React from 'react'
 import { ExternalLink } from './externalLink'
 
-export const Work = () => {
+export const Six12creative = () => {
   return (
     <section className="container">
       <h1>SIX12 Creative</h1>
-      <h4>June 2019 - present</h4>
+
       <blockquote>SIX12 is a full service marketing and design agency. </blockquote>
 
       <h5>Full Stack Web Development</h5>
       <p>
-        As a web developer at <ExternalLink to={'https://six12creative.com/'}>SIX12 Creative</ExternalLink> I am part of
-        a team of developers building and managing promotional SMS systems. These systems primarily serve Circle K by
-        driving foot traffic to brick and morter locations through coupon & rewards programs. I have been incredibly
-        successful at infuencing technical decisions at the company. I routinely advocate for progressive ideas which I
-        believe has greatly contributed to the company embracing more JavaScript, specifically React and{' '}
+        At <ExternalLink to={'https://six12creative.com/'}>SIX12 Creative</ExternalLink> I am part of a team of
+        developers building and managing promotional SMS systems. These systems primarily serve Circle K by driving foot
+        traffic to brick and morter locations through coupon & rewards programs. I have been incredibly successful at
+        infuencing technical decisions at the company. I routinely advocate for progressive ideas which has influenced
+        the company to embrace more JavaScript, specifically React and{' '}
         <ExternalLink to={'https://nextjs.org/'}>Next.js</ExternalLink>. In my capacity as a full stack web developer I
         have led the development of the front-end React & Next.js architecture for client contests such as Rock Paper
         Prizes 4, Drink. Snack. Score. , and 31 Days Of Circle K. These are managed promotional systems that reach

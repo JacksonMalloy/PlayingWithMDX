@@ -8,15 +8,23 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
   }
 
   return items.map((item, index) => {
-    const { relativeDir, name } = item
-    const linkTo = relativeDir ? `/${relativeDir}/${name}/` : name === 'home' ? '/' : `/${name}`
+    const { relativeDir, name, frontmatter } = item
+    const linkTo = frontmatter
+      ? frontmatter.path
+      : relativeDir
+      ? `/${relativeDir}/${name}/`
+      : name === 'home'
+      ? '/'
+      : `/${name}`
+
+    console.log({ frontmatter })
 
     const removeSnakeCase = () => {
       const regex = /-/gi
       return item.name.replace(regex, ' ')
     }
 
-    if (depth && item && item.name === 'SIX12') {
+    if (depth && item && item.name === 'six12creative') {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
           <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`}>

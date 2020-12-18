@@ -37,7 +37,7 @@ export const GlobalStyles = createGlobalStyle`
         font-weight: 900;
     }
 
-    p, small, ol, blockquote, a, span {
+    p, small, ol, blockquote, a, span, li {
         font-family: 'Open Sans Regular';
         font-weight: 400;
     }

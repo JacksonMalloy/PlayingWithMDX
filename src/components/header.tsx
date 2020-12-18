@@ -54,6 +54,10 @@ const StyledHeader = styled.header`
   background-color: var(--primary);
   max-width: 1920px;
 
+  @media (min-width: 700px) {
+    display: none;
+  }
+
   .image {
     grid-column: 1 / 1;
     justify-self: center;
