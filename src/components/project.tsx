@@ -19,7 +19,7 @@ const renderProjects = (data) => {
       return (
         <Card key={i} to={`${path}`}>
           <small>{date}</small>
-          <h3>{title}</h3>
+          <h3 style={{ marginBottom: 0 }}>{title}</h3>
           <div>
             {tags.map((tag, i) => {
               return <code key={i}>{tag}</code>

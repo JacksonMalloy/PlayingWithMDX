@@ -40,10 +40,10 @@ export const DOCK31ImagePanels = () => {
 
     console.log({ data })
 
-    const styles = { maxWidth: '23%', width: '25%', height: '100%', maxHeight: '523px' }
+    const styles = { maxWidth: '23%', width: '25%', maxHeight: '523px', height: '100%' }
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
         <Img fluid={data.ECImage.childImageSharp.fluid} style={styles} />
         <Img fluid={data.QCImage.childImageSharp.fluid} style={styles} />
         <Img fluid={data.USImage.childImageSharp.fluid} style={styles} />

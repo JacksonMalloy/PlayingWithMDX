@@ -1,5 +1,7 @@
 import React from 'react'
 import { ExternalLink } from './externalLink'
+import { SoloStream } from './six12creative/SoloStream'
+import { TeamStream } from './six12creative/TeamStream'
 
 export const Six12creative = () => {
   return (
@@ -21,6 +23,8 @@ export const Six12creative = () => {
         millions of users in Canada and the United States.
       </p>
 
+      <TeamStream />
+
       <h5>Individual Projects</h5>
       <p>
         Smaller client projects of which I was a sole developer include{' '}
@@ -32,6 +36,8 @@ export const Six12creative = () => {
         Charity Golf Tournament website is built with{' '}
         <ExternalLink to={'https://gatsbyjs.org/'}>Gatsby.js</ExternalLink> powered by a WPGraphQL schema.
       </p>
+
+      <SoloStream />
 
       <h5>Other responsibilities</h5>
       <p>

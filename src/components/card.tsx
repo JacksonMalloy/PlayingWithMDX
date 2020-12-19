@@ -13,6 +13,7 @@ const StyledCard = styled(Link)`
   flex-direction: column;
   padding: 1rem;
   margin: 1rem;
+  margin-left: 2rem;
 
   small {
     text-align: left;
@@ -20,19 +21,50 @@ const StyledCard = styled(Link)`
   }
 
   div {
-    display: flex;
-    margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 0.5rem;
+    padding-top: 1rem;
+    justify-content: center;
+    align-items: center;
+
+    code {
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
-  h3 {
+  h3,
+  h4 {
     margin-top: 0;
     margin-bottom: 0;
   }
 
   &:hover {
-    box-shadow: rgba(255, 0, 0, 0.2) 4px 4px 18px 0px, rgba(153, 50, 204, 0.2) -4px -4px 18px 0px;
+    /* box-shadow: rgba(255, 0, 0, 0.2) 4px 4px 18px 0px, rgba(153, 50, 204, 0.2) -4px -4px 18px 0px; */
 
-    h3 {
+    animation-duration: 0.5s;
+    animation-name: shadowPulse;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+
+    @keyframes shadowPulse {
+      from {
+        box-shadow: rgba(153, 50, 204, 0.2) -2px -2px 9px 0px, rgba(255, 0, 0, 0.2) 2px 2px 9px 0px;
+      }
+
+      to {
+        box-shadow: rgba(255, 0, 0, 0.2) 4px 4px 18px 0px, rgba(153, 50, 204, 0.2) -4px -4px 18px 0px;
+      }
+    }
+
+    h3,
+    h4 {
       background: var(--text-gradient);
       -webkit-background-clip: text;
       background-clip: text;
@@ -42,10 +74,11 @@ const StyledCard = styled(Link)`
 
   @media (max-width: 700px) {
     padding: 0.5rem;
-    /* margin: 0.5rem; */
+    margin-left: 1rem;
 
     div,
     h3,
+    h4,
     small {
       margin: 0;
       padding: 0.5rem;
@@ -56,8 +89,9 @@ const StyledCard = styled(Link)`
     }
 
     div {
-      display: flex;
-      justify-content: flex-start;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-gap: 0.5rem;
     }
   }
 `

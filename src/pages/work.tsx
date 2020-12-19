@@ -17,9 +17,6 @@ const WorkPage = () => {
         <li>Do you want to start up an ecommerce shop for your business?</li>
         <li>Are you working for a social cause that needs help online?</li>
         <li>Is your business struggling due to social distancing measures?</li>
-        <h5 style={{ padding: '2rem 1rem 1rem 0rem' }}>
-          <Link to="/contact">Contact me here!</Link>
-        </h5>
       </ul>
 
       {/* <p>I'm very transparent with scope of work and cost upfront!</p> */}
@@ -33,8 +30,9 @@ const WorkPage = () => {
         <li>Need an authentication/authorization system for a web application?</li>
         <li>Do you need help with API development? Database management?</li>
         <li>Looking to provide fast, accessible and modern websites for your clients?</li>
-        <h5 style={{ padding: '2rem 1rem 1rem 0rem' }}>
-          <Link to="/contact">Contact me here!</Link>
+        <br />
+        <h5 style={{ padding: '1rem 1rem 1rem 0rem' }}>
+          <Link to="/contact">If you'd like to get in touch you can contact me here.</Link>
         </h5>
       </ul>
 

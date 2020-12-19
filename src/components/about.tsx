@@ -10,10 +10,11 @@ const StyledImage = styled.div`
   display: flex;
   justify-content: flex-start;
   padding: 1rem;
+  float: right;
 
   @media (max-width: 700px) {
     justify-content: center;
-    padding: 0rem;
+    padding: 0.5rem;
   }
 `
 
@@ -68,18 +69,16 @@ export const About = () => {
         offer <Link to="/work">here</Link> and contact me <Link to="/contact">here</Link>.
       </blockquote>
       <h4 style={{ marginBottom: '0rem' }}>Who am I?</h4>
-      <StyledImage>
-        <Image />
-      </StyledImage>
+
       <p style={{ paddingTop: '2rem' }}>
+        <StyledImage>
+          <Image />
+        </StyledImage>
         I'm Jackson, an experienced full stack developer from Vancouver BC with a specialty in JavaScript & TypeScript.
         Writing React code is my most practiced skill in the JavaScript ecosystem. I most enjoy building blazing fast
         modern websites with frameworks such as <ExternalLink to={'https://nextjs.org/'}>Next</ExternalLink> or{' '}
-        <ExternalLink to={'https://www.gatsbyjs.com/'}>Gatsby</ExternalLink>.
-      </p>
-      <p>
-        Web development, music and soccer are my passions. I play soccer semi professionally as a center midfielder for
-        the{' '}
+        <ExternalLink to={'https://www.gatsbyjs.com/'}>Gatsby</ExternalLink>. Web development, music and soccer are my
+        passions. I play soccer semi professionally as a center midfielder for the{' '}
         <ExternalLink to={'https://www.instagram.com/mafctigers/'}>
           Burnaby Metro Atheltic Premier Soccer club
         </ExternalLink>{' '}

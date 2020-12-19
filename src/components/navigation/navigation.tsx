@@ -11,6 +11,7 @@ import { useUI } from '../../Context'
 
 const StyledNavigation = styled.aside`
   padding-top: 3.5rem;
+  background-color: transparent;
 
   @media (max-width: 700px) {
     padding-top: 2rem;
@@ -37,7 +38,7 @@ const StyledNavigation = styled.aside`
     top: 1rem;
     display: flex;
     flex-direction: column;
-    background-color: var(--primary);
+    background-color: transparent;
     padding: ${({ drawer }) => (drawer ? 0 : 'var(--space)')};
     border-radius: 0.5rem;
     font-size: 1rem;

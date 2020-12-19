@@ -25,6 +25,9 @@ import { Drawer } from './components/drawer/drawer'
 import Container from './Container'
 import './fonts/font.css'
 import { DOCK31ImagePanels } from './components/six12creative/DOCK31ImagePanels'
+import { SoloStream } from './components/six12creative/SoloStream'
+import { TeamStream } from './components/six12creative/TeamStream'
+import Waves from './components/waves'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -180,12 +183,16 @@ const components = {
   code: Code,
   a: Link,
   DOCK31ImagePanels: DOCK31ImagePanels,
+  TeamStream: TeamStream,
+  SoloStream: SoloStream,
 }
 
 const Layout = ({ children, viewportLimit, isContact }) => {
   return (
     <ManagedUIContext>
       <ExtendStyledLayout>
+        <Waves />
+
         <Toast />
         <Header isContact={isContact} />
         <Container viewportLimit={viewportLimit}>

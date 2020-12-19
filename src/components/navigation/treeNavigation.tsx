@@ -17,8 +17,6 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
       ? '/'
       : `/${name}`
 
-    console.log({ frontmatter })
-
     const removeSnakeCase = () => {
       const regex = /-/gi
       return item.name.replace(regex, ' ')
