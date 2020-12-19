@@ -28,10 +28,10 @@ const StyledInput = styled.input<Props>`
   height: 2.5rem;
   border-radius: 0.25rem;
   border: 2px solid;
-  border-color: ${({ error, serverError }) => (error || serverError ? 'red' : 'black')};
-  background-color: #fff;
+  border-color: ${({ error, serverError }) => (error || serverError ? 'var(--error)' : 'var(--text)')};
+  background-color: var(--primary);
   &:focus {
-    border-color: ${({ error, serverError }) => (error || serverError ? 'red' : 'black')};
+    border-color: ${({ error, serverError }) => (error || serverError ? 'var(--error)' : 'var(--text)')};
   }
 `
 
@@ -40,7 +40,7 @@ const StyledLabel = styled.label`
   top: -0.1rem;
   left: 1.3rem;
   width: 80%;
-  color: black;
+  color: var(--text);
   font-size: 0.8rem;
 `
 
@@ -49,7 +49,7 @@ const StyledError = styled.span`
   bottom: 0rem;
   right: 1.3rem;
   width: 80%;
-  color: red;
+  color: var(--error);
   font-size: 0.8rem;
   text-align: right;
 `

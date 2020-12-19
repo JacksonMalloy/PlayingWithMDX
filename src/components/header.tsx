@@ -51,7 +51,7 @@ const StyledHeader = styled.header`
   grid-template-rows: 1fr 1fr;
   position: relative;
   overflow: hidden;
-  background-color: var(--primary);
+  background-color: transparent;
   max-width: 1920px;
 
   @media (min-width: 700px) {

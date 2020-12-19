@@ -119,7 +119,6 @@ class Wave extends Component {
     return (
       <div
         style={{
-          width: '100vw',
           display: 'inline-block',
           transform: 'rotate(-155deg)',
           transformOrigin: 'top',
@@ -138,9 +137,7 @@ class Wave extends Component {
   }
 }
 
-const StyledWave = styled.path`
-  fill: rgba(185, 65, 133, 0.3);
-`
+const StyledWave = styled.path``
 
 Wave.defaultProps = {
   paused: false,

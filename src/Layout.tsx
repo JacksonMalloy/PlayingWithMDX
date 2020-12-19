@@ -191,8 +191,6 @@ const Layout = ({ children, viewportLimit, isContact }) => {
   return (
     <ManagedUIContext>
       <ExtendStyledLayout>
-        <Waves />
-
         <Toast />
         <Header isContact={isContact} />
         <Container viewportLimit={viewportLimit}>
@@ -208,6 +206,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
               </Grid>
             )}
           </MDXProvider>
+          <Waves />
         </Container>
         <Footer isContact={isContact} />
       </ExtendStyledLayout>

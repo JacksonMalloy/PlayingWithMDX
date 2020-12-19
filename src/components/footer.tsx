@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const StyledFooter = styled.footer`
   display: flex;
   padding: 1rem;
-  background-color: var(--primary);
+  background-color: transparent;
   color: var(--text);
   width: 100%;
   max-width: 1920px;

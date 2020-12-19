@@ -7,62 +7,62 @@ import Button from '../button'
 
 const theme = {
   plain: {
-    color: '#36313D',
-    backgroundColor: '#fdfaf6',
+    color: 'var(--text)',
+    backgroundColor: 'var(--code-background-color)',
   },
   styles: [
     {
       types: ['prolog', 'constant', 'builtin'],
       style: {
-        color: 'rgb(189, 147, 249)',
+        color: 'var(--constant-color)',
       },
     },
     {
       types: ['inserted', 'function'],
       style: {
-        color: '#B94185',
+        color: 'var(--function-color)',
       },
     },
     {
       types: ['deleted'],
       style: {
-        color: 'rgb(255, 85, 85)',
+        color: 'var(--deleted-color)',
       },
     },
     {
       types: ['changed'],
       style: {
-        color: 'rgb(255, 255, 108,',
+        color: 'var(--changed-color)',
       },
     },
     {
       types: ['punctuation', 'symbol'],
       style: {
-        color: '#36313D',
+        color: 'var(--punctuation-color)',
       },
     },
     {
       types: ['string', 'char', 'tag', 'selector'],
       style: {
-        color: 'rgb(255, 121, 198)',
+        color: 'var(--string-selector-color)',
       },
     },
     {
       types: ['keyword', 'variable'],
       style: {
-        color: '#096FB3',
+        color: 'var(--keyword-color)',
       },
     },
     {
       types: ['comment'],
       style: {
-        color: '#527713',
+        color: 'var(--comment-color)',
       },
     },
     {
       types: ['attr-name'],
       style: {
-        color: '#ff8c00',
+        color: 'var(--attribute-name-color)',
       },
     },
   ],

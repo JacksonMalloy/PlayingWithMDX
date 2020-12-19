@@ -46,7 +46,7 @@ const StyledInput = styled.div`
       font-size: max(16px, 0.5em);
       font-family: 'Source Sans Pro Black';
       padding: 0.25em 0.5em;
-      background-color: #fff;
+      background-color: var(--primary);
       border: 2px solid var(--input-border);
       border-radius: 4px;
 
@@ -81,7 +81,7 @@ const StyledTextArea = styled(StyledInput)`
       font-size: max(16px, 0.5em);
       font-family: 'Source Sans Pro Black';
       padding: 0.25em 0.5em;
-      background-color: #fff;
+      background-color: var(--primary);
       border: 2px solid var(--input-border);
       border-radius: 4px;
       resize: vertical;
@@ -102,7 +102,6 @@ const StyledButton = styled.div`
 
   button {
     width: 100%;
-    box-shadow: inset 0px 1px 0px 0px #fce2c1;
     background-color: var(--text);
     border-radius: 6px;
     border: none;
@@ -115,7 +114,6 @@ const StyledButton = styled.div`
     font-weight: bold;
     padding: 6px 24px;
     text-decoration: none;
-    text-shadow: 0px 1px 0px #cc9f52;
     border: none;
   }
 

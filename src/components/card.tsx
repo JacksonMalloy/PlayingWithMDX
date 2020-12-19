@@ -45,8 +45,6 @@ const StyledCard = styled(Link)`
   }
 
   &:hover {
-    /* box-shadow: rgba(255, 0, 0, 0.2) 4px 4px 18px 0px, rgba(153, 50, 204, 0.2) -4px -4px 18px 0px; */
-
     animation-duration: 0.5s;
     animation-name: shadowPulse;
     animation-iteration-count: infinite;
@@ -55,11 +53,11 @@ const StyledCard = styled(Link)`
 
     @keyframes shadowPulse {
       from {
-        box-shadow: rgba(153, 50, 204, 0.2) -2px -2px 9px 0px, rgba(255, 0, 0, 0.2) 2px 2px 9px 0px;
+        box-shadow: var(--pulse-secondary-color) -2px -2px 9px 0px, var(--pulse-primary-color) 2px 2px 9px 0px;
       }
 
       to {
-        box-shadow: rgba(255, 0, 0, 0.2) 4px 4px 18px 0px, rgba(153, 50, 204, 0.2) -4px -4px 18px 0px;
+        box-shadow: var(--pulse-primary-color) 4px 4px 18px 0px, var(--pulse-secondary-color) -4px -4px 18px 0px;
       }
     }
 

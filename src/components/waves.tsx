@@ -7,8 +7,10 @@ const StyledWaves = styled.div`
   top: 0;
   bottom: 0;
   right: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 3980px;
+  height: 3980px;
+  overflow: hidden;
+
   transform: ${(props) => (props.flip ? `rotate(180deg)` : `rotate(0deg)`)};
   grid-row: ${(props) => (props.flip ? `4 / 6` : `1 / 3`)};
   grid-column: 1;
@@ -31,30 +33,36 @@ const StyledWaves = styled.div`
   }
 
   .wave-1 {
-    opacity: 0.2;
+    opacity: 0.1;
     position: absolute;
-    right: -10vw;
+    right: -200px;
     bottom: 0;
-    top: 30vh;
-    background-color: var(--text-gradient);
+    top: 300px;
+    height: 1980px;
+    width: 2980px;
+    fill: var(--wave-primary-color);
   }
 
   .wave-2 {
-    opacity: 0.3;
+    opacity: 0.2;
     position: absolute;
-    right: -10vw;
+    right: -600px;
     bottom: 0;
-    top: 15vh;
+    top: 300px;
+    height: 1980px;
+    width: 2980px;
+    fill: var(--wave-primary-color);
   }
 
   .wave-3 {
-    opacity: 0.1;
+    opacity: 0.3;
     position: absolute;
-    right: -10vw;
+    right: -1000px;
     bottom: 0;
-    height: 200vh;
-
-    top: 50vh;
+    top: 300px;
+    height: 1980px;
+    width: 2980px;
+    fill: var(--wave-primary-color);
   }
 `
 
