@@ -18,9 +18,9 @@ export const Six12creative = () => {
         infuencing technical decisions at the company. I routinely advocate for progressive ideas which has influenced
         the company to embrace more JavaScript, specifically React and{' '}
         <ExternalLink to={'https://nextjs.org/'}>Next.js</ExternalLink>. In my capacity as a full stack web developer I
-        have led the development of the front-end React & Next.js architecture for client contests such as Rock Paper
-        Prizes 4, Drink. Snack. Score. , and 31 Days Of Circle K. These are managed promotional systems that reach
-        millions of users in Canada and the United States.
+        have led the development of the JavaScript architecture for client contests such as Rock Paper Prizes 4, Drink.
+        Snack. Score. , and 31 Days Of Circle K. These are managed promotional systems that reach millions of users in
+        Canada and the United States.
       </p>
 
       <TeamStream />

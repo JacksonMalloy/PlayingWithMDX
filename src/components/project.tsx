@@ -30,10 +30,26 @@ const renderProjects = (data) => {
     })
 }
 
-export const Project = ({ data }) => {
+interface IProject {
+  data: any
+  title: string
+  description: string
+  lineBreak: boolean
+}
+
+// Pass Edges
+export const Project = ({ data, title, description, lineBreak }: IProject) => {
   return (
     <section className="container">
-      <h1>Projects</h1>
+      {/* {lineBreak && (
+        <>
+          <br />
+
+          <br />
+        </>
+      )} */}
+      <h3 style={{ textAlign: 'center' }}>{title}</h3>
+      {/* <blockquote style={{ textAlign: 'center' }}>{description}</blockquote> */}
       {renderProjects(data)}
     </section>
   )

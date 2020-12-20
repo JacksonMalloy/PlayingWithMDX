@@ -41,6 +41,9 @@ const StyledWaves = styled.div`
     height: 1980px;
     width: 2980px;
     fill: var(--wave-primary-color);
+    @media (max-width: 700px) {
+      top: 0px;
+    }
   }
 
   .wave-2 {
@@ -52,17 +55,23 @@ const StyledWaves = styled.div`
     height: 1980px;
     width: 2980px;
     fill: var(--wave-primary-color);
+    @media (max-width: 700px) {
+      top: 0px;
+    }
   }
 
   .wave-3 {
     opacity: 0.3;
     position: absolute;
-    right: -1000px;
+    right: -1100px;
     bottom: 0;
     top: 300px;
     height: 1980px;
     width: 2980px;
     fill: var(--wave-primary-color);
+    @media (max-width: 700px) {
+      top: 0px;
+    }
   }
 `
 

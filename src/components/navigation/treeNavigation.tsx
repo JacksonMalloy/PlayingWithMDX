@@ -25,7 +25,7 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
     if (depth && item && item.name === 'six12creative') {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
-          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`}>
+          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`} activeClassName="active">
             <small>CURRENT</small>
             <span>{removeSnakeCase()}</span>
           </Link>
@@ -38,7 +38,7 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
     if (depth && item && item.frontmatter.featured && item.frontmatter.published) {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
-          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`}>
+          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`} activeClassName="active">
             <small>FEATURED</small>
             <span>{removeSnakeCase()}</span>
           </Link>
@@ -51,7 +51,7 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
     if (!depth) {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
-          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`}>
+          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`} activeClassName="active">
             {removeSnakeCase()}
           </Link>{' '}
           <TreeNavigation items={item.children} depth={depth + 1} />

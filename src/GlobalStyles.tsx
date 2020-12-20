@@ -26,7 +26,7 @@ export const GlobalStyles = createGlobalStyle`
         --pulse-secondary-color: rgba(102, 51, 153, 0.2);
 
         /* Error */
-        --error: red;
+        --error: rgba(102, 51, 153, 0.2);
 
         /* Waves */
         --wave-primary-color: rgba(102, 51, 153, 0.2);
@@ -44,6 +44,10 @@ export const GlobalStyles = createGlobalStyle`
         --attribute-name-color: #ff8c00;
     }
 
+    html {
+        min-height: 100%;
+    }
+
     *, *::before, *::after {
         box-sizing: border-box;
         padding: 0rem;
@@ -55,6 +59,7 @@ export const GlobalStyles = createGlobalStyle`
         font-size: 16px;
         display: inline-block;
         width: 100%;
+        height: 100%;
     }
 
     h1, h2, h3, h4, h5, h6 {

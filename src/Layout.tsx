@@ -28,6 +28,8 @@ import { DOCK31ImagePanels } from './components/six12creative/DOCK31ImagePanels'
 import { SoloStream } from './components/six12creative/SoloStream'
 import { TeamStream } from './components/six12creative/TeamStream'
 import Waves from './components/waves'
+import Video from './components/video'
+import { IFrame } from './components/iframe'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -185,6 +187,8 @@ const components = {
   DOCK31ImagePanels: DOCK31ImagePanels,
   TeamStream: TeamStream,
   SoloStream: SoloStream,
+  Video: Video,
+  IFrame: IFrame,
 }
 
 const Layout = ({ children, viewportLimit, isContact }) => {

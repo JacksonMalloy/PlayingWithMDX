@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import { useUI } from '../../Context'
+import { Project } from '../project'
+import { Rotator } from '../rotator'
 
 const StyledForm = styled.form`
   min-width: 320px;
@@ -36,6 +38,12 @@ const StyledInput = styled.div`
       font-size: max(16px, 0.3em);
     }
 
+    .errormessage {
+      position: absolute;
+      bottom: -1.1rem;
+      right: 1rem;
+    }
+
     input {
       width: 100%;
       height: 100%;
@@ -46,7 +54,10 @@ const StyledInput = styled.div`
       font-size: max(16px, 0.5em);
       font-family: 'Source Sans Pro Black';
       padding: 0.25em 0.5em;
-      background-color: var(--primary);
+      background-color: ${({ fieldErrors }) => {
+        console.log({ fieldErrors })
+        return fieldErrors.name || fieldErrors.email ? 'var(--error)' : 'var(--primary)'
+      }};
       border: 2px solid var(--input-border);
       border-radius: 4px;
 
@@ -85,6 +96,10 @@ const StyledTextArea = styled(StyledInput)`
       border: 2px solid var(--input-border);
       border-radius: 4px;
       resize: vertical;
+      background-color: ${({ fieldErrors }) => {
+        console.log({ fieldErrors })
+        return fieldErrors.name || fieldErrors.email ? 'var(--error)' : 'var(--primary)'
+      }};
 
       &:focus {
         background-color: var(--secondary);
@@ -140,7 +155,7 @@ type ErrorTypes =
     }
   | any
 
-export const Form = () => {
+export const Form = ({ projects, devPosts, work }) => {
   // Step 1. create new state to track field errors
   const [fieldErrors, setFieldErrors] = useState<any>({})
 
@@ -233,10 +248,18 @@ export const Form = () => {
         handleServerResponse(false, r.response.data.error)
       })
   }
+  //serverState.status
+  if (serverState.status) {
+    return (
+      <StyledNextInfo>
+        <Rotator projects={projects} work={work} devPosts={devPosts} />
+      </StyledNextInfo>
+    )
+  }
 
   return (
     <StyledForm onSubmit={handleOnSubmit} noValidate>
-      <StyledInput>
+      <StyledInput fieldErrors={fieldErrors}>
         <label htmlFor="name">
           <span>Name: </span>
           <input
@@ -250,7 +273,7 @@ export const Form = () => {
         </label>
       </StyledInput>
 
-      <StyledInput>
+      <StyledInput fieldErrors={fieldErrors}>
         <label htmlFor="email">
           <span>Email: </span>
           <input
@@ -265,7 +288,7 @@ export const Form = () => {
         </label>
       </StyledInput>
 
-      <StyledTextArea>
+      <StyledTextArea fieldErrors={fieldErrors}>
         <label htmlFor="message">
           <span>Message: </span>
           <textarea
@@ -285,3 +308,10 @@ export const Form = () => {
     </StyledForm>
   )
 }
+
+const StyledNextInfo = styled.div`
+  min-height: 100%;
+  width: 100%;
+  justify-self: center;
+  align-self: center;
+`

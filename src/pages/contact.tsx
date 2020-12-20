@@ -3,10 +3,12 @@ import { Form } from '../components/contact/form'
 import Layout from '../Layout'
 import styled from 'styled-components'
 import { Message } from '../components/contact/message'
+import { graphql } from 'gatsby'
 
 const StyledContact = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  min-height: 100%;
 
   @media (max-width: 700px) {
     display: flex;
@@ -57,15 +59,64 @@ const StyledContact = styled.section`
   }
 `
 
-const ContactPage = () => {
+const ContactPage = ({ data }) => {
   return (
     <Layout viewportLimit="1920px" isContact>
       <StyledContact>
         <Message />
-        <Form />
+        <Form projects={data.allProjects} work={data.allWork} devPosts={data.allDevPosts} />
       </StyledContact>
     </Layout>
   )
 }
 
 export default ContactPage
+
+export const query = graphql`
+  query {
+    allDevPosts: allMdx(filter: { slug: { regex: "/developers/" }, frontmatter: { featured: { eq: true } } }) {
+      edges {
+        node {
+          frontmatter {
+            title
+            path
+            tags
+            date(formatString: "MMMM DD, YYYY")
+            published
+            featured
+          }
+        }
+      }
+    }
+
+    allProjects: allMdx(filter: { slug: { regex: "/projects/" }, frontmatter: { featured: { eq: true } } }) {
+      edges {
+        node {
+          frontmatter {
+            title
+            path
+            tags
+            date(formatString: "MMMM DD, YYYY")
+            published
+            featured
+          }
+        }
+      }
+    }
+
+    allWork: allMdx(filter: { frontmatter: { path: { eq: "/work/six12creative" } } }) {
+      edges {
+        node {
+          frontmatter {
+            title
+            path
+            tags
+            date(formatString: "MMMM DD, YYYY")
+            published
+            featured
+          }
+        }
+      }
+    }
+  }
+`

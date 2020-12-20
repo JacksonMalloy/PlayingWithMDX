@@ -2,6 +2,7 @@ import { graphql } from 'gatsby'
 import { useStaticQuery } from 'gatsby'
 import React from 'react'
 import Img from 'gatsby-image'
+import styled from 'styled-components'
 
 export const DOCK31ImagePanels = () => {
   const Image = () => {
@@ -40,17 +41,26 @@ export const DOCK31ImagePanels = () => {
 
     console.log({ data })
 
-    const styles = { maxWidth: '23%', width: '25%', maxHeight: '523px', height: '100%' }
+    const styles = { maxHeight: '523px' }
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
+      <StyledImageGrid>
         <Img fluid={data.ECImage.childImageSharp.fluid} style={styles} />
         <Img fluid={data.QCImage.childImageSharp.fluid} style={styles} />
         <Img fluid={data.USImage.childImageSharp.fluid} style={styles} />
         <Img fluid={data.HDImage.childImageSharp.fluid} style={styles} />
-      </div>
+      </StyledImageGrid>
     )
   }
 
   return <Image />
 }
+
+const StyledImageGrid = styled.div`
+  display: grid;
+  justify-content: center;
+  width: 100%;
+
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-rows: 1fr 1fr;
+`

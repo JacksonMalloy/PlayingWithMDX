@@ -82,10 +82,10 @@ const StyledNavigation = styled.aside`
 
     &:focus {
       outline: none;
-      color: var(--text);
-      opacity: 0.8;
-      transition: opacity 0.1s;
-      text-decoration: underline;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 
@@ -98,6 +98,13 @@ const StyledNavigation = styled.aside`
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+  }
+
+  .active {
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `
 
