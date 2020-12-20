@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { h3FontSizes, h4FontSizes, h5FontSizes, pFontSizes } from '../../createMediaQuery'
 import styled from 'styled-components'
 // import { Twitter } from '../socials/twitter'
@@ -8,6 +8,7 @@ import { TreeNavigation } from './treeNavigation'
 import { useSwipe } from '../drawer/useSwipe'
 import { useNavigation } from './useNavigation'
 import { useUI } from '../../Context'
+import toast from 'react-hot-toast'
 
 const StyledNavigation = styled.aside`
   padding-top: 3.5rem;
@@ -111,14 +112,22 @@ const StyledNavigation = styled.aside`
 const Navigation = ({ drawer }) => {
   const items = useNavigation()
   const { handlers } = useSwipe()
-  const { setDrawerPosition } = useUI()
+  const { setDrawerPosition, setNavCount, navCount } = useUI()
 
   const handleClick = () => {
+    setNavCount(navCount + 1)
     setDrawerPosition({ isOpen: false, sliding: true, dir: 'LEFT' })
     setTimeout(() => {
       setDrawerPosition({ isOpen: false, sliding: false, dir: 'LEFT' })
     }, 50)
   }
+
+  useEffect(() => {
+    if (navCount > 5) {
+      console.log('Nav')
+      toast(`Hey! Sorry to interrupt. Did you know you can swipe to navigate?`)
+    }
+  }, [navCount])
 
   return (
     <StyledNavigation {...handlers} drawer={drawer}>

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useUI } from '../Context'
 import { ExternalLink } from './externalLink'
 import Image from './image'
-
+import toast from 'react-hot-toast'
 import styled from 'styled-components'
 
 const StyledImage = styled.div`
@@ -19,15 +19,6 @@ const StyledImage = styled.div`
 `
 
 export const About = () => {
-  const { openToast } = useUI()
-
-  // useEffect(() => {
-  //   const message = 'Swipe ➡ for menu'
-  //   const variant = 'SUCCESS'
-
-  //   openToast(message, variant)
-  // }, [])
-
   const sayHello = () => {
     const date = new Date()
 

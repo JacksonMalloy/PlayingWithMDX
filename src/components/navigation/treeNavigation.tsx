@@ -1,6 +1,5 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import styled from 'styled-components'
 
 export const TreeNavigation = ({ items, depth = 0 }) => {
   if (!items || !items.length) {

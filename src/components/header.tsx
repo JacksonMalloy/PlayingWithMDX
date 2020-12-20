@@ -7,9 +7,11 @@ import { useUI } from '../Context'
 
 const Header = ({ isContact }): React.ReactElement => {
   const { handlers } = useSwipe()
-  const { setDrawerPosition } = useUI()
+  const { setDrawerPosition, setNavCount, navCount } = useUI()
 
   const handleClick = () => {
+    setNavCount(navCount + 1)
+    setDrawerPosition({ isOpen: false, sliding: true, dir: 'LEFT' })
     setDrawerPosition({ isOpen: true, sliding: true, dir: 'RIGHT' })
     setTimeout(() => {
       setDrawerPosition({ isOpen: true, sliding: false, dir: 'RIGHT' })
