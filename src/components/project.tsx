@@ -19,7 +19,7 @@ const renderProjects = (data) => {
       return (
         <Card key={i} to={`${path}`}>
           <small>{date}</small>
-          <h3>{title}</h3>
+          <h3 style={{ marginBottom: 0 }}>{title}</h3>
           <div>
             {tags.map((tag, i) => {
               return <code key={i}>{tag}</code>
@@ -30,10 +30,26 @@ const renderProjects = (data) => {
     })
 }
 
-export const Project = ({ data }) => {
+interface IProject {
+  data: any
+  title: string
+  description: string
+  lineBreak: boolean
+}
+
+// Pass Edges
+export const Project = ({ data, title, description, lineBreak }: IProject) => {
   return (
     <section className="container">
-      <h1>Projects</h1>
+      {/* {lineBreak && (
+        <>
+          <br />
+
+          <br />
+        </>
+      )} */}
+      <h3 style={{ textAlign: 'center' }}>{title}</h3>
+      {/* <blockquote style={{ textAlign: 'center' }}>{description}</blockquote> */}
       {renderProjects(data)}
     </section>
   )
