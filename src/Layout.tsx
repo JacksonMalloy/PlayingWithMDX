@@ -210,7 +210,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
               </Grid>
             )}
           </MDXProvider>
-          <Waves />
+          {/* <Waves /> */}
         </Container>
         <Footer isContact={isContact} />
       </ExtendStyledLayout>

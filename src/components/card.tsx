@@ -76,26 +76,35 @@ const StyledCard = styled(Link)`
     }
   }
 
-  @media (max-width: 700px) {
-    padding: 0.5rem;
-    margin-left: 1rem;
+  @media (max-width: 584px) {
+    margin: 0.5rem;
+
+    div {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      grid-gap: 0.5rem;
+      justify-content: left;
+      align-items: left;
+
+      code {
+        text-align: left;
+        justify-content: left;
+        align-items: left;
+        padding: 0;
+      }
+    }
+
+    small {
+      font-size: 0.7rem !important;
+      padding: 0 0.5rem !important;
+    }
 
     div,
     h3,
     h4,
     small {
-      margin: 0;
+      margin: 0 !important;
       padding: 0.5rem;
-    }
-
-    small {
-      font-size: 0.7rem;
-    }
-
-    div {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      grid-gap: 0.5rem;
     }
   }
 `
