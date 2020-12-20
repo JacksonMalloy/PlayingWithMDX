@@ -17,13 +17,13 @@ import {
 } from './createMediaQuery'
 import Header from './components/header'
 import { ManagedUIContext } from './Context'
-import { Toast } from './components/toast'
 import Link from './components/link'
 import { Grid } from './components/grid'
 import Navigation from './components/navigation'
 import { Drawer } from './components/drawer/drawer'
 import Container from './Container'
 import './fonts/font.css'
+import { Notifications } from './components/notifications'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -179,9 +179,9 @@ const Layout = ({ children, viewportLimit, isContact }) => {
   return (
     <ManagedUIContext>
       <ExtendStyledLayout>
-        <Toast />
+        <Notifications />
         <Header isContact={isContact} />
-        <Container viewportLimit={viewportLimit}>
+        <Container viewPortLimit={viewportLimit}>
           <MDXProvider components={components}>
             <GlobalStyles />
             <Drawer />
