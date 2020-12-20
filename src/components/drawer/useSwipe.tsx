@@ -2,7 +2,7 @@ import { useSwipeable } from 'react-swipeable'
 import { useUI } from '../../Context'
 
 export const useSwipe = () => {
-  const { setDrawerPosition } = useUI()
+  const { setDrawerPosition, setNavCount, navCount } = useUI()
 
   const config = {
     delta: 10, // min distance(px) before a swipe starts
@@ -15,11 +15,13 @@ export const useSwipe = () => {
   const handlers = useSwipeable({
     onSwiped: ({ dir, initial }) => {
       if (dir === `Right` && initial[0] < 80) {
+        setNavCount(navCount + 1)
         setDrawerPosition({ isOpen: true, sliding: true, dir: 'RIGHT' })
         setTimeout(() => {
           setDrawerPosition({ isOpen: true, sliding: false, dir: 'RIGHT' })
         }, 50)
       } else if (dir === `Left`) {
+        setNavCount(navCount + 1)
         setDrawerPosition({ isOpen: false, sliding: true, dir: 'LEFT' })
         setTimeout(() => {
           setDrawerPosition({ isOpen: false, sliding: false, dir: 'LEFT' })

@@ -8,7 +8,7 @@ import { TreeNavigation } from './treeNavigation'
 import { useSwipe } from '../drawer/useSwipe'
 import { useNavigation } from './useNavigation'
 import { useUI } from '../../Context'
-import toast from 'react-hot-toast'
+import { useNotification } from './useNotification'
 
 const StyledNavigation = styled.aside`
   padding-top: 3.5rem;
@@ -122,12 +122,7 @@ const Navigation = ({ drawer }) => {
     }, 50)
   }
 
-  useEffect(() => {
-    if (navCount > 5) {
-      console.log('Nav')
-      toast(`Hey! Sorry to interrupt. Did you know you can swipe to navigate?`)
-    }
-  }, [navCount])
+  useNotification()
 
   return (
     <StyledNavigation {...handlers} drawer={drawer}>

@@ -8,26 +8,55 @@ const StyledNotification = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  min-height: 100%;
   box-sizing: border-box;
+  z-index: 112394876123894760;
 `
 
 const StyledToast = styled.div`
   position: absolute;
   bottom: 1rem;
-  width: 80%;
-  background: papayawhip;
+  width: 90%;
+  background: var(--text);
   transition: all 0.5s ease-out;
   opacity: ${({ toast }) => (toast.visible ? 1 : 0)};
   transform: ${({ offset }) => `translateY(-${offset}px)`};
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: space-between;
 
   .toast-message {
-    font-size: 0.7rem;
-    margin: 0;
-    padding: 0;
-    z-index: 10;
+    color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    flex-direction: column;
+
+    a {
+      color: var(--primary);
+      font-family: inherit;
+      text-align: center;
+      text-decoration: underline;
+      text-decoration-color: var(--secondary);
+    }
+  }
+
+  .toast-button {
+    justify-self: flex-start;
+    border: none;
+    background-color: transparent;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      fill: var(--primary);
+      stroke: var(--primary);
+    }
   }
 `
 
@@ -47,9 +76,10 @@ export const Notifications = () => {
             updateHeight(toast.id, height)
           }
         }
+
         return (
           <StyledToast offset={offset} key={toast.id} ref={ref} toast={toast}>
-            <h4 className="toast-message">{toast.message}</h4>
+            {toast.message()}
           </StyledToast>
         )
       })}
