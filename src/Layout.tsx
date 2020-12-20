@@ -24,6 +24,12 @@ import Navigation from './components/navigation'
 import { Drawer } from './components/drawer/drawer'
 import Container from './Container'
 import './fonts/font.css'
+import { DOCK31ImagePanels } from './components/six12creative/DOCK31ImagePanels'
+import { SoloStream } from './components/six12creative/SoloStream'
+import { TeamStream } from './components/six12creative/TeamStream'
+import Waves from './components/waves'
+import Video from './components/video'
+import { IFrame } from './components/iframe'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -70,6 +76,7 @@ const StyledLayout = styled.main`
 
   small {
     ${smallFontSizes()}
+    font-weight: 800;
   }
 
   @media (max-width: 700px) {
@@ -86,7 +93,8 @@ const StyledLayout = styled.main`
   }
 
   p,
-  ol {
+  ol,
+  li {
     ${pFontSizes()}
     font-weight: 800;
     line-height: 2.5rem;
@@ -116,6 +124,10 @@ const StyledLayout = styled.main`
     }
   }
 
+  li {
+    list-style: disc inside;
+  }
+
   blockquote {
     /* border-left: 0.5rem solid #663399; */
     border-radius: 0.2rem;
@@ -125,6 +137,7 @@ const StyledLayout = styled.main`
     ${bqFontSizes()}
     line-height: 2.5rem;
     border-radius: 1rem;
+    font-weight: 800;
 
     p {
       margin: 0;
@@ -158,6 +171,10 @@ const StyledLayout = styled.main`
       margin-bottom: 0.5rem;
     }
   }
+
+  a {
+    font-weight: 800;
+  }
 `
 
 export const ExtendStyledLayout = styled(StyledLayout)({
@@ -167,6 +184,11 @@ export const ExtendStyledLayout = styled(StyledLayout)({
 const components = {
   code: Code,
   a: Link,
+  DOCK31ImagePanels: DOCK31ImagePanels,
+  TeamStream: TeamStream,
+  SoloStream: SoloStream,
+  Video: Video,
+  IFrame: IFrame,
 }
 
 const Layout = ({ children, viewportLimit, isContact }) => {
@@ -188,6 +210,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
               </Grid>
             )}
           </MDXProvider>
+          {/* <Waves /> */}
         </Container>
         <Footer isContact={isContact} />
       </ExtendStyledLayout>

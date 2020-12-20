@@ -1,19 +1,5 @@
 export const getTreeItems = (data: { node: any }[]) => {
-  const getUniqueRelativeDirectories = (data: { node: any }[]) => {
-    let uniqueRelativeDirectories: [] = []
-
-    data.forEach(({ node }) => {
-      if (node.relativeDirectory) {
-        const arrayOfValues = Object.values(node)
-        uniqueRelativeDirectories.push(arrayOfValues[1])
-      }
-    })
-
-    return [...new Set(uniqueRelativeDirectories)]
-  }
-
-  const uniqueRelativeDirs = getUniqueRelativeDirectories(data)
-
+  // Create array of nodes
   const getBaseDirectories = (data: { node: any }[]) => {
     let baseDirectories: any[] = []
 
@@ -26,30 +12,53 @@ export const getTreeItems = (data: { node: any }[]) => {
 
   const baseDirectories = getBaseDirectories(data)
 
-  const groupByKey = (list: any[], key: string) =>
-    list.reduce((hash, obj) => ({ ...hash, [obj[key]]: (hash[obj[key]] || []).concat(obj) }), {})
-
-  const groupedKeys = groupByKey(baseDirectories, 'relativeDirectory')
-
-  const connectChildrenToBase = () => {
-    let baseNavigation: any[] = [{ name: 'home', relativeDirectory: '', children: [] }]
-
-    baseDirectories.forEach((directory, index, array) => {
-      if (Object.keys(groupedKeys).includes(directory.name)) {
-        const updatedDir = { ...directory, ...{ children: groupedKeys[directory.name] } }
-        baseNavigation.push(updatedDir)
-      }
-
-      if (!uniqueRelativeDirs.includes(directory.name) && !directory.relativeDirectory) {
-        const updatedDir = { ...directory, ...{ children: [] } }
-        baseNavigation.push(updatedDir)
+  // Set up data structure to include relativeDirs array
+  const configureRelativeDirectory = () => {
+    return baseDirectories.map(({ name, childMdx, relativeDirectory }) => {
+      return {
+        name,
+        frontmatter: childMdx ? childMdx.frontmatter : null,
+        relativeDir: relativeDirectory.substring(relativeDirectory.lastIndexOf('/') + 1),
       }
     })
-
-    return baseNavigation
   }
 
-  const folders = connectChildrenToBase()
+  const directoryList = configureRelativeDirectory()
 
-  return folders
+  const configuredDirectoryList = directoryList.map((item, index, array) => {
+    const node = array
+      // Filter children matching relative directories
+      .filter((child) => {
+        return child.relativeDir === item.name
+      })
+      // Append children array to first level
+      .map((firstChild) => {
+        // Filter children matching relative directories
+        const node = array
+          .filter((child) => {
+            return child.relativeDir === firstChild.name
+          })
+          // Append children array to second level
+          .map((child) => {
+            return { ...child, children: [] }
+          })
+
+        return { ...firstChild, children: node }
+      })
+
+    const newItem = { ...item, children: node }
+
+    return newItem
+  })
+
+  const filteredDirectories = [
+    { name: 'home', frontmatter: null, relativeDir: '', children: [] },
+    ...configuredDirectoryList.filter((dir) => {
+      // Remove copies of directorys at base level
+      return !dir.relativeDir && dir.children.length
+    }),
+    { name: 'contact', frontmatter: null, relativeDir: '', children: [] },
+  ]
+
+  return filteredDirectories
 }

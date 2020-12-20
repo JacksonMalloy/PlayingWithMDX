@@ -27,6 +27,10 @@ export const ExternalLink = ({ children, to }) => {
 }
 
 const StyledLink = styled.a`
+  &:hover {
+    text-decoration: underline;
+  }
+
   &.gradient {
     background: var(--text-gradient);
     -webkit-background-clip: text;
@@ -34,7 +38,7 @@ const StyledLink = styled.a`
     -webkit-text-fill-color: transparent;
   }
 
-  &.gradient:hover {
+  /* &.gradient:hover {
     background: var(--text-gradient);
     -webkit-background-clip: text;
     background-clip: text;
@@ -45,5 +49,5 @@ const StyledLink = styled.a`
         height: 18px;
       }
     }
-  }
+  } */
 `

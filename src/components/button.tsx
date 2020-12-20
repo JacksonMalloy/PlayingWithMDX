@@ -10,17 +10,17 @@ const StyledButton = styled.button`
   text-decoration: none;
   margin: 8px;
   padding: 8px 12px;
-  background-color: rgba(185, 65, 133, 0.5);
+  background-color: var(--code);
 
   @media (max-width: 700px) {
     top: 3.5rem;
   }
 
   &:hover {
-    background-color: rgb(189, 147, 249, 0.8);
+    background-color: var(--button-hover);
   }
 
-  color: white;
+  color: var(--primary);
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;

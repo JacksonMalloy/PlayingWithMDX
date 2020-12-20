@@ -1,14 +1,17 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import { useUI } from '../../Context'
+import { Project } from '../project'
 
-export const Message = () => {
+export const Message = ({ projects, work, devPosts }) => {
   const { serverState } = useUI()
 
   return (
     <aside>
       {serverState.status ? (
-        <h1>{serverState.status.message}</h1>
+        <>
+          <h1>{serverState.status.message}</h1>
+        </>
       ) : (
         <>
           <h1>

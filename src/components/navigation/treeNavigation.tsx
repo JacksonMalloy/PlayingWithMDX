@@ -8,18 +8,37 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
   }
 
   return items.map((item, index) => {
-    const { relativeDirectory, name } = item
-    const linkTo = relativeDirectory ? `/${relativeDirectory}/${name}/` : name === 'home' ? '/' : `/${name}`
+    const { relativeDir, name, frontmatter } = item
+    const linkTo = frontmatter
+      ? frontmatter.path
+      : relativeDir
+      ? `/${relativeDir}/${name}/`
+      : name === 'home'
+      ? '/'
+      : `/${name}`
 
     const removeSnakeCase = () => {
       const regex = /-/gi
       return item.name.replace(regex, ' ')
     }
 
-    if (depth && item.childMdx && item.childMdx.frontmatter.featured && item.childMdx.frontmatter.published) {
+    if (depth && item && item.name === 'six12creative') {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
-          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`}>
+          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`} activeClassName="active">
+            <small>CURRENT</small>
+            <span>{removeSnakeCase()}</span>
+          </Link>
+
+          <TreeNavigation items={item.children} depth={depth + 1} />
+        </React.Fragment>
+      )
+    }
+
+    if (depth && item && item.frontmatter.featured && item.frontmatter.published) {
+      return (
+        <React.Fragment key={`${index}-${item.name}`}>
+          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`} activeClassName="active">
             <small>FEATURED</small>
             <span>{removeSnakeCase()}</span>
           </Link>
@@ -32,7 +51,7 @@ export const TreeNavigation = ({ items, depth = 0 }) => {
     if (!depth) {
       return (
         <React.Fragment key={`${index}-${item.name}`}>
-          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`}>
+          <Link style={{ marginLeft: depth * 30 }} to={linkTo} className={`depth-${depth}`} activeClassName="active">
             {removeSnakeCase()}
           </Link>{' '}
           <TreeNavigation items={item.children} depth={depth + 1} />

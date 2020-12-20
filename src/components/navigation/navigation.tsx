@@ -11,6 +11,7 @@ import { useUI } from '../../Context'
 
 const StyledNavigation = styled.aside`
   padding-top: 3.5rem;
+  background-color: transparent;
 
   @media (max-width: 700px) {
     padding-top: 2rem;
@@ -37,7 +38,7 @@ const StyledNavigation = styled.aside`
     top: 1rem;
     display: flex;
     flex-direction: column;
-    background-color: var(--primary);
+    background-color: transparent;
     padding: ${({ drawer }) => (drawer ? 0 : 'var(--space)')};
     border-radius: 0.5rem;
     font-size: 1rem;
@@ -81,10 +82,10 @@ const StyledNavigation = styled.aside`
 
     &:focus {
       outline: none;
-      color: var(--text);
-      opacity: 0.8;
-      transition: opacity 0.1s;
-      text-decoration: underline;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 
@@ -97,6 +98,13 @@ const StyledNavigation = styled.aside`
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+  }
+
+  .active {
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `
 
