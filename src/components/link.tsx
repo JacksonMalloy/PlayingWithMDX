@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { ReactChild } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 
-export default function Link({ children, href }) {
+interface ILink {
+  children: ReactChild
+  href: string
+}
+
+export default function Link({ children, href }: ILink) {
   if (href.startsWith('/')) {
     // Use Gatsby's Link component for internal site navigation
     // to benefit from the preloading features
@@ -15,9 +20,9 @@ export default function Link({ children, href }) {
     <a
       href={href}
       // Open the link in a new page
-      target={onPage ? null : '_blank'}
+      target={onPage ? undefined : '_blank'}
       // Add noopener and noreferrer for security reasons
-      rel={onPage ? null : 'noopener noreferrer'}
+      rel={onPage ? undefined : 'noopener noreferrer'}
     >
       {children}
     </a>

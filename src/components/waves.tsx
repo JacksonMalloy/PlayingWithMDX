@@ -41,7 +41,7 @@ const StyledWaves = styled.div`
     height: 1980px;
     width: 2980px;
     fill: var(--wave-primary-color);
-    @media (max-width: 700px) {
+    @media (max-width: 775px) {
       top: 0px;
     }
   }
@@ -55,7 +55,7 @@ const StyledWaves = styled.div`
     height: 1980px;
     width: 2980px;
     fill: var(--wave-primary-color);
-    @media (max-width: 700px) {
+    @media (max-width: 775px) {
       top: 0px;
     }
   }
@@ -69,7 +69,7 @@ const StyledWaves = styled.div`
     height: 1980px;
     width: 2980px;
     fill: var(--wave-primary-color);
-    @media (max-width: 700px) {
+    @media (max-width: 775px) {
       top: 0px;
     }
   }

@@ -31,8 +31,8 @@ const StyledDrawer = styled.nav`
   left: 0;
   right: 0;
   bottom: 0;
-  transition: ${(props) => 'transform 0.2s ease'};
-  transform: ${(props) => {
+  transition: ${() => 'transform 0.2s ease'};
+  transform: ${(props: any) => {
     if (!props.sliding && !props.isOpen) return 'translateX(calc(-100%))'
     if (!props.sliding && !props.isOpen) return 'translateX(calc(-100%))'
     if (props.dir === 'right') return 'translateX(calc(2 * (-80% - 20px)))'

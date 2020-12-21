@@ -1,10 +1,38 @@
-export const getTreeItems = (data: { node: any }[]) => {
+type TreeNode = {
+  node: {
+    childMdx: {
+      frontmatter: {
+        date: string
+        featured: boolean
+        path: string
+        published: boolean
+      }
+    }
+    name: string
+    relativeDirectory: string
+  }
+}
+
+type NodeType = {
+  childMdx: {
+    frontmatter: {
+      date: string
+      featured: boolean
+      path: string
+      published: boolean
+    }
+  }
+  name: string
+  relativeDirectory: string
+}
+
+export const getTreeItems = (data: TreeNode[]) => {
   // Create array of nodes
-  const getBaseDirectories = (data: { node: any }[]) => {
-    let baseDirectories: any[] = []
+  const getBaseDirectories = (data: TreeNode[]) => {
+    let baseDirectories: NodeType[] = []
 
     data.forEach(({ node }) => {
-      baseDirectories.push(node)
+      return baseDirectories.push(node)
     })
 
     return baseDirectories
@@ -25,7 +53,8 @@ export const getTreeItems = (data: { node: any }[]) => {
 
   const directoryList = configureRelativeDirectory()
 
-  const configuredDirectoryList = directoryList.map((item, index, array) => {
+  // Can we do this recursively?
+  const configuredDirectoryList = directoryList.map((item, _index, array) => {
     const node = array
       // Filter children matching relative directories
       .filter((child) => {

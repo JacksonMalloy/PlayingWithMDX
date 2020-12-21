@@ -7,7 +7,11 @@ const StyledVideoPlayer = styled.video`
   margin-bottom: 2rem;
 `
 
-export default function Video({ source }) {
+interface IVideo {
+  source: string
+}
+
+export default function Video({ source }: IVideo) {
   return (
     <StyledVideoPlayer controls muted preload="auto">
       <source src={source} type="video/mp4" />

@@ -1,9 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const ExternalLink = ({ children, to }) => {
+interface IExternalLink {
+  children: string
+  to: string
+}
+
+export const ExternalLink = ({ children, to }: IExternalLink) => {
   return (
-    <StyledLink href={to} target="_blank" rel="noreferrer" className="gradient">
+    <StyledLink href={to} target="_blank" rel="noreferrer" className="external-link">
       {children}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +20,7 @@ export const ExternalLink = ({ children, to }) => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        style={{ margin: '0.2rem' }}
+        style={{ marginLeft: '0.2rem' }}
         className="feather feather-external-link"
       >
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -28,26 +33,12 @@ export const ExternalLink = ({ children, to }) => {
 
 const StyledLink = styled.a`
   &:hover {
-    text-decoration: underline;
-  }
-
-  &.gradient {
-    background: var(--text-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* &.gradient:hover {
     background: var(--text-gradient);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    svg {
-      @media (min-width: 700px) {
-        height: 18px;
-      }
-    }
-  } */
+    /* Fallback for safari */
+    color: var(--code);
+  }
 `

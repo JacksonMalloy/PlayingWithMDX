@@ -19,7 +19,11 @@ const StyledFooter = styled.footer`
   }
 `
 
-export const Footer = ({ isContact }) => {
+interface IFooter {
+  isContact?: boolean
+}
+
+export const Footer = ({ isContact }: IFooter) => {
   if (isContact) {
     return null
   }

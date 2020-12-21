@@ -1,9 +1,8 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import { useUI } from '../../Context'
-import { Project } from '../project'
 
-export const Message = ({ projects, work, devPosts }) => {
+export const Message = () => {
   const { serverState } = useUI()
 
   return (

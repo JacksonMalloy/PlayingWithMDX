@@ -1,8 +1,13 @@
 import { Link } from 'gatsby'
-import React from 'react'
+import React, { ReactChild } from 'react'
 import styled from 'styled-components'
 
-export const Card = ({ children, to }) => {
+interface ICard {
+  children: ReactChild
+  to: string
+}
+
+export const Card = ({ children, to }: ICard) => {
   return <StyledCard to={to}>{children}</StyledCard>
 }
 

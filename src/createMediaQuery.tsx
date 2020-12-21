@@ -1,4 +1,4 @@
-const breakpoints = ['850px', '700px', '576px']
+const breakpoints = ['850px', '775px', '576px']
 
 // create-media-queries.js
 const createMediaQueries = (css) => {

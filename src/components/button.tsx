@@ -11,20 +11,19 @@ const StyledButton = styled.button`
   margin: 8px;
   padding: 8px 12px;
   background-color: var(--code);
+  color: var(--primary);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
 
-  @media (max-width: 700px) {
+  @media (max-width: 775px) {
     top: 3.5rem;
   }
 
   &:hover {
     background-color: var(--button-hover);
   }
-
-  color: var(--primary);
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  line-height: 1;
 `
 
 const Button = (props: any) => <StyledButton {...props} />
