@@ -1,12 +1,12 @@
 const breakpoints = ['850px', '775px', '576px']
 
 // create-media-queries.js
-const createMediaQueries = (css) => {
-  const cssKeyValuePairs = css.reduce((items, item) => {
+const createMediaQueries = (css: any[]) => {
+  const cssKeyValuePairs = css.reduce((items: any[], item: any[]) => {
     const { property, values } = item
     items.push(
       Array.isArray(item.values)
-        ? values.map((value) => ({
+        ? values.map((value: any) => ({
             [property]: value,
           }))
         : [{ [property]: values }]
@@ -18,9 +18,9 @@ const createMediaQueries = (css) => {
     .map((breakpoint, index) => ({
       breakpoint: breakpoint,
       css: cssKeyValuePairs
-        .map((array) => array[index])
+        .map((array: any[]) => array[index])
         .filter(Boolean)
-        .reduce((items, item) => {
+        .reduce((items: { [x: string]: string }, item: { [s: string]: unknown } | ArrayLike<unknown>) => {
           items[`${Object.keys(item)}`] = `${Object.values(item)}`
           return items
         }, {}),
