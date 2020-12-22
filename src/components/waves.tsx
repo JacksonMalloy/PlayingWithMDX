@@ -75,21 +75,19 @@ const StyledWaves = styled.div`
   }
 `
 
-const Waves = ({ flip }) => {
+const Waves = () => {
   return (
-    <StyledWaves flip={flip}>
+    <StyledWaves>
       <Wave
-        paused={false}
         options={{
           height: 50,
           amplitude: 50,
           speed: 0.15,
-          points: 1,
+          points: 5,
         }}
         className="wave-1"
       />
       <Wave
-        paused={false}
         options={{
           height: 90,
           amplitude: 30,
@@ -99,12 +97,11 @@ const Waves = ({ flip }) => {
         className="wave-2"
       />
       <Wave
-        paused={false}
         options={{
           height: 50,
           amplitude: 50,
           speed: 0.15,
-          points: 3,
+          points: 5,
         }}
         className="wave-3"
       />

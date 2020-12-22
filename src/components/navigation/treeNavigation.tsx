@@ -14,7 +14,7 @@ type NavItem = {
 }
 interface ITreeNav {
   items: any
-  depth: number
+  depth?: number
 }
 
 export const TreeNavigation = ({ items, depth = 0 }: ITreeNav): any => {

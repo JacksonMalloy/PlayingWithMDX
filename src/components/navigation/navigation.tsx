@@ -83,6 +83,9 @@ const StyledNavigation = styled.aside`
       background-clip: text;
       -webkit-text-fill-color: transparent;
       text-decoration: underline;
+
+      /* Safari Fallback */
+      color: var(--code);
     }
 
     &:focus {
@@ -91,6 +94,9 @@ const StyledNavigation = styled.aside`
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+
+      /* Safari Fallback */
+      color: var(--code);
     }
   }
 
@@ -102,6 +108,9 @@ const StyledNavigation = styled.aside`
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+
+      /* Safari Fallback */
+      color: var(--code);
     }
   }
 
@@ -110,6 +119,9 @@ const StyledNavigation = styled.aside`
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    /* Safari Fallback */
+    color: var(--code);
   }
 `
 

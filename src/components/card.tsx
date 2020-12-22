@@ -19,6 +19,15 @@ const StyledCard = styled(Link)`
   padding: 1rem;
   margin: 1rem;
   margin-left: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--pulse-secondary-color) -2px -2px 9px 0px, var(--pulse-primary-color) 2px 2px 9px 0px;
+
+  /* if backdrop support: very transparent and blurred */
+  @supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+    background-color: var(--backdrop-color);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
 
   small {
     text-align: left;
@@ -34,8 +43,6 @@ const StyledCard = styled(Link)`
     align-items: center;
 
     code {
-      height: 100%;
-      width: 100%;
       text-align: center;
       display: flex;
       justify-content: center;
@@ -46,6 +53,9 @@ const StyledCard = styled(Link)`
       background-clip: text;
       -webkit-text-fill-color: transparent;
       background-color: white;
+
+      /* Safari Fallback */
+      color: var(--code);
     }
   }
 
@@ -78,6 +88,9 @@ const StyledCard = styled(Link)`
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+
+      /* Safari Fallback */
+      color: var(--code);
     }
   }
 

@@ -131,13 +131,20 @@ const StyledLayout = styled.main`
   blockquote {
     /* border-left: 0.5rem solid #663399; */
     border-radius: 0.2rem;
-    background-color: var(--secondary);
+    background-color: hsla(0, 0%, 100%, 0.6);
     padding: var(--space);
     margin: 1rem 2rem;
     ${bqFontSizes()}
     line-height: 2.5rem;
     border-radius: 1rem;
     font-weight: 800;
+
+    /* if backdrop support: very transparent and blurred */
+    @supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+      background-color: var(--backdrop-color);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
 
     p {
       margin: 0;
@@ -215,7 +222,7 @@ const Layout = ({ children, isContact }: ILayout) => {
               </Grid>
             )}
           </MDXProvider>
-          {/* <Waves /> */}
+          <Waves />
         </Container>
         <Footer isContact={isContact} />
       </ExtendStyledLayout>

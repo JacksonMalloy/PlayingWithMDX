@@ -215,6 +215,10 @@ const StyledInput: any = styled.div`
       position: absolute;
       bottom: -1.1rem;
       right: 1rem;
+
+      @media (max-width: 576px) {
+        bottom: -1.5rem;
+      }
     }
 
     input {
@@ -224,15 +228,23 @@ const StyledInput: any = styled.div`
       font-size: max(16px, 0.5em);
       font-family: 'Source Sans Pro Black';
       padding: 0.25em 0.5em;
+
       background-color: ${({ fieldErrors }: any) => {
         console.log({ fieldErrors })
         return fieldErrors.name || fieldErrors.email ? 'var(--error)' : 'var(--primary)'
       }};
+
+      /* if backdrop support: very transparent and blurred */
+      @supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+        background-color: var(--backdrop-color);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+      }
+
       border: 2px solid var(--input-border);
       border-radius: 4px;
 
       &:focus {
-        background-color: var(--secondary);
         border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
         box-shadow: 0 0 0 4px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) + 40%), 0.5);
         transition: 180ms box-shadow ease-in-out;
@@ -271,8 +283,13 @@ const StyledTextArea = styled(StyledInput)`
         return fieldErrors.name || fieldErrors.email ? 'var(--error)' : 'var(--primary)'
       }};
 
+      @supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+        background-color: var(--backdrop-color);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+      }
+
       &:focus {
-        background-color: var(--secondary);
         border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
         box-shadow: 0 0 0 4px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) + 40%), 0.5);
         transition: 180ms box-shadow ease-in-out;
@@ -283,6 +300,7 @@ const StyledTextArea = styled(StyledInput)`
 
 const StyledButton = styled.div`
   padding: var(--space);
+  margin-top: 0.5rem;
   display: flex;
 
   button {
