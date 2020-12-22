@@ -1,46 +1,94 @@
-import { useToaster } from 'react-hot-toast/dist/core/use-toaster'
+import React from 'react'
+import styled from 'styled-components'
+import { useToaster } from 'react-hot-toast'
+import { Toast } from 'react-hot-toast/dist/core/types'
+
+interface IToastStyles {
+  offset: number
+  toast: Toast
+}
 
 export const Notifications = () => {
   const { toasts, handlers } = useToaster()
   const { startPause, endPause, calculateOffset, updateHeight } = handlers
   return (
-    <div
-      style={{
-        position: 'fixed',
-        top: 8,
-        left: 8,
-      }}
-      onMouseEnter={startPause}
-      onMouseLeave={endPause}
-    >
+    <StyledNotification onMouseEnter={startPause} onMouseLeave={endPause}>
       {toasts.map((toast) => {
         const offset = calculateOffset(toast.id, {
           reverseOrder: false,
           margin: 8,
         })
-        const ref = (el) => {
+        const ref = (el: any) => {
           if (el && !toast.height) {
             const height = el.getBoundingClientRect().height
             updateHeight(toast.id, height)
           }
         }
+
         return (
-          <div
-            key={toast.id}
-            ref={ref}
-            style={{
-              position: 'absolute',
-              width: '200px',
-              background: 'papayawhip',
-              transition: 'all 0.5s ease-out',
-              opacity: toast.visible ? 1 : 0,
-              transform: `translateY(${offset}px)`,
-            }}
-          >
-            {toast.message}
-          </div>
+          <StyledToast offset={offset} key={toast.id} ref={ref} toast={toast}>
+            {toast.message()}
+          </StyledToast>
         )
       })}
-    </div>
+    </StyledNotification>
   )
 }
+
+const StyledNotification = styled.div`
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 112394876123894760;
+`
+
+const StyledToast = styled.div<IToastStyles>`
+  position: absolute;
+  bottom: 1rem;
+  width: 90%;
+  background: var(--text);
+  transition: all 0.5s ease-out;
+  opacity: ${({ toast }) => (toast.visible ? 1 : 0)};
+  transform: ${({ offset }) => `translateY(-${offset}px)`};
+  border-radius: 1rem;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+
+  .toast-message {
+    color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    flex-direction: column;
+
+    a {
+      color: var(--primary);
+      font-family: inherit;
+      text-align: center;
+      text-decoration: underline;
+      text-decoration-color: var(--secondary);
+    }
+  }
+
+  .toast-button {
+    justify-self: flex-start;
+    border: none;
+    background-color: transparent;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      fill: var(--primary);
+      stroke: var(--primary);
+    }
+  }
+`

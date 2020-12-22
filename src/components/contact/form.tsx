@@ -2,148 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import { useUI } from '../../Context'
-import { Project } from '../project'
 import { Rotator } from '../rotator'
-
-const StyledForm = styled.form`
-  min-width: 320px;
-  max-width: 700px;
-  display: flex;
-  flex-direction: column;
-  padding: var(--space);
-`
-
-const StyledInput = styled.div`
-  width: 100%;
-  height: 100%;
-
-  label {
-    /* display: grid;
-    grid-template-rows: 1fr 2fr; */
-    font-family: 'Source Sans Pro Light';
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: var(--space);
-
-    span {
-      flex: 1;
-      width: 100%;
-      height: 100%;
-      grid-row: 1 / 1;
-      font-family: inherit;
-      margin: 0rem;
-      padding: var(--space) 0;
-      font-size: 16px;
-      font-size: max(16px, 0.3em);
-    }
-
-    .errormessage {
-      position: absolute;
-      bottom: -1.1rem;
-      right: 1rem;
-    }
-
-    input {
-      width: 100%;
-      height: 100%;
-
-      /* padding: 0.5rem; */
-
-      font-size: 16px;
-      font-size: max(16px, 0.5em);
-      font-family: 'Source Sans Pro Black';
-      padding: 0.25em 0.5em;
-      background-color: ${({ fieldErrors }) => {
-        console.log({ fieldErrors })
-        return fieldErrors.name || fieldErrors.email ? 'var(--error)' : 'var(--primary)'
-      }};
-      border: 2px solid var(--input-border);
-      border-radius: 4px;
-
-      &:focus {
-        background-color: var(--secondary);
-        border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
-        box-shadow: 0 0 0 4px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) + 40%), 0.5);
-        transition: 180ms box-shadow ease-in-out;
-      }
-    }
-
-    .input:not(textarea) {
-      line-height: 1;
-      height: 2.25rem;
-    }
-  }
-`
-
-const StyledTextArea = styled(StyledInput)`
-  label {
-    font-family: 'Source Sans Pro Light';
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: var(--space);
-
-    textarea {
-      width: 100%;
-      height: 100%;
-      min-height: 250px;
-      font-size: 16px;
-      font-size: max(16px, 0.5em);
-      font-family: 'Source Sans Pro Black';
-      padding: 0.25em 0.5em;
-      background-color: var(--primary);
-      border: 2px solid var(--input-border);
-      border-radius: 4px;
-      resize: vertical;
-      background-color: ${({ fieldErrors }) => {
-        console.log({ fieldErrors })
-        return fieldErrors.name || fieldErrors.email ? 'var(--error)' : 'var(--primary)'
-      }};
-
-      &:focus {
-        background-color: var(--secondary);
-        border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
-        box-shadow: 0 0 0 4px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) + 40%), 0.5);
-        transition: 180ms box-shadow ease-in-out;
-      }
-    }
-  }
-`
-
-const StyledButton = styled.div`
-  padding: var(--space);
-  display: flex;
-
-  button {
-    width: 100%;
-    background-color: var(--text);
-    border-radius: 6px;
-    border: none;
-    display: inline-block;
-    cursor: pointer;
-    color: var(--secondary);
-    font-family: 'Source Sans Pro Black';
-    font-size: 16px;
-    font-size: max(16px, 0.3em);
-    font-weight: bold;
-    padding: 6px 24px;
-    text-decoration: none;
-    border: none;
-  }
-
-  @media (max-width: 700px) {
-    padding: 0.5rem;
-  }
-`
-
-type ServerStateTypes = {
-  submitting: boolean
-  status: {
-    ok: boolean
-    message: string
-  } | null
-}
+import { IMdxWithNodes } from '../../Types'
 
 type ErrorTypes =
   | {
@@ -155,7 +15,13 @@ type ErrorTypes =
     }
   | any
 
-export const Form = ({ projects, devPosts, work }) => {
+interface IFormProps {
+  projects: IMdxWithNodes[]
+  devPosts: IMdxWithNodes[]
+  work: IMdxWithNodes[]
+}
+
+export const Form = ({ projects, devPosts, work }: IFormProps) => {
   // Step 1. create new state to track field errors
   const [fieldErrors, setFieldErrors] = useState<any>({})
 
@@ -200,8 +66,6 @@ export const Form = ({ projects, devPosts, work }) => {
     //eslint-disable-next-line
   }, [inputs])
   /* End new validation ^^^^ */
-
-  // Input Change Handling
 
   const handleOnChange = (event: { persist: () => void; target: { id: any; value: any } }) => {
     event.persist()
@@ -314,4 +178,149 @@ const StyledNextInfo = styled.div`
   width: 100%;
   justify-self: center;
   align-self: center;
+`
+
+const StyledForm = styled.form`
+  min-width: 320px;
+  max-width: 775px;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space);
+`
+
+const StyledInput: any = styled.div`
+  width: 100%;
+  height: 100%;
+
+  label {
+    font-family: 'Source Sans Pro Light';
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space);
+
+    span {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      grid-row: 1 / 1;
+      font-family: inherit;
+      margin: 0rem;
+      padding: var(--space) 0;
+      font-size: 16px;
+      font-size: max(16px, 0.3em);
+    }
+
+    .errormessage {
+      position: absolute;
+      bottom: -1.1rem;
+      right: 1rem;
+
+      @media (max-width: 576px) {
+        bottom: -1.5rem;
+      }
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      font-size: 16px;
+      font-size: max(16px, 0.5em);
+      font-family: 'Source Sans Pro Black';
+      padding: 0.25em 0.5em;
+
+      background-color: ${({ fieldErrors }: any) => {
+        console.log({ fieldErrors })
+        return fieldErrors.name || fieldErrors.email ? 'var(--error)' : 'var(--primary)'
+      }};
+
+      /* if backdrop support: very transparent and blurred */
+      @supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+        background-color: var(--backdrop-color);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+      }
+
+      border: 2px solid var(--input-border);
+      border-radius: 4px;
+
+      &:focus {
+        border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
+        box-shadow: 0 0 0 4px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) + 40%), 0.5);
+        transition: 180ms box-shadow ease-in-out;
+      }
+    }
+
+    .input:not(textarea) {
+      line-height: 1;
+      height: 2.25rem;
+    }
+  }
+`
+
+const StyledTextArea = styled(StyledInput)`
+  label {
+    font-family: 'Source Sans Pro Light';
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space);
+
+    textarea {
+      width: 100%;
+      height: 100%;
+      min-height: 250px;
+      font-size: 16px;
+      font-size: max(16px, 0.5em);
+      font-family: 'Source Sans Pro Black';
+      padding: 0.25em 0.5em;
+      background-color: var(--primary);
+      border: 2px solid var(--input-border);
+      border-radius: 4px;
+      resize: vertical;
+      background-color: ${({ fieldErrors }: any) => {
+        console.log({ fieldErrors })
+        return fieldErrors.name || fieldErrors.email ? 'var(--error)' : 'var(--primary)'
+      }};
+
+      @supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+        background-color: var(--backdrop-color);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+      }
+
+      &:focus {
+        border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
+        box-shadow: 0 0 0 4px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) + 40%), 0.5);
+        transition: 180ms box-shadow ease-in-out;
+      }
+    }
+  }
+`
+
+const StyledButton = styled.div`
+  padding: var(--space);
+  margin-top: 0.5rem;
+  display: flex;
+
+  button {
+    width: 100%;
+    background-color: var(--text);
+    border-radius: 6px;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    color: var(--secondary);
+    font-family: 'Source Sans Pro Black';
+    font-size: 16px;
+    font-size: max(16px, 0.3em);
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    border: none;
+  }
+
+  @media (max-width: 775px) {
+    padding: 0.5rem;
+  }
 `

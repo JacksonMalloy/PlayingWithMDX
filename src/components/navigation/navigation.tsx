@@ -1,5 +1,5 @@
 import React from 'react'
-import { h3FontSizes, h4FontSizes, h5FontSizes, pFontSizes } from '../../createMediaQuery'
+import { h5FontSizes, pFontSizes } from '../../createMediaQuery'
 import styled from 'styled-components'
 // import { Twitter } from '../socials/twitter'
 // import { LinkedIn } from '../linkedin'
@@ -8,12 +8,17 @@ import { TreeNavigation } from './treeNavigation'
 import { useSwipe } from '../drawer/useSwipe'
 import { useNavigation } from './useNavigation'
 import { useUI } from '../../Context'
+import { useNotification } from './useNotification'
+
+interface INavigation {
+  drawer?: boolean
+}
 
 const StyledNavigation = styled.aside`
   padding-top: 3.5rem;
   background-color: transparent;
 
-  @media (max-width: 700px) {
+  @media (max-width: 775px) {
     padding-top: 2rem;
   }
 
@@ -26,7 +31,7 @@ const StyledNavigation = styled.aside`
     background-color: transparent;
     border: none;
 
-    @media (min-width: 700px) {
+    @media (min-width: 775px) {
       display: none;
       pointer-events: none;
     }
@@ -39,7 +44,7 @@ const StyledNavigation = styled.aside`
     display: flex;
     flex-direction: column;
     background-color: transparent;
-    padding: ${({ drawer }) => (drawer ? 0 : 'var(--space)')};
+    padding: ${({ drawer }: INavigation) => (drawer ? 0 : 'var(--space)')};
     border-radius: 0.5rem;
     font-size: 1rem;
     font-family: 'Source Sans Pro Black';
@@ -66,7 +71,7 @@ const StyledNavigation = styled.aside`
     }
 
     span {
-      @media (min-width: 700px) {
+      @media (min-width: 775px) {
         margin-top: -15px;
       }
       font-family: 'Source Sans Pro Black';
@@ -78,6 +83,9 @@ const StyledNavigation = styled.aside`
       background-clip: text;
       -webkit-text-fill-color: transparent;
       text-decoration: underline;
+
+      /* Safari Fallback */
+      color: var(--code);
     }
 
     &:focus {
@@ -86,6 +94,9 @@ const StyledNavigation = styled.aside`
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+
+      /* Safari Fallback */
+      color: var(--code);
     }
   }
 
@@ -97,6 +108,9 @@ const StyledNavigation = styled.aside`
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+
+      /* Safari Fallback */
+      color: var(--code);
     }
   }
 
@@ -105,20 +119,26 @@ const StyledNavigation = styled.aside`
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    /* Safari Fallback */
+    color: var(--code);
   }
 `
 
-const Navigation = ({ drawer }) => {
+const Navigation = ({ drawer }: INavigation) => {
   const items = useNavigation()
   const { handlers } = useSwipe()
-  const { setDrawerPosition } = useUI()
+  const { setDrawerPosition, setNavCount, navCount } = useUI()
 
   const handleClick = () => {
+    setNavCount(navCount + 1)
     setDrawerPosition({ isOpen: false, sliding: true, dir: 'LEFT' })
     setTimeout(() => {
       setDrawerPosition({ isOpen: false, sliding: false, dir: 'LEFT' })
     }, 50)
   }
+
+  useNotification()
 
   return (
     <StyledNavigation {...handlers} drawer={drawer}>

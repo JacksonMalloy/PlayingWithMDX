@@ -41,7 +41,7 @@ const StyledWaves = styled.div`
     height: 1980px;
     width: 2980px;
     fill: var(--wave-primary-color);
-    @media (max-width: 700px) {
+    @media (max-width: 775px) {
       top: 0px;
     }
   }
@@ -55,7 +55,7 @@ const StyledWaves = styled.div`
     height: 1980px;
     width: 2980px;
     fill: var(--wave-primary-color);
-    @media (max-width: 700px) {
+    @media (max-width: 775px) {
       top: 0px;
     }
   }
@@ -69,27 +69,25 @@ const StyledWaves = styled.div`
     height: 1980px;
     width: 2980px;
     fill: var(--wave-primary-color);
-    @media (max-width: 700px) {
+    @media (max-width: 775px) {
       top: 0px;
     }
   }
 `
 
-const Waves = ({ flip }) => {
+const Waves = () => {
   return (
-    <StyledWaves flip={flip}>
+    <StyledWaves>
       <Wave
-        paused={false}
         options={{
           height: 50,
           amplitude: 50,
           speed: 0.15,
-          points: 1,
+          points: 5,
         }}
         className="wave-1"
       />
       <Wave
-        paused={false}
         options={{
           height: 90,
           amplitude: 30,
@@ -99,12 +97,11 @@ const Waves = ({ flip }) => {
         className="wave-2"
       />
       <Wave
-        paused={false}
         options={{
           height: 50,
           amplitude: 50,
           speed: 0.15,
-          points: 3,
+          points: 5,
         }}
         className="wave-3"
       />

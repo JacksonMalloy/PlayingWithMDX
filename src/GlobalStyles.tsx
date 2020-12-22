@@ -9,6 +9,8 @@ export const GlobalStyles = createGlobalStyle`
         --text: #202020;
         --text-gradient: linear-gradient(red, #663399);
 
+        --background-color: hsla(0, 0%, 100%, 0.2);
+
         /* Spacing */
         --space: 1rem;
 
@@ -29,7 +31,7 @@ export const GlobalStyles = createGlobalStyle`
         --error: rgba(102, 51, 153, 0.2);
 
         /* Waves */
-        --wave-primary-color: rgba(102, 51, 153, 0.2);
+        --wave-primary-color: rgba(255, 0, 0, 0.2);
 
         /* Codeblocks */
         --code-background-color: #fdfaf6;

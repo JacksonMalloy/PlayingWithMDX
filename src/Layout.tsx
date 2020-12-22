@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactChild } from 'react'
 import styled from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import Code from './components/code/code'
@@ -29,6 +29,7 @@ import Video from './components/video'
 import { TeamStream } from './components/six12creative/TeamStream'
 import { DOCK31ImagePanels } from './components/six12creative/DOCK31ImagePanels'
 import { SoloStream } from './components/six12creative/SoloStream'
+import Waves from './components/waves'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -78,7 +79,7 @@ const StyledLayout = styled.main`
     font-weight: 800;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 775px) {
     h1,
     h2,
     h3,
@@ -130,13 +131,20 @@ const StyledLayout = styled.main`
   blockquote {
     /* border-left: 0.5rem solid #663399; */
     border-radius: 0.2rem;
-    background-color: var(--secondary);
+    background-color: hsla(0, 0%, 100%, 0.6);
     padding: var(--space);
     margin: 1rem 2rem;
     ${bqFontSizes()}
     line-height: 2.5rem;
     border-radius: 1rem;
     font-weight: 800;
+
+    /* if backdrop support: very transparent and blurred */
+    @supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+      background-color: var(--backdrop-color);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
 
     p {
       margin: 0;
@@ -190,13 +198,18 @@ const components = {
   IFrame: IFrame,
 }
 
-const Layout = ({ children, viewportLimit, isContact }) => {
+interface ILayout {
+  children: ReactChild | ReactChild[]
+  isContact?: boolean
+}
+
+const Layout = ({ children, isContact }: ILayout) => {
   return (
     <ManagedUIContext>
       <ExtendStyledLayout>
         <Notifications />
-        <Header isContact={isContact} />
-        <Container viewPortLimit={viewportLimit}>
+        <Header />
+        <Container>
           <MDXProvider components={components}>
             <GlobalStyles />
             <Drawer />
@@ -209,7 +222,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
               </Grid>
             )}
           </MDXProvider>
-          {/* <Waves /> */}
+          <Waves />
         </Container>
         <Footer isContact={isContact} />
       </ExtendStyledLayout>

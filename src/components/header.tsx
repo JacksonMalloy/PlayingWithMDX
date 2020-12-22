@@ -1,15 +1,15 @@
-import { Link } from 'gatsby'
 import React from 'react'
-import Image from './image'
 import styled from 'styled-components'
 import { useSwipe } from './drawer/useSwipe'
 import { useUI } from '../Context'
 
-const Header = ({ isContact }): React.ReactElement => {
+const Header = () => {
   const { handlers } = useSwipe()
-  const { setDrawerPosition } = useUI()
+  const { setDrawerPosition, setNavCount, navCount } = useUI()
 
   const handleClick = () => {
+    setNavCount(navCount + 1)
+    setDrawerPosition({ isOpen: false, sliding: true, dir: 'LEFT' })
     setDrawerPosition({ isOpen: true, sliding: true, dir: 'RIGHT' })
     setTimeout(() => {
       setDrawerPosition({ isOpen: true, sliding: false, dir: 'RIGHT' })
@@ -17,10 +17,7 @@ const Header = ({ isContact }): React.ReactElement => {
   }
 
   return (
-    <StyledHeader {...handlers} isContact={isContact}>
-      {/* <Link to="/" className="image">
-        <Image />
-      </Link> */}
+    <StyledHeader {...handlers}>
       <button onClick={handleClick}>
         <svg
           width="24"
@@ -54,7 +51,7 @@ const StyledHeader = styled.header`
   background-color: transparent;
   max-width: 1920px;
 
-  @media (min-width: 700px) {
+  @media (min-width: 775px) {
     display: none;
   }
 
@@ -78,7 +75,7 @@ const StyledHeader = styled.header`
     background-color: transparent;
     border: none;
 
-    @media (min-width: 700px) {
+    @media (min-width: 775px) {
       display: none;
     }
   }
