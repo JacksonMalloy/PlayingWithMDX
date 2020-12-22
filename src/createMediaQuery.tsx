@@ -2,7 +2,7 @@ const breakpoints = ['850px', '775px', '576px']
 
 // create-media-queries.js
 const createMediaQueries = (css: any[]) => {
-  const cssKeyValuePairs = css.reduce((items: any[], item: any[]) => {
+  const cssKeyValuePairs = css.reduce((items: any[], item) => {
     const { property, values } = item
     items.push(
       Array.isArray(item.values)
