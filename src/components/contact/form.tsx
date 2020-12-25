@@ -215,6 +215,13 @@ const StyledInput: any = styled.div`
       position: absolute;
       bottom: -1.1rem;
       right: 1rem;
+      background-color: transparent !important;
+      /* if backdrop support: very transparent and blurred */
+      @supports ((-webkit-backdrop-filter: blur(0px)) or (backdrop-filter: blur(0px))) {
+        background-color: transparent;
+        -webkit-backdrop-filter: blur(0px);
+        backdrop-filter: blur(0px);
+      }
 
       @media (max-width: 576px) {
         bottom: -1.5rem;
@@ -305,12 +312,12 @@ const StyledButton = styled.div`
 
   button {
     width: 100%;
+    color: var(--primary);
     background-color: var(--text);
     border-radius: 6px;
     border: none;
     display: inline-block;
     cursor: pointer;
-    color: var(--secondary);
     font-family: 'Source Sans Pro Black';
     font-size: 16px;
     font-size: max(16px, 0.3em);

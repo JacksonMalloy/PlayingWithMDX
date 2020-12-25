@@ -1,7 +1,14 @@
 module.exports = {
   siteMetadata: {
     title: 'malloy.dev',
-    author: 'Jacks',
+    author: 'Jackson Malloy',
+    commentsRepository: 'PlayingWithMDX/malloy.dev-comments',
+    copyright: '2020–2021',
+    description: 'Portfolio of Full Stack Developer, Jackson Malloy',
+    googleSiteVerificationCode: '',
+    repository: 'https://github.com/jacksonmalloy/PlayingWithMDX',
+    siteUrl: 'https://malloy.dev',
+    titleTemplate: '%s | Portfolio | Jackson Malloy',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

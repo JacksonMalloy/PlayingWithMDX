@@ -9,7 +9,6 @@ const StyledImage = styled.div`
   display: flex;
   justify-content: flex-start;
   padding: 1rem;
-  float: right;
 
   @media (max-width: 775px) {
     justify-content: center;
@@ -20,7 +19,11 @@ const StyledImage = styled.div`
 export const About = () => {
   return (
     <section className="container">
-      <h1>{sayHello()}</h1>
+      <h1>
+        {sayHello()} {/* <StyledImage>
+          <Image />
+        </StyledImage> */}
+      </h1>
 
       <blockquote>
         Welcome to my{' '}
@@ -32,10 +35,6 @@ export const About = () => {
         offer <Link to="/work">here</Link> and contact me <Link to="/contact">here</Link>.
       </blockquote>
       <h4 style={{ marginBottom: '0rem' }}>Who am I?</h4>
-
-      <StyledImage>
-        <Image />
-      </StyledImage>
 
       <p style={{ paddingTop: '2rem' }}>
         I'm Jackson, an experienced full stack developer from Vancouver BC with a specialty in JavaScript & TypeScript.

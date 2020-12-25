@@ -1,8 +1,14 @@
 import React, { FC, useMemo } from 'react'
+import { ManagedThemeContext } from './Theme'
 // import { v4 as uuidv4 } from 'uuid'
 
 export interface State {
   displayToast: boolean
+  toastMessage: string
+  displayNavigation: boolean
+  serverState: { submitting: boolean; status: boolean }
+  drawerPosition: { isOpen: boolean; sliding: boolean; dir: string }
+  navCount: number
 }
 
 const initialState = {
@@ -37,7 +43,10 @@ type Action =
       type: 'SET_DRAWER_POSITION'
       drawerState: any
     }
-  | { type: 'SET_NAV_COUNT'; navCount: number }
+  | {
+      type: 'SET_NAV_COUNT'
+      navCount: number
+    }
 
 export const UIContext = React.createContext<State | any>(initialState)
 
@@ -130,10 +139,15 @@ export const UIProvider: FC = (props) => {
 
 export const useUI = () => {
   const context = React.useContext(UIContext)
+
   if (context === undefined) {
     throw new Error(`useUI must be used within a UIProvider`)
   }
   return context
 }
 
-export const ManagedUIContext: FC = ({ children }) => <UIProvider>{children}</UIProvider>
+export const ManagedUIContext: FC = ({ children }) => (
+  <ManagedThemeContext>
+    <UIProvider>{children}</UIProvider>
+  </ManagedThemeContext>
+)

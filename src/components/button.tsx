@@ -10,8 +10,8 @@ const StyledButton = styled.button`
   text-decoration: none;
   margin: 8px;
   padding: 8px 12px;
-  background-color: var(--code);
-  color: var(--primary);
+  background-color: var(--constant-color);
+  color: var(--secondary);
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.8rem;

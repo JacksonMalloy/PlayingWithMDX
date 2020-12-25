@@ -1,14 +1,13 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
-    :root {
+    body[data-theme='light'] {
         /* Colours */
         --primary: #ffffff;
         --secondary: #fdfaf6;
         --code: #663399;
         --text: #202020;
         --text-gradient: linear-gradient(red, #663399);
-
         --background-color: hsla(0, 0%, 100%, 0.2);
 
         /* Spacing */
@@ -46,6 +45,50 @@ export const GlobalStyles = createGlobalStyle`
         --attribute-name-color: #ff8c00;
     }
 
+    body[data-theme='dark'] {
+         /* Colours */
+         --primary: #06090F;
+        --secondary: #c9d1d9;
+        --code: #663399;
+        --text: #ffffff;
+        --text-gradient: linear-gradient(#fdfaf6, #58A6FF);
+        --background-color: hsla(0, 0%, 100%, 0.2);
+
+        /* Spacing */
+        --space: 1rem;
+
+        /* Form input */
+        --input-border: #8b8a8b;
+        --input-focus-h: 245;
+        --input-focus-s: 100%;
+        --input-focus-l: 42%;
+
+        /* Button */
+        --button-hover: rgb(189, 147, 249, 0.8);
+
+        /* Box-Shadow (Card) */
+        --pulse-primary-color:  rgba(88, 166, 255, 0.2);
+        --pulse-secondary-color: rgba(102, 51, 153, 0.2);
+
+        /* Error */
+        --error: rgba(102, 51, 153, 0.2);
+
+        /* Waves */
+        --wave-primary-color: rgba(88, 166, 255, 0.5);
+
+        /* Codeblocks */
+        --code-background-color: #0D1117;
+        --constant-color: rgb(189, 147, 249);
+        --function-color: #B94185;
+        --deleted-color: rgb(255, 85, 85);
+        --changed-color: rgb(255, 255, 108, 0.8);
+        --punctuation-color: #c9d1d9;
+        --string-selector-color: rgb(255, 121, 198);
+        --keyword-color: #2aa8fc;
+        --comment-color: #7dbe0c;
+        --attribute-name-color: #ff8c00;
+    }
+
     html {
         min-height: 100%;
     }
@@ -62,6 +105,7 @@ export const GlobalStyles = createGlobalStyle`
         display: inline-block;
         width: 100%;
         height: 100%;
+        background-color: var(--primary);
     }
 
     h1, h2, h3, h4, h5, h6 {

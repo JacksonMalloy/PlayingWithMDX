@@ -30,6 +30,7 @@ import { TeamStream } from './components/six12creative/TeamStream'
 import { DOCK31ImagePanels } from './components/six12creative/DOCK31ImagePanels'
 import { SoloStream } from './components/six12creative/SoloStream'
 import Waves from './components/waves'
+import Comments from './components/Comments'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -105,10 +106,18 @@ const StyledLayout = styled.main`
     }
 
     @media (max-width: 576px) {
-      padding: 0.5rem;
+      padding: 0.1rem;
       margin-bottom: 0.5rem;
       text-indent: 20px;
     }
+
+    @supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+      background-color: var(--backdrop-color);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+
+    background-color: transparent;
   }
 
   code {
@@ -196,6 +205,7 @@ const components = {
   SoloStream: SoloStream,
   Video: Video,
   IFrame: IFrame,
+  Comments: Comments,
 }
 
 interface ILayout {
