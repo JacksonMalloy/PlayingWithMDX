@@ -59,7 +59,7 @@ export const Footer = ({ isContact }: IFooter) => {
 
 function ThemeToggler() {
   const { setColorMode } = React.useContext(ThemeContext)
-  const actualTheme = localStorage.getItem('color-mode')
+  const actualTheme = typeof window !== 'undefined' ? localStorage.getItem('color-mode') : 'dark'
 
   const nextTheme = actualTheme === 'light' ? 'dark' : 'light'
 
