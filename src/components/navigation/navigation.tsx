@@ -18,6 +18,22 @@ const StyledNavigation = styled.aside`
   padding-top: 3.5rem;
   background-color: transparent;
 
+  section {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    padding: ${({ drawer }: INavigation) => (drawer ? 0 : 'var(--space)')};
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: 'Source Sans Pro Black';
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: ${({ drawer }) => (drawer ? '8rem' : 'var(--space)')};
+  }
+
   @media (max-width: 775px) {
     padding-top: 2rem;
   }
@@ -37,20 +53,19 @@ const StyledNavigation = styled.aside`
     }
   }
 
-  section {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 1rem;
-    display: flex;
-    flex-direction: column;
-    background-color: transparent;
-    padding: ${({ drawer }: INavigation) => (drawer ? 0 : 'var(--space)')};
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-family: 'Source Sans Pro Black';
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-bottom: ${({ drawer }) => (drawer ? '8rem' : 'var(--space)')};
+  .depth-0 {
+    color: var(--text);
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: var(--link-primary);
+    }
+  }
+
+  .depth-0,
+  .depth-1,
+  .depth-2 {
+    padding: 0.5rem;
   }
 
   a {
@@ -63,7 +78,6 @@ const StyledNavigation = styled.aside`
     opacity: 1;
     transition: opacity 0.1s;
     font-family: 'Source Sans Pro Black';
-    color: var(--text) !important;
 
     small {
       font-size: 0.5rem;
@@ -79,49 +93,42 @@ const StyledNavigation = styled.aside`
     }
 
     &:hover {
-      background: var(--text-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      small {
+        color: var(--link-primary);
+      }
 
-      /* Safari Fallback */
-      color: var(--code);
+      span {
+        text-decoration: underline;
+        text-decoration-color: var(--link-primary);
+      }
     }
 
     &:focus {
+      color: var(--text);
       outline: none;
-      background: var(--text-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
 
-      /* Safari Fallback */
-      color: var(--code);
-    }
-  }
+      small {
+        color: var(--link-primary);
+      }
 
-  .depth-0 {
-    padding: 0.5rem;
-
-    &:hover {
-      background: var(--text-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-
-      /* Safari Fallback */
-      color: var(--code);
+      span {
+        text-decoration: underline;
+        text-decoration-color: var(--link-primary);
+      }
     }
   }
 
   .active {
-    background: var(--text-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--link-primary);
 
-    /* Safari Fallback */
-    color: var(--code);
+    span {
+      text-decoration: underline;
+      text-decoration-color: var(--link-primary);
+    }
+
+    small {
+      color: var(--link-primary);
+    }
   }
 `
 

@@ -48,14 +48,9 @@ const StyledCard = styled(Link)`
       justify-content: center;
       align-items: center;
 
-      background: var(--text-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-color: white;
-
       /* Safari Fallback */
-      color: var(--code);
+      color: var(--link-primary);
+      background-color: var(--code-background-color);
     }
   }
 
