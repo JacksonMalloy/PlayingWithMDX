@@ -1,0 +1,332 @@
+---
+title: React Context
+path: /developers/react-context
+date: 2020-10-25
+tags: ["Apollo Client", "React", "GraphQL"]
+published: true
+featured: true
+---
+
+import styled from 'styled-components'
+import Header from '../../components/header'
+
+# Lets Hook up Context
+
+So there's this new pattern arising, I'm sure many of you have heard.
+Sometimes it can be a bit fishy (if you catch my drift), but mark my words
+once you learn how to create your own, it will improve the experience you have
+working with your codebase significantly.
+
+>Lets take a look at `useContext`.
+
+The `useContext` hook is a hook to provide a sort of "global store" as you might call it;
+a global, single location to store state for a specific service, a particular function, similar logic.
+
+Lets take a look at a simple use case of `useContext`
+
+```jsx:title=src/components.js {}
+import React, { createContext, useContext } from 'react'
+
+const SomeContext = createContext();
+
+// In the parent component we provide the context to its children
+const Component = () => {
+    return (
+        <SomeContext.Provider value={"hello world"}>
+            <ChildComponent/>
+        </SomeContext.Provider>
+    )
+
+}
+
+// No state here (don't have to pass props!)
+const ChildComponent = () => {
+    return (
+        <section>
+            <GrandChildComponent />
+        </section>
+    )
+}
+
+// We can access whatever value was passed in the <Component>
+const GrandChildComponent = () => {
+    const value = useContext(SomeContext);
+
+    return (
+        <button onClick={() => console.log({ value })}>
+            Click me
+        </button>
+    )
+}
+
+```
+What's happening here is that we're creating a store in a parent component and **Sharing**
+that store with the children, grand children, great grandchildren and all
+the other generations of the family tree. This means that you can now access the prop `value="Hello World"`
+from anywhere within the component tree, just by calling useContext! Pretty cool right!
+Prop drilling can become a real problem and using context can save you from prop drill hell.
+
+But what's the use of passing through just a single prop.
+What if we want to share multiple values, multiple props through the same context.
+What if we wanted to add methods to edit those values from anywhere within the children of our parent tree.
+What about passing through state?
+
+Lets start with something simple first.
+
+
+```jsx:title=src/components.js {}
+import React, { createContext, useContext } from 'react'
+
+const SomeContext = createContext();
+
+// Pass count / setCount in the "value" context
+const Component = () => {
+    const [count, setCount] = useState(0)
+
+    const values = { count, setCount }
+
+    return (
+        <SomeContext.Provider value={values}>
+            <ChildComponent />
+        </SomeContext.Provider>
+    )
+
+}
+
+const ChildComponent = () => {
+    return (
+        <section>
+            <GrandChildComponent />
+        </section>
+    )
+}
+
+// access the counting state here!
+const GrandChildComponent = () => {
+    const { count, setCount } = useContext(SomeContext);
+
+    const increment = () => {
+        setCount(count + 1)
+    }
+
+    const decrement = () => {
+        setCount(count - 1)
+    }
+
+    return (
+        <div>
+            <span>{count}</span>
+            <button onClick={increment}>
+                decrement
+            </button>
+            <button onClick={decrement}>
+                decrement
+            </button>
+        </div>
+    )
+}
+
+```
+
+Ok that was pretty easy! What we're doing above is passing count and setCount through our component tree, letting all our
+children components access the method / value without having to pass props through them.
+Alright well now that we've gone through the simple example, lets take it a step further.
+
+*** This is where the article gets quite a bit more complex... But I will try my best to walk you through it! ***
+
+Lets use this as a method to manage more state by using `useReducer` and pass its values through context!
+
+```jsx:title=src/components.js {}
+import React, { createContext, useContext, useReducer } from 'react'
+
+// We set an initial state value
+const initialState = { count: 0 };
+
+// We define what occurs to that state when invoked
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { count: state.count + 1 };
+    case 'DECREMENT':
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+// We pass the initial state into context
+const SomeContext = createContext(initialState);
+
+const Component = () => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const values = [state, dispatch]
+
+    return (
+        <SomeContext.Provider value={values}>
+            <ChildComponent />
+        </SomeContext.Provider>
+    )
+
+}
+
+const ChildComponent = () => {
+    return (
+        <section>
+            <GrandChildComponent />
+        </section>
+    )
+}
+
+// We access our reducers from our grandchild component.
+const GrandChildComponent = () => {
+    const [state, dispatch] = useContext(SomeContext);
+
+    const increment = () => {
+        dispatch({ type: 'INCREMENT' });
+    }
+
+    const decrement = () => {
+        dispatch({ type: 'DECREMENT' });
+    }
+
+    return (
+        <div>
+            <span>{state.count}</span>
+            <button onClick={increment}>
+                increment
+            </button>
+            <button onClick={decrement}>
+                decrement
+            </button>
+        </div>
+    )
+}
+
+```
+
+This all seems like a lot of work just to pass a `count` and `setCount` through to a grand child component.
+What happens if we want to include more state though? This is where things start to get interesting!
+By using `useReducer` we're able to handle more complex states in our components. If we wanted to add
+a counter clearer we could do that! What if we wanted to include a way to increase the `count` by 5 every button click.
+Perhaps we wanted to include some other state to change the size or the colour of the counter. We could do that simply by adding
+more state, and more reducers!
+
+This is great and all, but you might be tired of having to `import` `useContext` and `SomeContext` into every child.
+
+```
+
+import React, { useContext } from 'react'
+import { SomeContext } from 'src/stores/context'
+
+...........
+const [state, dispatch] = useContext(SomeContext);
+```
+
+Having the state object and dispatch functions really clutter up the application.
+This is where custom hooks can be really useful.
+
+```jsx:title=src/components.js {}
+// We import useMemo to memoize the values passed through context
+import React, { createContext, useContext, useReducer, useMemo } from 'react'
+
+const initialState = { count: 0 };
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { count: state.count + 1 };
+    case 'DECREMENT':
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+const SomeContext = createContext(initialState);
+
+// We write a custom hook for our context
+// This can only be used within the tree of the parent component!
+// Just incase it's not we'll throw an error
+const useStore = () => {
+  const context = useContext(SomeContext)
+  if (context === undefined) {
+    throw new Error(`useStore must be used within a Provider`)
+  }
+  return context
+}
+
+// In our parent component we set up what we want to pass through
+// Memoizing the values and spreading the state
+// All so we can access values and methods from the same object
+const Component = () => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const setCountIncrement = () => dispatch({ type: 'INCREMENT' })
+    const setCountDecrement = () => dispatch({ type: 'DECREMENT' })
+
+    const values = useMemo(
+        () => ({
+            ...state,
+            setCountIncrement,
+            setCountDecrement,
+        }),
+        [state]
+    )
+
+    return (
+        <SomeContext.Provider value={values}>
+            <ChildComponent />
+        </SomeContext.Provider>
+    )
+}
+
+const ChildComponent = () => {
+    return (
+        <section>
+            <GrandChildComponent />
+        </section>
+    )
+}
+
+// Now throughout the application we can useStore!
+// This reduces the imports and significantly cleans up
+// the mess state / dispatch creates 😊
+const GrandChildComponent = () => {
+    const { count, setCountIncrement, setCountDecrement } = useStore()
+
+    const increment = () => {
+        setCountIncrement()
+    }
+
+    const decrement = () => {
+        setCountDecrement()
+    }
+
+    return (
+        <div>
+            <span>{count}</span>
+            <button onClick={increment}>
+                increment
+            </button>
+            <button onClick={decrement}>
+                decrement
+            </button>
+        </div>
+    )
+}
+
+```
+
+A few things we still need to keep in mind when using this technique. `dispatch` is asyncronous.
+That means the methods (functions) we pass through context are also asyncronous.
+Be careful when updating multiple states at once!
+
+Another gotcha is dispatch within useEffect. Do not use it as a dependency otherwise
+you'll create an inifinite loop. If you're using ESLint I like to `//eslint-disable-next-line` to
+remove the recommendation to add it to the dependency array. If someone has a better way I would love to
+hear about it!
+
+##### I hope you enjoyed my tutorial! Please give me a follow on Twitter / LinkedIn and don't hesitate to leave a comment!
+
+<Comments />

@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Post } from '../components/post'
+import { Posts } from '../components/posts'
 import Layout from '../Layout'
 
 const PostsPage = ({ data }) => {
@@ -10,7 +10,7 @@ const PostsPage = ({ data }) => {
 
   return (
     <Layout viewportLimit="1920px">
-      <Post data={edges} />
+      <Posts data={edges} />
     </Layout>
   )
 }

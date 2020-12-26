@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ThemeContext } from '../Theme'
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -19,7 +20,11 @@ const StyledFooter = styled.footer`
   }
 `
 
-export const Footer = ({ isContact }) => {
+interface IFooter {
+  isContact?: boolean
+}
+
+export const Footer = ({ isContact }: IFooter) => {
   if (isContact) {
     return null
   }
@@ -47,6 +52,16 @@ export const Footer = ({ isContact }) => {
           <polyline points="5 12 12 5 19 12"></polyline>
         </svg>
       </button>
+      <ThemeToggler />
     </StyledFooter>
   )
+}
+
+function ThemeToggler() {
+  const { setColorMode } = React.useContext(ThemeContext)
+  const actualTheme = typeof window !== 'undefined' ? localStorage.getItem('color-mode') : 'dark'
+
+  const nextTheme = actualTheme === 'light' ? 'dark' : 'light'
+
+  return <button onClick={() => setColorMode(nextTheme)}>Change to {nextTheme} mode</button>
 }

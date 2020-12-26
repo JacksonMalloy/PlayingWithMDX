@@ -1,8 +1,14 @@
 import React, { FC, useMemo } from 'react'
+import { ManagedThemeContext } from './Theme'
 // import { v4 as uuidv4 } from 'uuid'
 
 export interface State {
   displayToast: boolean
+  toastMessage: string
+  displayNavigation: boolean
+  serverState: { submitting: boolean; status: boolean }
+  drawerPosition: { isOpen: boolean; sliding: boolean; dir: string }
+  navCount: number
 }
 
 const initialState = {
@@ -11,6 +17,7 @@ const initialState = {
   displayNavigation: false,
   serverState: { submitting: false, status: null },
   drawerPosition: { isOpen: false, sliding: false, dir: 'RIGHT' },
+  navCount: 0,
 }
 
 type TOAST_VARIANTS = 'WARNING' | 'ERROR' | 'SUCCESS'
@@ -35,6 +42,10 @@ type Action =
   | {
       type: 'SET_DRAWER_POSITION'
       drawerState: any
+    }
+  | {
+      type: 'SET_NAV_COUNT'
+      navCount: number
     }
 
 export const UIContext = React.createContext<State | any>(initialState)
@@ -80,6 +91,12 @@ function uiReducer(state: State, action: Action) {
         drawerPosition: action.drawerState,
       }
     }
+    case 'SET_NAV_COUNT': {
+      return {
+        ...state,
+        navCount: action.navCount,
+      }
+    }
   }
 }
 
@@ -96,6 +113,8 @@ export const UIProvider: FC = (props) => {
 
   const setDrawerPosition = (drawerState: any) => dispatch({ type: 'SET_DRAWER_POSITION', drawerState })
 
+  const setNavCount = (navCount: number) => dispatch({ type: 'SET_NAV_COUNT', navCount })
+
   const value = useMemo(
     () => ({
       ...state,
@@ -109,6 +128,8 @@ export const UIProvider: FC = (props) => {
 
       setServerState,
       setDrawerPosition,
+
+      setNavCount,
     }),
     [state]
   )
@@ -118,10 +139,15 @@ export const UIProvider: FC = (props) => {
 
 export const useUI = () => {
   const context = React.useContext(UIContext)
+
   if (context === undefined) {
     throw new Error(`useUI must be used within a UIProvider`)
   }
   return context
 }
 
-export const ManagedUIContext: FC = ({ children }) => <UIProvider>{children}</UIProvider>
+export const ManagedUIContext: FC = ({ children }) => (
+  <ManagedThemeContext>
+    <UIProvider>{children}</UIProvider>
+  </ManagedThemeContext>
+)

@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { ReactChild } from 'react'
 import styled from 'styled-components'
 
-export const Grid = ({ children }) => {
+interface IGrid {
+  children: ReactChild | ReactChild[]
+}
+
+export const Grid = ({ children }: IGrid) => {
   return <StyledGrid>{children}</StyledGrid>
 }
 
@@ -12,11 +16,6 @@ export const StyledGrid = styled.main`
   justify-self: center;
   justify-items: center;
   padding: 0rem;
-  padding-right: 10%;
-
-  @media (max-width: 900px) {
-    padding-right: 0rem;
-  }
 
   aside {
     grid-column: 1 / 2;
@@ -25,7 +24,7 @@ export const StyledGrid = styled.main`
     width: 100%;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 775px) {
     display: flex;
 
     aside {
@@ -37,6 +36,7 @@ export const StyledGrid = styled.main`
     grid-column: 2 / 4;
     max-width: 960px;
     width: 100%;
+    justify-self: left;
 
     a {
       text-decoration: underline;

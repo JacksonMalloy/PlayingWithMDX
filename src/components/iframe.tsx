@@ -1,7 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const IFrame = ({ source, title }) => {
+interface IIFrame {
+  source: string
+  title: string
+}
+
+export const IFrame = ({ source, title }: IIFrame) => {
   return (
     <StyledIFrameContainer>
       <iframe

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactChild } from 'react'
 import styled from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import Code from './components/code/code'
@@ -17,19 +17,20 @@ import {
 } from './createMediaQuery'
 import Header from './components/header'
 import { ManagedUIContext } from './Context'
-import { Toast } from './components/toast'
 import Link from './components/link'
 import { Grid } from './components/grid'
 import Navigation from './components/navigation'
 import { Drawer } from './components/drawer/drawer'
 import Container from './Container'
 import './fonts/font.css'
+import { Notifications } from './components/notifications'
+import { IFrame } from './components/iframe'
+import Video from './components/video'
+import { TeamStream } from './components/six12creative/TeamStream'
 import { DOCK31ImagePanels } from './components/six12creative/DOCK31ImagePanels'
 import { SoloStream } from './components/six12creative/SoloStream'
-import { TeamStream } from './components/six12creative/TeamStream'
 import Waves from './components/waves'
-import Video from './components/video'
-import { IFrame } from './components/iframe'
+import Comments from './components/Comments'
 
 const StyledLayout = styled.main`
   display: flex;
@@ -79,7 +80,7 @@ const StyledLayout = styled.main`
     font-weight: 800;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 775px) {
     h1,
     h2,
     h3,
@@ -94,7 +95,8 @@ const StyledLayout = styled.main`
 
   p,
   ol,
-  li {
+  li,
+  ul {
     ${pFontSizes()}
     font-weight: 800;
     line-height: 2.5rem;
@@ -105,16 +107,24 @@ const StyledLayout = styled.main`
     }
 
     @media (max-width: 576px) {
-      padding: 0.5rem;
+      padding: 0.1rem;
       margin-bottom: 0.5rem;
       text-indent: 20px;
     }
+
+    @supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+      background-color: var(--backdrop-color);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+
+    background-color: transparent;
   }
 
   code {
     background-color: var(--secondary);
-    color: var(--code);
-    padding: 0.1rem 0.6rem;
+    color: var(--function-color);
+    padding: 0.3rem 0.5rem;
     margin: 0 0.2rem;
     border-radius: 0.5rem;
     font-size: 1.2rem;
@@ -126,12 +136,20 @@ const StyledLayout = styled.main`
 
   li {
     list-style: disc inside;
+    text-indent: 0px;
+    padding: 0 1rem;
+    margin-top: 2rem;
+
+    p {
+      margin-top: -rem;
+      text-indent: 0px;
+    }
   }
 
   blockquote {
     /* border-left: 0.5rem solid #663399; */
     border-radius: 0.2rem;
-    background-color: var(--secondary);
+    background-color: hsla(0, 0%, 100%, 0.6);
     padding: var(--space);
     margin: 1rem 2rem;
     ${bqFontSizes()}
@@ -139,13 +157,16 @@ const StyledLayout = styled.main`
     border-radius: 1rem;
     font-weight: 800;
 
+    /* if backdrop support: very transparent and blurred */
+    @supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+      background-color: var(--backdrop-color);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+
     p {
       margin: 0;
       padding: 0 var(--space);
-    }
-
-    code {
-      padding: 0;
     }
 
     @media (max-width: 576px) {
@@ -174,6 +195,16 @@ const StyledLayout = styled.main`
 
   a {
     font-weight: 800;
+    color: var(--link-primary);
+  }
+
+  mark {
+    ${pFontSizes()}
+    font-weight: 800;
+    line-height: 2.5rem;
+    background-color: var(--link-primary);
+    color: var(--primary);
+    padding: 0 0.5rem;
   }
 `
 
@@ -189,15 +220,21 @@ const components = {
   SoloStream: SoloStream,
   Video: Video,
   IFrame: IFrame,
+  Comments: Comments,
 }
 
-const Layout = ({ children, viewportLimit, isContact }) => {
+interface ILayout {
+  children: ReactChild | ReactChild[]
+  isContact?: boolean
+}
+
+const Layout = ({ children, isContact }: ILayout) => {
   return (
     <ManagedUIContext>
       <ExtendStyledLayout>
-        <Toast />
-        <Header isContact={isContact} />
-        <Container viewportLimit={viewportLimit}>
+        <Notifications />
+        <Header />
+        <Container>
           <MDXProvider components={components}>
             <GlobalStyles />
             <Drawer />
@@ -210,7 +247,7 @@ const Layout = ({ children, viewportLimit, isContact }) => {
               </Grid>
             )}
           </MDXProvider>
-          {/* <Waves /> */}
+          <Waves />
         </Container>
         <Footer isContact={isContact} />
       </ExtendStyledLayout>

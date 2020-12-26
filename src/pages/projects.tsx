@@ -1,14 +1,17 @@
+import { graphql } from 'gatsby'
 import React from 'react'
-import { Project } from '../components/project'
+import { Posts } from '../components/posts'
 import Layout from '../Layout'
+import { IMdx } from '../Types'
 
-const ProjectsPage = ({ data }) => {
+const ProjectsPage = ({ data }: IMdx) => {
   const {
     allMdx: { edges },
   } = data
+
   return (
     <Layout viewportLimit="1920px">
-      <Project data={edges} />
+      <Posts data={edges} />
     </Layout>
   )
 }

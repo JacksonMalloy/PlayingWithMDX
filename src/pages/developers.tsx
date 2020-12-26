@@ -1,16 +1,36 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Post } from '../components/post'
+import { Posts } from '../components/posts'
 import Layout from '../Layout'
 
-const DeveloperPage = ({ data }) => {
+type PostType = {
+  node: {
+    frontmatter: {
+      title: string
+      path: string
+      tags: string[]
+      date: string
+      published: boolean
+      featured: boolean
+    }
+  }
+}
+export interface IDeveloperProps {
+  data: {
+    allMdx: {
+      edges: PostType[]
+    }
+  }
+}
+
+const DeveloperPage = ({ data }: IDeveloperProps) => {
   const {
     allMdx: { edges },
   } = data
 
   return (
     <Layout viewportLimit="1920px">
-      <Post data={edges} />
+      <Posts data={edges} />
     </Layout>
   )
 }

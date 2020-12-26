@@ -5,7 +5,7 @@ import Layout from '../Layout'
 const WorkPage = () => {
   return (
     <Layout viewportLimit="1920px">
-      <h1>Full Stack Development</h1>
+      <h1>Full Stack Dev</h1>
       <p>
         As a full stack developer I have the capability of building out robust systems on both the server and client. I
         have experience developing systems that have reached upwards of 50,000 concurrent users. I also have experience

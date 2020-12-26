@@ -1,5 +1,5 @@
 import React from 'react'
-import { h3FontSizes, h4FontSizes, h5FontSizes, pFontSizes } from '../../createMediaQuery'
+import { h5FontSizes, pFontSizes } from '../../createMediaQuery'
 import styled from 'styled-components'
 // import { Twitter } from '../socials/twitter'
 // import { LinkedIn } from '../linkedin'
@@ -8,12 +8,33 @@ import { TreeNavigation } from './treeNavigation'
 import { useSwipe } from '../drawer/useSwipe'
 import { useNavigation } from './useNavigation'
 import { useUI } from '../../Context'
+import { useNotification } from './useNotification'
+
+interface INavigation {
+  drawer?: boolean
+}
 
 const StyledNavigation = styled.aside`
   padding-top: 3.5rem;
   background-color: transparent;
 
-  @media (max-width: 700px) {
+  section {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    padding: ${({ drawer }: INavigation) => (drawer ? 0 : 'var(--space)')};
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: 'Source Sans Pro Black';
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: ${({ drawer }) => (drawer ? '8rem' : 'var(--space)')};
+  }
+
+  @media (max-width: 775px) {
     padding-top: 2rem;
   }
 
@@ -26,26 +47,25 @@ const StyledNavigation = styled.aside`
     background-color: transparent;
     border: none;
 
-    @media (min-width: 700px) {
+    @media (min-width: 775px) {
       display: none;
       pointer-events: none;
     }
   }
 
-  section {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 1rem;
-    display: flex;
-    flex-direction: column;
-    background-color: transparent;
-    padding: ${({ drawer }) => (drawer ? 0 : 'var(--space)')};
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-family: 'Source Sans Pro Black';
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-bottom: ${({ drawer }) => (drawer ? '8rem' : 'var(--space)')};
+  .depth-0 {
+    color: var(--text);
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: var(--link-primary);
+    }
+  }
+
+  .depth-0,
+  .depth-1,
+  .depth-2 {
+    padding: 0.5rem;
   }
 
   a {
@@ -66,59 +86,66 @@ const StyledNavigation = styled.aside`
     }
 
     span {
-      @media (min-width: 700px) {
+      @media (min-width: 775px) {
         margin-top: -15px;
       }
       font-family: 'Source Sans Pro Black';
     }
 
     &:hover {
-      background: var(--text-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-decoration: underline;
+      small {
+        color: var(--link-primary);
+      }
+
+      span {
+        text-decoration: underline;
+        text-decoration-color: var(--link-primary);
+      }
     }
 
     &:focus {
+      color: var(--text);
       outline: none;
-      background: var(--text-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  }
 
-  .depth-0 {
-    padding: 0.5rem;
+      small {
+        color: var(--link-primary);
+      }
 
-    &:hover {
-      background: var(--text-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      span {
+        text-decoration: underline;
+        text-decoration-color: var(--link-primary);
+      }
     }
   }
 
   .active {
-    background: var(--text-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--link-primary);
+
+    span {
+      text-decoration: underline;
+      text-decoration-color: var(--link-primary);
+    }
+
+    small {
+      color: var(--link-primary);
+    }
   }
 `
 
-const Navigation = ({ drawer }) => {
+const Navigation = ({ drawer }: INavigation) => {
   const items = useNavigation()
   const { handlers } = useSwipe()
-  const { setDrawerPosition } = useUI()
+  const { setDrawerPosition, setNavCount, navCount } = useUI()
 
   const handleClick = () => {
+    setNavCount(navCount + 1)
     setDrawerPosition({ isOpen: false, sliding: true, dir: 'LEFT' })
     setTimeout(() => {
       setDrawerPosition({ isOpen: false, sliding: false, dir: 'LEFT' })
     }, 50)
   }
+
+  useNotification()
 
   return (
     <StyledNavigation {...handlers} drawer={drawer}>
@@ -137,6 +164,7 @@ const Navigation = ({ drawer }) => {
           strokeLinecap="round"
           strokeLinejoin="round"
           className="feather feather-x"
+          style={{ cursor: 'pointer' }}
         >
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>

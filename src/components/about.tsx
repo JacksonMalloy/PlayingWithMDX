@@ -1,63 +1,29 @@
+import React from 'react'
+import styled from 'styled-components'
 import { Link } from 'gatsby'
-import React, { useEffect } from 'react'
-import { useUI } from '../Context'
 import { ExternalLink } from './externalLink'
 import Image from './image'
-
-import styled from 'styled-components'
+import { sayHello } from '../utils/sayHello'
 
 const StyledImage = styled.div`
   display: flex;
   justify-content: flex-start;
   padding: 1rem;
-  float: right;
 
-  @media (max-width: 700px) {
+  @media (max-width: 775px) {
     justify-content: center;
     padding: 0.5rem;
   }
 `
 
 export const About = () => {
-  const { openToast } = useUI()
-
-  // useEffect(() => {
-  //   const message = 'Swipe ➡ for menu'
-  //   const variant = 'SUCCESS'
-
-  //   openToast(message, variant)
-  // }, [])
-
-  const sayHello = () => {
-    const date = new Date()
-
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-
-    const options = {
-      hour: 'numeric',
-      hourCycle: 'h24',
-      timeZone: timezone,
-    }
-
-    // To use browsers default locale pass empty array
-    const dateTime = new Intl.DateTimeFormat([], options).format(date)
-
-    if (parseInt(dateTime) >= 4 && parseInt(dateTime) < 12) {
-      return 'Good Morning! '
-    }
-
-    if (parseInt(dateTime) >= 12 && parseInt(dateTime) < 16) {
-      return 'Good Afternoon! '
-    }
-
-    if ((parseInt(dateTime) >= 16 && parseInt(dateTime) <= 24) || parseInt(dateTime) < 4) {
-      return 'Good Evening! '
-    }
-  }
-
   return (
     <section className="container">
-      <h1>{sayHello()}</h1>
+      <h1>
+        {sayHello()} {/* <StyledImage>
+          <Image />
+        </StyledImage> */}
+      </h1>
 
       <blockquote>
         Welcome to my{' '}
@@ -71,9 +37,6 @@ export const About = () => {
       <h4 style={{ marginBottom: '0rem' }}>Who am I?</h4>
 
       <p style={{ paddingTop: '2rem' }}>
-        <StyledImage>
-          <Image />
-        </StyledImage>
         I'm Jackson, an experienced full stack developer from Vancouver BC with a specialty in JavaScript & TypeScript.
         Writing React code is my most practiced skill in the JavaScript ecosystem. I most enjoy building blazing fast
         modern websites with frameworks such as <ExternalLink to={'https://nextjs.org/'}>Next</ExternalLink> or{' '}
