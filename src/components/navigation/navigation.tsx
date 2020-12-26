@@ -63,6 +63,7 @@ const StyledNavigation = styled.aside`
     opacity: 1;
     transition: opacity 0.1s;
     font-family: 'Source Sans Pro Black';
+    color: var(--text) !important;
 
     small {
       font-size: 0.5rem;
@@ -82,7 +83,6 @@ const StyledNavigation = styled.aside`
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-decoration: underline;
 
       /* Safari Fallback */
       color: var(--code);
@@ -157,6 +157,7 @@ const Navigation = ({ drawer }: INavigation) => {
           strokeLinecap="round"
           strokeLinejoin="round"
           className="feather feather-x"
+          style={{ cursor: 'pointer' }}
         >
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>

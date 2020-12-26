@@ -47,4 +47,9 @@ const StyledDrawer = styled.nav`
   align-items: center;
   padding-bottom: 4.5rem;
   overflow-y: auto;
+
+  @media (min-width: 775px) {
+    display: none;
+    pointer-events: none;
+  }
 `

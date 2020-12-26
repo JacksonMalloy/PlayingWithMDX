@@ -7,7 +7,7 @@ export const GlobalStyles = createGlobalStyle`
         --secondary: #fdfaf6;
         --code: #663399;
         --text: #202020;
-        --text-gradient: linear-gradient(red, #663399);
+        --text-gradient: radial-gradient( #663399, rgb(255, 85, 85));
         --background-color: hsla(0, 0%, 100%, 0.2);
 
         /* Spacing */
@@ -23,14 +23,14 @@ export const GlobalStyles = createGlobalStyle`
         --button-hover: rgb(189, 147, 249, 0.8);
 
         /* Box-Shadow (Card) */
-        --pulse-primary-color:  rgba(255, 0, 0, 0.2);
-        --pulse-secondary-color: rgba(102, 51, 153, 0.2);
+        --pulse-primary-color:  rgba(255, 85, 85, 0.2);
+        --pulse-secondary-color: hsla(0, 0%, 100%, 0.2);
 
         /* Error */
         --error: rgba(102, 51, 153, 0.2);
 
         /* Waves */
-        --wave-primary-color: rgba(255, 0, 0, 0.2);
+        --wave-primary-color: rgba(255, 85, 85, 0.5);
 
         /* Codeblocks */
         --code-background-color: #fdfaf6;
@@ -43,6 +43,9 @@ export const GlobalStyles = createGlobalStyle`
         --keyword-color: #096FB3;
         --comment-color: #527713;
         --attribute-name-color: #ff8c00;
+
+        /* Links */
+        --link-primary: rgb(255, 85, 85);
     }
 
     body[data-theme='dark'] {
@@ -87,6 +90,9 @@ export const GlobalStyles = createGlobalStyle`
         --keyword-color: #2aa8fc;
         --comment-color: #7dbe0c;
         --attribute-name-color: #ff8c00;
+
+        /* Links */
+        --link-primary: rgba(88, 166, 255, 0.8);
     }
 
     html {
@@ -108,7 +114,7 @@ export const GlobalStyles = createGlobalStyle`
         background-color: var(--primary);
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6, mark {
         font-family: 'Source Sans Pro Black';
         font-weight: 900;
     }

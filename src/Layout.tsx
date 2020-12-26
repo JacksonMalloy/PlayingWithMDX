@@ -195,6 +195,16 @@ const StyledLayout = styled.main`
 
   a {
     font-weight: 800;
+    color: var(--link-primary);
+  }
+
+  mark {
+    ${pFontSizes()}
+    font-weight: 800;
+    line-height: 2.5rem;
+    background-color: var(--link-primary);
+    color: var(--primary);
+    padding: 0 0.5rem;
   }
 `
 
