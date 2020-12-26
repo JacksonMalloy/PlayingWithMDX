@@ -10,8 +10,8 @@ const StyledButton = styled.button`
   text-decoration: none;
   margin: 8px;
   padding: 8px 12px;
-  background-color: var(--constant-color);
-  color: var(--secondary);
+  background-color: var(--text);
+  color: var(--primary);
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.8rem;
@@ -19,10 +19,6 @@ const StyledButton = styled.button`
 
   @media (max-width: 775px) {
     top: 3.5rem;
-  }
-
-  &:hover {
-    background-color: var(--button-hover);
   }
 `
 

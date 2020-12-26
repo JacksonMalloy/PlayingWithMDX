@@ -95,7 +95,8 @@ const StyledLayout = styled.main`
 
   p,
   ol,
-  li {
+  li,
+  ul {
     ${pFontSizes()}
     font-weight: 800;
     line-height: 2.5rem;
@@ -122,8 +123,8 @@ const StyledLayout = styled.main`
 
   code {
     background-color: var(--secondary);
-    color: var(--code);
-    padding: 0.1rem 0.6rem;
+    color: var(--function-color);
+    padding: 0.3rem 0.5rem;
     margin: 0 0.2rem;
     border-radius: 0.5rem;
     font-size: 1.2rem;
@@ -135,6 +136,14 @@ const StyledLayout = styled.main`
 
   li {
     list-style: disc inside;
+    text-indent: 0px;
+    padding: 0 1rem;
+    margin-top: 2rem;
+
+    p {
+      margin-top: -rem;
+      text-indent: 0px;
+    }
   }
 
   blockquote {
@@ -158,10 +167,6 @@ const StyledLayout = styled.main`
     p {
       margin: 0;
       padding: 0 var(--space);
-    }
-
-    code {
-      padding: 0;
     }
 
     @media (max-width: 576px) {
